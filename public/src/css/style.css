@@ -1,19 +1,74 @@
-
-
-
-.item-jogo{
-    position: relative;
+body{
+    background: #24242d;
+}
+ul{
+    list-style: none;
+}
+/* cabecalho */
+header{
+    padding: 0 !important;
+}
+header > nav{
+    padding: 0 !important;
+}
+/* tamanho carosel */
+.carousel{
+    height: 300px; 
+}
+.carousel-item img{
+    height: 100%;
+    max-height: 400px;
+}
+/* item de cada jogo */
+.item-jogo,.item-lateral{
+position: relative;
+margin-top: 5px;
+}
+.item-jogo .border-esquerda,.item-jogo .border-esquerda img {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.item-jogo .border-direita,.item-jogo .border-direita img {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .item-jogo .links{
     position: absolute;
-    top: 100px;
-    left: 100px;
-    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(16, 15, 15,.3);
+    transition: opacity .5s;
+    opacity: 0;
+    border-radius: 10px;
 }
-.item-jogo .links:hover{
-    display: block;
+.item-jogo:hover .links{
+    opacity: 1;
+} 
+/* item lateral */
 
+.item-lateral:hover{
+    cursor: pointer;
+    padding: 3px !important;
 }
-body{
-    background: red !important;
+/* icones */
+.fa-home, .fa-facebook,.fa-comments{
+    font-size: 3em;
+}
+
+/* reescrevendo o offset */
+.offset-1{
+    margin-left: 3.33333%;
+}
+principal{
+    margin-left: 1%;
+}
+/* footer */
+footer.jumbotron{
+    background: #151619;
+}
+footer.jumbotron h2{
+    color: white;
+}
+footer.jumbotron .footer-area-links1 {
+    border-right: 2px solid white;
 }

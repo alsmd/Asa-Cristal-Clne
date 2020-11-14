@@ -9,82 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="src/fontawesome/css/all.css">
-
+    <link rel="stylesheet" href="src/css/style.css">
 <style>
-    body{
-        background: #24242d;
-    }
-    ul{
-        list-style: none;
-    }
-    /* cabecalho */
-    header{
-        padding: 0 !important;
-    }
-    header > nav{
-        padding: 0 !important;
-    }
-    /* tamanho carosel */
-    .carousel{
-        height: 300px; 
-    }
-    .carousel-item img{
-        height: 100%;
-        max-height: 400px;
-    }
-    /* item de cada jogo */
-    .item-jogo,.item-lateral{
-    position: relative;
-    margin-top: 5px;
-    }
-    .item-jogo .border-esquerda,.item-jogo .border-esquerda img {
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-    }
-    .item-jogo .border-direita,.item-jogo .border-direita img {
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-    .item-jogo .links{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: rgba(16, 15, 15,.3);
-        transition: opacity .5s;
-        opacity: 0;
-        border-radius: 10px;
-    }
-    .item-jogo:hover .links{
-        opacity: 1;
-    } 
-    /* item lateral */
-
-    .item-lateral:hover{
-        cursor: pointer;
-        padding: 3px !important;
-    }
-    /* icones */
-    .fa-home, .fa-facebook,.fa-comments{
-        font-size: 3em;
-    }
-
-    /* reescrevendo o offset */
-    .offset-1{
-        margin-left: 3.33333%;
-    }
-    principal{
-        margin-left: 1%;
-    }
-    /* footer */
-    footer.jumbotron{
-        background: #151619;
-    }
-    footer.jumbotron h2{
-        color: white;
-    }
-    footer.jumbotron .footer-area-links1 {
-        border-right: 2px solid white;
-    }
+   
     
 </style>
 </head>
@@ -107,6 +34,13 @@
     </header>
     <!-- Carousel -->
     <div class="carousel slide" data-ride="carousel" id="banner">
+
+        <ol class="carousel-indicators">
+            <li data-target="#banner" data-slide-to="0" class="active"></li>
+            <li data-target="#banner" data-slide-to="1"></li>
+            <li data-target="#banner" data-slide-to="2"></li>
+        </ol>
+
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="src/image/banner-4.jpg" class="d-block w-100" alt="...">
