@@ -17,15 +17,33 @@
     ul{
         list-style: none;
     }
-
+    /* cabecalho */
+    header{
+        padding: 0 !important;
+    }
+    header > nav{
+        padding: 0 !important;
+    }
     /* tamanho carosel */
+    .carousel{
+        height: 300px; 
+    }
     .carousel-item img{
+        height: 100%;
         max-height: 400px;
     }
     /* item de cada jogo */
     .item-jogo,.item-lateral{
     position: relative;
     margin-top: 5px;
+    }
+    .item-jogo .border-esquerda,.item-jogo .border-esquerda img {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    .item-jogo .border-direita,.item-jogo .border-direita img {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
     .item-jogo .links{
         position: absolute;
@@ -34,6 +52,7 @@
         background: rgba(16, 15, 15,.3);
         transition: opacity .5s;
         opacity: 0;
+        border-radius: 10px;
     }
     .item-jogo:hover .links{
         opacity: 1;
@@ -56,13 +75,23 @@
     principal{
         margin-left: 1%;
     }
-
+    /* footer */
+    footer.jumbotron{
+        background: #151619;
+    }
+    footer.jumbotron h2{
+        color: white;
+    }
+    footer.jumbotron .footer-area-links1 {
+        border-right: 2px solid white;
+    }
+    
 </style>
 </head>
 <body>
     <!-- Navbar -->
 
-    <header class="container">
+    <header class="container" id="header">
         <nav class="navbar navbar-dark navbar-expand-sm">
             <a href="" class="navbar-brand"><img src="http://static.gamesow.com/br/images/logo.png" alt=""></a>
             
@@ -77,21 +106,33 @@
         </nav>
     </header>
     <!-- Carousel -->
-    <div class="carousel slide" data-ride="carousel">
+    <div class="carousel slide" data-ride="carousel" id="banner">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="src/image/banner-1.jpg" class="d-block w-100" alt="...">
+                <img src="src/image/banner-4.jpg" class="d-block w-100" alt="...">
             </div>
 
             <div class="carousel-item">
-                <img src="src/image/banner-2.jpg" class="d-block w-100" alt="...">
+                <img src="src/image/banner-5.png" class="d-block w-100" alt="...">
             </div>
 
             <div class="carousel-item">
-                <img src="src/image/banner-3.jpg" class="d-block w-100" alt="...">
+                <img src="src/image/banner-6.jpg" class="d-block w-100" alt="...">
             </div>
 
         </div>
+
+        <a class="carousel-control-prev" href="#banner" role="prev" data-slide="prev">
+            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+
+        <a class="carousel-control-next" href="#banner" role="next" data-slide="next">
+            <span class="carousel-control-next-icon " aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+
+
     </div>
 
     <main class="container-lg mt-4">
@@ -100,10 +141,10 @@
             <div class="col-md-8 principal mb-4">
                 <!-- Item -->
                 <div class="row item-jogo">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0 border-esquerda">
                         <img src="https://img.gamesow.com/image/2018/0309/1520575930.jpg" alt="" class="w-100">
                     </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0">
+                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0 border-direita">
                         <h2>Asa de Cristal</h2>
                         <p>Aqui vai começar a sua jornada!</p>
                     </div>
@@ -119,10 +160,10 @@
                 
                   <!-- Item -->
                 <div class="row item-jogo">
-                    <div class=" col-lg-6 col-md-6 col-sm-6 col-12 p-0 order-last">
+                    <div class=" col-lg-6 col-md-6 col-sm-6 col-12 p-0 order-last border-direita">
                         <img src="https://img.gamesow.com/image/2016/1117/1479434557.jpg" alt="" class="w-100">
                     </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0 order-first">
+                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0 order-first border-esquerda">
                         <h2>Asa de Cristal</h2>
                         <p>Aqui vai começar a sua jornada!</p>
                     </div>
@@ -138,10 +179,10 @@
 
                  <!-- Item -->
                  <div class="row item-jogo">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0 border-esquerda">
                         <img src="https://img.gamesow.com/image/2016/0729/1469776144.jpg" alt="" class="w-100">
                     </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0">
+                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0 border-direita">
                         <h2>Asa de Cristal</h2>
                         <p>Aqui vai começar a sua jornada!</p>
                     </div>
@@ -158,10 +199,10 @@
 
                  <!-- Item -->
                  <div class="row item-jogo">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0 order-last">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0 order-last border-direita">
                         <img src="https://img.gamesow.com/image/2016/0308/1457436842.jpg" alt="" class="w-100">
                     </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0 order-first">
+                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0 order-first border-esquerda">
                         <h2>Asa de Cristal</h2>
                         <p>Aqui vai começar a sua jornada!</p>
                     </div>
@@ -203,5 +244,34 @@
             </div>
         </div>
     </main>
+
+    <footer class="jumbotron m-0">
+        <div class="container-lg ">
+            <div class="row justify-content-between">
+                <div class="col-md-6 footer-area-links1">
+                    <h2>GAMESOW</h2>
+
+                    <a href="" class="nav-link foot-link">Fórum</a>
+                    <a href="" class="nav-link foot-link">Facebook</a>
+                    <a href="" class="nav-link foot-link">Luz da Escuridão</a>
+                    <a href="" class="nav-link foot-link">Asa de Cristal</a>
+                    <a href="" class="nav-link foot-link">Gamesow Espanõl</a>
+                </div>
+                <div class="col-md-5">
+                    <h2>CORPORATE</h2>
+
+                    <a href="" class="nav-link foot-link">FAQ</a>
+                    <a href="" class="nav-link foot-link">Politica de Reembolso</a>
+                    <a href="" class="nav-link foot-link">Politica de Privacidade</a>
+                    <a href="" class="nav-link foot-link">Sobre nós</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    <div class="d-flex justify-content-center  py-4">
+        <h5 class="lead"style="color:gray;" >COPYRIGHT © 2015 GAMESOW & ENTERTAINMENT, INC.</h5> 
+
+    </div>
 </body>
 </html>
