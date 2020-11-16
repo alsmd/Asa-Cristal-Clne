@@ -216,15 +216,24 @@
 </body>
 </html>
 <script>
-   /*  abrir login */
-    $("#btn-login").on('click',()=>{
-        $('.login').toggleClass('esconder-login');
-    });
-   
-   /*  abrir registrar */
-   $("#btn-registrar").on('click',()=>{
-        $('.registrar').toggleClass('esconder-login');
-        console.log(teste)
-    });
+    $(document).ready(()=>{
+        /*  abrir login */
+        $("#btn-login").on('click',()=>{
+            $('.login').toggleClass('esconder-login');
+        });
+    
+        /*  abrir registrar */
+        $("#btn-registrar").on('click',()=>{
+            $('.registrar').toggleClass('esconder-login');
+        });
+        //Trocar de registrar para logar e vice versa
+        $(".mudar-de-login").on('click',()=>{
+            $('.registrar').toggleClass('esconder-login');
+            $('.login').toggleClass('esconder-login');
+        })
+
+    })
+
+
 
 </script>

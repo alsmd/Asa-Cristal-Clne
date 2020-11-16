@@ -62,6 +62,7 @@
                             <p class="mb-0 mt-3">Outros</p>
                             <button class="btn btn-small btn-outline-danger"> <i class="fab fa-google-plus-g"></i></button>
                             <button class="btn btn-outline-secondary py-2 px-4  mostrar-face" type="button">Registrar</button>
+                            
                         </div>
                        
 
@@ -75,20 +76,17 @@
         $("#btn-fechar-registrar").on('click',()=>{
             $('.registrar').toggleClass('esconder-login');
         })
-
-     //Trocar de registrar para logar e vice versa
-        $(".mudar-de-login").on('click',()=>{
-            $('.registrar').toggleClass('esconder-login');
-            $('.login').toggleClass('esconder-login');
+         
+        //Trocar a visualização de login
+        //Trocar a visualização de login
+        
+        $(".registrar .mostrar-face").on('click',()=>{
+            if($('.registrar .login-body-item2').hasClass('mudar-login')){
+                $('.registrar .login-body-item2').removeClass('mudar-login');
+                $('.registrar .login-body-item1').addClass('mudar-login');
+            }else{
+                $('.registrar .login-body-item1').removeClass('mudar-login');
+                $('.registrar .login-body-item2').addClass('mudar-login');
+            }
         })
-    //Trocar a visualização de registrar
-    $(".registrar .mostrar-face").on('click',()=>{
-        if($('..registrar login-body-item2').hasClass('mudar-login')){
-            $('.registrar .login-body-item2').removeClass('mudar-login');
-            $('.registrar .login-body-item1').addClass('mudar-login');
-        }else{
-            $('.registrar .login-body-item1').removeClass('mudar-login');
-            $('.registrar .login-body-item2').addClass('mudar-login');
-        }
-    })
     </script>

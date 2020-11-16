@@ -69,20 +69,14 @@
         $("#btn-fechar").on('click',()=>{
             $('.login').toggleClass('esconder-login');
         })
-    //Trocar de registrar para logar e vice versa
-        $(".mudar-de-login").on('click',()=>{
-            $('.registrar').toggleClass('esconder-login');
-            $('.login').toggleClass('esconder-login');
-        })
-
     //Trocar a visualização de login
-    $(".mostrar-face").on('click',()=>{
-        if($('.login-body-item2').hasClass('mudar-login')){
+    $(".login .mostrar-face").on('click',()=>{
+        if($('.login .login-body-item2').hasClass('mudar-login')){
             $('.login-body-item2').removeClass('mudar-login');
-            $('.login-body-item1').addClass('mudar-login');
+            $('.login .login-body-item1').addClass('mudar-login');
         }else{
-            $('.login-body-item1').removeClass('mudar-login');
-            $('.login-body-item2').addClass('mudar-login');
+            $('.login .login-body-item1').removeClass('mudar-login');
+            $('.login .login-body-item2').addClass('mudar-login');
         }
     })
     </script>
