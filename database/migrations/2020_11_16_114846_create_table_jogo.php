@@ -28,6 +28,6 @@ class CreateTableJogo extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_jogo');
+        Schema::dropIfExists('jogos');
     }
 }

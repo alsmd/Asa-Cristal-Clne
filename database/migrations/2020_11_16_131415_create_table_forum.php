@@ -30,6 +30,6 @@ class CreateTableForum extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_forum');
+        Schema::dropIfExists('forum');
     }
 }
