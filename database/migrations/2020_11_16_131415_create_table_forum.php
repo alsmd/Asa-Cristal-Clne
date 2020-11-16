@@ -15,9 +15,11 @@ class CreateTableForum extends Migration
     {
         Schema::create('forum', function (Blueprint $table) {
             $table->id();
-            $table->string('jogo');
+            $table->unsignedBigInteger('fk_id_jogo');
             $table->string('slug');
             $table->timestamps();
+
+            $table->foreign('fk_id_jogo')->references('id')->on('jogos');
         });
     }
 

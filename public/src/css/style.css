@@ -31,6 +31,7 @@ header > nav{
 /* tamanho carosel */
 .carousel{
     border-top: 4px solid #363b4a !important;
+
 }
 .carousel-item img{
     height: 100%;
@@ -115,7 +116,7 @@ footer .jumbotron .footer-area-links1 {
 }
 
 /* LOGIN */
-.login{
+.login, .registrar{
     position: fixed;
     top: 0px;
     height: 100vh;
@@ -128,31 +129,71 @@ footer .jumbotron .footer-area-links1 {
 }
 .login-container{
     max-width: 930px;
-    padding-bottom: 200px;
     padding-left: 0 !important;
     padding-right: 0 !important;
     background: linear-gradient(#20222a,#333642) ;
     position: fixed;
     top: 50px;
     border-radius: 10px;
+    top: 50px;
+
+}
+.registrar .login-container{
+    top: 13px;
+
 }
 .login-header{
     padding: 0px 0px 0px 20px ;
     background: linear-gradient(#474d63, #4f5670, #606988);
-    margin-bottom: 1em;
     border-top-right-radius:10px;
     border-top-left-radius: 10px;
 }
-#btn-fechar{
+#btn-fechar, #btn-fechar-registrar{
     border-bottom-right-radius: 0px !important;
 }
-#btn-fechar i{
-    font-size: 1.5em;
+#btn-fechar i,#btn-fechar-registrar i{
+    font-size: 1.3em;
 }
 .login-body{
     margin: 0;
 }
-.login-body-item{
+.login-body-item1,.login-body-item2{
     padding-left: 40px !important;
     padding-right: 40px !important;
+    padding-bottom: 150px;
+    padding-top: 30px;
+
 }
+.registrar  .login-body-item1{
+    padding-bottom: 50px;
+
+}
+.login-body-item1 {
+    border-right: 1px solid black;
+    box-shadow: .5px 0px 0px gray;
+}
+.fa-facebook-square{
+    font-size: 2em;
+}
+.fa-user-ninja{
+    font-size:1.4em;
+}
+.logar-facebook{
+    font-weight: 900;
+    font-size: 1.45em;
+
+}
+.mostrar-face{
+    display:none !important ;
+
+}
+@media(max-width:768px){
+    .mudar-login{
+        display: none !important;
+    }
+    .mostrar-face{
+        display: inline-block !important;
+    }
+}
+
+/* Registrar */
