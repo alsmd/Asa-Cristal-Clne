@@ -3,7 +3,7 @@
         <div class="login-container container text-light">
             <div class="login-header d-flex justify-content-between">
                 <div class="login-header-content d-flex align-items-center">
-                    <span class="mr-2">Login.</span>   Não tem conta? <a href="#" class="mudar-de-login">Registrar</a>
+                    <span class="mr-2"><i class="fas fa-crow"></i></span>   Não tem conta? <a href="#" class="mudar-de-login text-warning ml-2">Registrar</a>
                 </div>
     
                 <button class="btn btn-dark py-2 px-3" id="btn-fechar"><i class="fas fa-times"></i></button>

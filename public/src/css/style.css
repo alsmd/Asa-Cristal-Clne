@@ -151,7 +151,7 @@ footer .jumbotron .footer-area-links1 {
 #btn-fechar, #btn-fechar-registrar{
     border-bottom-right-radius: 0px !important;
 }
-#btn-fechar i,#btn-fechar-registrar i{
+#btn-fechar i,#btn-fechar-registrar i,.fa-crow{
     font-size: 1.3em;
 }
 .login-body{

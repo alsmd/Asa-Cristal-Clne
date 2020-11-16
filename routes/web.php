@@ -17,3 +17,12 @@ Route::get('/', function () {
     $helloWorld = 'Hello World';
     return view('index.home',compact('helloWorld'));
 });
+
+Route::get('/criar', function(){
+    //$user = new \App\Models\User;
+    $user = \App\Models\User::find(1);
+    $user->name = 'Banana';
+
+    $user->save();
+    return $user;
+});
