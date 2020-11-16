@@ -1,268 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamesow-Clone</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="src/fontawesome/css/all.css">
-    <link rel="stylesheet" href="src/css/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com"> 
-    <link rel="shortcut icon" href="src/image/icon.jpg" >
+<?php
 
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
 
-<style>
-   
-    
-</style>
-</head>
-<body>
-    <!-- Navbar -->
-    <header class="container" id="header">
-        <nav class="navbar navbar-dark navbar-expand-sm">
-            <a href="" class="navbar-brand"><img src="http://static.gamesow.com/br/images/logo.png" alt=""></a>
-            
-            <button class="navbar-toggler" data-toggle="collapse" data-target="#menu-principal"><span class="navbar-toggler-icon"></span></button>
+define('LARAVEL_START', microtime(true));
 
-            <div class="collapse navbar-collapse" id="menu-principal">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="#" class="nav-link" id="btn-login">Login</a></li>
-                    <li class="nav-item divisao"><a href="" class="nav-link"></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Registrar</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <!-- Carousel -->
-    <div class="carousel slide" data-ride="carousel" id="banner">
+/*
+|--------------------------------------------------------------------------
+| Check If Application Is Under Maintenance
+|--------------------------------------------------------------------------
+|
+| If the application is maintenance / demo mode via the "down" command we
+| will require this file so that any prerendered template can be shown
+| instead of starting the framework, which could cause an exception.
+|
+*/
 
-        <ol class="carousel-indicators">
-            <li data-target="#banner" data-slide-to="0" class="active"></li>
-            <li data-target="#banner" data-slide-to="1"></li>
-            <li data-target="#banner" data-slide-to="2"></li>
-        </ol>
+if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
+    require __DIR__.'/../storage/framework/maintenance.php';
+}
 
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="src/image/banner-4.jpg" class="d-block w-100" alt="...">
-            </div>
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| this application. We just need to utilize it! We'll simply require it
+| into the script here so we don't need to manually load our classes.
+|
+*/
 
-            <div class="carousel-item">
-                <img src="src/image/banner-5.jpg" class="d-block w-100" alt="...">
-            </div>
+require __DIR__.'/../vendor/autoload.php';
 
-            <div class="carousel-item">
-                <img src="src/image/banner-6.jpg" class="d-block w-100" alt="...">
-            </div>
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can handle the incoming request using
+| the application's HTTP kernel. Then, we will send the response back
+| to this client's browser, allowing them to enjoy our application.
+|
+*/
 
-        </div>
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
-        <a class="carousel-control-prev" href="#banner" role="prev" data-slide="prev">
-            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-            <span class="sr-only">Anterior</span>
-        </a>
+$kernel = $app->make(Kernel::class);
 
-        <a class="carousel-control-next" href="#banner" role="next" data-slide="next">
-            <span class="carousel-control-next-icon " aria-hidden="true"></span>
-            <span class="sr-only">Anterior</span>
-        </a>
+$response = tap($kernel->handle(
+    $request = Request::capture()
+))->send();
 
-
-    </div>
-    <!-- Conteudo principal -->
-    <main class="container-lg my-4">
-        <div class="row  px-4">
-            <!-- PRINCIPAL -->
-            <div class="col-md-8 principal mb-4">
-                <!-- Item -->
-                <div class="row item-jogo">
-                    <!-- Banner -->
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0 border-esquerda">
-                        <img src="https://img.gamesow.com/image/2018/0309/1520575930.jpg" alt="" class="w-100">
-                    </div>
-                    <!-- Descrição -->
-                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0 border-direita">
-                        <h2>Asa de Cristal</h2>
-                        <p>Aqui vai começar a sua jornada!</p>
-                    </div>
-                    <!-- links -->
-                    <div class="links d-flex align-items-center justify-content-center">
-                       <div class="">
-                        <a href="google" class="btn btn-outline-light  p-3"> <i class="fas fa-home"></i></a>
-                        <a href="google"  class="btn btn-outline-light  p-3"> <i class="fab fa-facebook"></i></a>
-                        <a href="google"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
-                       </div>
-                    </div>
-                </div>
-                
-                  <!-- Item -->
-                <div class="row item-jogo">
-                    <div class=" col-lg-6 col-md-6 col-sm-6 col-12 p-0 order-last border-direita">
-                        <img src="https://img.gamesow.com/image/2016/1117/1479434557.jpg" alt="" class="w-100">
-                    </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-dark text-light p-0 order-first border-esquerda">
-                        <h2>Asa de Cristal</h2>
-                        <p>Aqui vai começar a sua jornada!</p>
-                    </div>
-
-                    <div class="links d-flex align-items-center justify-content-center">
-                       <div class="">
-                        <a href="google" class="btn btn-outline-light  p-3"> <i class="fas fa-home"></i></a>
-                        <a href="google"  class="btn btn-outline-light  p-3"> <i class="fab fa-facebook"></i></a>
-                        <a href="google"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
-                       </div>
-                    </div>
-                </div>
-
-                 <!-- Item -->
-                 <div class="row item-jogo">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0 border-esquerda">
-                        <img src="https://img.gamesow.com/image/2016/0729/1469776144.jpg" alt="" class="w-100">
-                    </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0 border-direita">
-                        <h2>Asa de Cristal</h2>
-                        <p>Aqui vai começar a sua jornada!</p>
-                    </div>
-
-                    <div class="links d-flex align-items-center justify-content-center">
-                       <div class="">
-                        <a href="google" class="btn btn-outline-light  p-3"> <i class="fas fa-home"></i></a>
-                        <a href="google"  class="btn btn-outline-light  p-3"> <i class="fab fa-facebook"></i></a>
-                        <a href="google"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
-                       </div>
-                    </div>
-                </div>
-
-
-                 <!-- Item -->
-                 <div class="row item-jogo">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0 order-last border-direita">
-                        <img src="https://img.gamesow.com/image/2016/0308/1457436842.jpg" alt="" class="w-100">
-                    </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-dark text-light p-0 order-first border-esquerda">
-                        <h2>Asa de Cristal</h2>
-                        <p>Aqui vai começar a sua jornada!</p>
-                    </div>
-
-                    <div class="links d-flex align-items-center justify-content-center">
-                       <div class="">
-                        <a href="google" class="btn btn-outline-light  p-3"> <i class="fas fa-home"></i></a>
-                        <a href="google"  class="btn btn-outline-light  p-3"> <i class="fab fa-facebook"></i></a>
-                        <a href="google"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
-                       </div>
-                    </div>
-                </div>
-
-                 
-            </div>
-            <!-- LATERAL -->
-            <div class="col-md-3 secundario offset-1">
-                <div class="row justify-content-between">
-                    <div class="col-md-12 col-sm-6  item-lateral p-0">
-                        <img src="https://img.gamesow.com/image/2016/1227/1482832598.jpg" alt="" width="100%" class="rounded">
-                    </div>
-                    <div class="col-md-12 col-sm-6  item-lateral p-0">
-                        <img src="https://img.gamesow.com/image/2016/0818/1471516568.jpg" alt="" width="100%" class="rounded">
-                    </div>
-                    <div class="col-md-12 col-sm-6  item-lateral p-0">
-                        <img src="https://img.gamesow.com/image/2016/0309/1457493072.png" alt="" width="100%" class="rounded">
-                    </div>
-                    <div class="col-md-12 col-sm-6  item-lateral p-0">
-                        <img src="https://img.gamesow.com/image/2015/0701/1435733586.jpg" alt="" width="100%" class="rounded">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <!-- FOOTER -->
-    <footer>
-        <!-- AREA 1 --> 
-        <div class="jumbotron m-0">
-            <div class="container-lg ">
-                <div class="row justify-content-between">
-                    <div class="col-md-6 footer-area-links1 ">
-                        <h2>GAMESOW</h2>
-    
-                        <a href="" class="nav-link foot-link">Fórum</a>
-                        <a href="" class="nav-link foot-link">Facebook</a>
-                        <a href="" class="nav-link foot-link">Luz da Escuridão</a>
-                        <a href="" class="nav-link foot-link">Asa de Cristal</a>
-                        <a href="" class="nav-link foot-link">Gamesow Espanõl</a>
-                    </div>
-                    <div class="col-md-5">
-                        <h2>CORPORATE</h2>
-    
-                        <a href="" class="nav-link foot-link">FAQ</a>
-                        <a href="" class="nav-link foot-link">Politica de Reembolso</a>
-                        <a href="" class="nav-link foot-link">Politica de Privacidade</a>
-                        <a href="" class="nav-link foot-link">Sobre nós</a>
-                    </div>
-                </div>
-    
-            </div>
-        </div>
-        <!-- AREA 2 -->
-        <div class="d-flex justify-content-center  py-4">
-            <h5 class="lead"style="color:gray;" >COPYRIGHT © 2015 GAMESOW & ENTERTAINMENT, INC.</h5> 
-    
-        </div>
-    </footer>
-
-
-    <!-- Login model -->
-    <div class="d-flex justify-content-center login esconder-login">
-        <div class="login-container container text-light">
-            <div class="login-header d-flex justify-content-between">
-                <div class="login-header-content d-flex align-items-center">
-                    <span class="mr-2">Login.</span> <span class="mr-2">JOGUE DE GRAÇA!</span>  Não tem conta? <a href="">Registrar</a>
-                </div>
-    
-                <button class="btn btn-dark py-2 px-4" id="btn-fechar"><i class="fas fa-times"></i></button>
-            </div>
-    
-    
-            <div class="login-body row">
-                <!-- LOGIN COM CONTA DO SITE -->
-                <div class="col-md-6 login-body-item">
-                    <form action="">
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" class="form-control">
-                        </div>
-    
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" class="form-control">
-                        </div>
-
-                        <div class="row mx-0">
-                            <div class="custom-control custom-checkbox col-6">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Lembrar de min</label>
-                            </div>
-                            <a href="" class="col-6">Esqueceu a senha?</a>
-                        </div>
-                        <button class="btn btn-outline-primary py-2 px-4 mt-4">Logar</button>
-                    </form>
-                </div>
-               <!--  LOGIN POR REDES SOCIAIS -->
-                <div class="col-md-6 login-body-item">
-                    <h3>Acessar com Facebook</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</body>
-</html>
-<script>
-    $("#btn-login").on('click',()=>{
-        $('.login').toggleClass('esconder-login');
-    });
-    $("#btn-fechar").on('click',()=>{
-        $('.login').toggleClass('esconder-login');
-    })
-</script>
+$kernel->terminate($request, $response);
