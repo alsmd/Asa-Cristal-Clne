@@ -29,9 +29,9 @@
 
             <div class="collapse navbar-collapse" id="menu-principal">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="btn-login">Login</a></li>
                     <li class="nav-item divisao"><a href="" class="nav-link"></a></li>
-                    <li class="nav-item"><a href="" class="nav-link">Registrar</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Registrar</a></li>
                 </ul>
             </div>
         </nav>
@@ -211,5 +211,58 @@
         </div>
     </footer>
 
+
+    <!-- Login model -->
+    <div class="d-flex justify-content-center login esconder-login">
+        <div class="login-container container text-light">
+            <div class="login-header d-flex justify-content-between">
+                <div class="login-header-content d-flex align-items-center">
+                    <span class="mr-2">Login.</span> <span class="mr-2">JOGUE DE GRAÇA!</span>  Não tem conta? <a href="">Registrar</a>
+                </div>
+    
+                <button class="btn btn-dark py-2 px-4" id="btn-fechar"><i class="fas fa-times"></i></button>
+            </div>
+    
+    
+            <div class="login-body row">
+                <!-- LOGIN COM CONTA DO SITE -->
+                <div class="col-md-6 login-body-item">
+                    <form action="">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" class="form-control">
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" class="form-control">
+                        </div>
+
+                        <div class="row mx-0">
+                            <div class="custom-control custom-checkbox col-6">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Lembrar de min</label>
+                            </div>
+                            <a href="" class="col-6">Esqueceu a senha?</a>
+                        </div>
+                        <button class="btn btn-outline-primary py-2 px-4 mt-4">Logar</button>
+                    </form>
+                </div>
+               <!--  LOGIN POR REDES SOCIAIS -->
+                <div class="col-md-6 login-body-item">
+                    <h3>Acessar com Facebook</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
+<script>
+    $("#btn-login").on('click',()=>{
+        $('.login').toggleClass('esconder-login');
+    });
+    $("#btn-fechar").on('click',()=>{
+        $('.login').toggleClass('esconder-login');
+    })
+</script>
