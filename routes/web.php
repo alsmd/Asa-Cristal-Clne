@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $helloWorld = 'Hello World';
-    return view('index.home',compact('helloWorld'));
+    return view('index.home');
 });
+Route::get('/forum', function () {
+    return view('forum.home');
+});
+
 
 Route::get('/criar', function(){
     //$user = new \App\Models\User;
-    $user = \App\Models\User::find(1);
-    $user->name = 'Banana';
 
-    $user->save();
-    return $user;
+    return \App\Models\User::paginate(10);
 });

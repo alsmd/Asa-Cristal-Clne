@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="src/fontawesome/css/all.css">
     <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/header.css">
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <link rel="shortcut icon" href="src/image/icon.jpg" >
 
@@ -205,8 +206,8 @@
             </div>
         </div>
         <!-- AREA 2 -->
-        <div class="d-flex justify-content-center  py-4">
-            <h5 class="lead"style="color:gray;" >COPYRIGHT © 2015 GAMESOW & ENTERTAINMENT, INC.</h5> 
+        <div class="d-flex justify-content-center  py-4 last">
+            <h5 class="lead"style="color:gray;" >Projeto  criado para fins de estudo.  <a href="https://github.com/alsmd/Gamesow-Clone" target="_blank" rel="noopener noreferrer" class='nav-link d-inline px-0 text-warning'>GitHub</a></h5> 
     
         </div>
     </footer>

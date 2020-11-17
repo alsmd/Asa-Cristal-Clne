@@ -9,25 +9,6 @@ body{
 ul{
     list-style: none;
 }
-/* cabecalho */
-header{
-    padding: 0 !important;
-}
-header ul.navbar-nav a{
-    font-weight: 700;
-}
-header .navbar-dark .navbar-nav .nav-link:hover{
-    color: white;
-}
-header > nav{
-    padding: 0 !important;
-}
-.divisao{
-    width: 1px;
-    background:black;
-    margin: 0 .7em;
-    box-shadow: .3px 0px 1px white;
-}
 /* tamanho carosel */
 .carousel{
     border-top: 4px solid #363b4a !important;
@@ -100,8 +81,13 @@ principal{
     margin-left: 1%;
 }
 /* footer */
+
 footer .jumbotron{
     background: #151619;
+}
+footer .last{
+    background: #1c1d23;
+    
 }
 footer .jumbotron h2{
     color: white;

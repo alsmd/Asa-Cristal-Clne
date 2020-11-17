@@ -1,0 +1,19 @@
+/* cabecalho */
+header{
+    padding: 0 !important;
+}
+header ul.navbar-nav a{
+    font-weight: 700;
+}
+header .navbar-dark .navbar-nav .nav-link:hover{
+    color: white;
+}
+header > nav{
+    padding: 0 !important;
+}
+.divisao{
+    width: 1px;
+    background:black;
+    margin: 0 .7em;
+    box-shadow: .3px 0px 1px white;
+}

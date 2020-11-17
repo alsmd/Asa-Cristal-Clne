@@ -1,0 +1,29 @@
+/**
+***
+****
+Configurações Css referente ao Fórum
+****
+***
+**/
+*{
+    box-sizing: border-box;
+}
+body{
+    background: #24242d;
+}
+
+/* Conteudo princiapal */
+main{
+    padding:30px;
+}
+#main-header{
+    border-bottom: 3px solid rgb(220, 220, 220);
+    box-shadow: 0px .5px 0px gray;
+    padding-bottom: 30px;
+}
+.jogo{
+    background: linear-gradient(gray,rgb(128, 128, 128),rgb(103, 115, 122),rgb(109, 129, 141));
+    padding: 12px;
+    border-top: 2px ridge black;
+    border-bottom: 2px ridge black;
+}
