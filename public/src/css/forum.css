@@ -9,9 +9,12 @@ Configurações Css referente ao Fórum
     box-sizing: border-box;
 }
 body{
-    background: #24242d;
+    overflow-x: hidden;
 }
-
+/* classes para cores */
+.bg-black{
+    background: rgba(45, 45, 56,.7);
+}
 /* Conteudo princiapal */
 main{
     padding:30px;
@@ -21,9 +24,48 @@ main{
     box-shadow: 0px .5px 0px gray;
     padding-bottom: 30px;
 }
+#jogos{
+    border-bottom: 1px ridge white;
+    box-shadow: 0px 1px 0px rgb(79, 131, 155);
+}
 .jogo{
-    background: linear-gradient(gray,rgb(128, 128, 128),rgb(103, 115, 122),rgb(109, 129, 141));
+    background: linear-gradient(rgb(72, 72, 72),rgb(67, 70, 71),rgb(63, 69, 71),rgb(58, 66, 68));
     padding: 12px;
     border-top: 2px ridge black;
     border-bottom: 2px ridge black;
+}
+footer .container-lg{
+    max-width: 650px;
+}
+@media(max-width:393px){
+    .jogo-titulo{
+        font-size: 1.5em;
+    }
+    .jogo-conteudo{
+        font-size: .8em;
+    }
+}
+@media(max-width:370px){
+    .jogo-titulo{
+        font-size: 1.3em;
+    }
+}
+@media(max-width:350px){
+    .jogo-titulo{
+        font-size: 1em;
+    }
+    .navbar-brand img{
+        width: 150px;
+    }
+}
+@media(max-width:330px){
+    .jogo-titulo{
+        font-size: .9em;
+    }
+
+}
+@media(max-width:575px){
+    .jogo{
+        margin: -15px !important;
+    }
 }

@@ -94,7 +94,7 @@
                        <div class="">
                         <a href="#" class="btn btn-outline-light  p-3"> <i class="fas fa-home"></i></a>
                         <a href="#"  class="btn btn-outline-light  p-3"> <i class="fab fa-facebook"></i></a>
-                        <a href="#"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
+                        <a href="/forum"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
                        </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                        <div class="">
                         <a href="#" class="btn btn-outline-light  p-3"> <i class="fas fa-home"></i></a>
                         <a href="#"  class="btn btn-outline-light  p-3"> <i class="fab fa-facebook"></i></a>
-                        <a href="#"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
+                        <a href="/forum"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
                        </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                        <div class="">
                         <a href="#" class="btn btn-outline-light  p-3"> <i class="fas fa-home"></i></a>
                         <a href="#"  class="btn btn-outline-light  p-3"> <i class="fab fa-facebook"></i></a>
-                        <a href="#"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
+                        <a href="/forum"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
                        </div>
                     </div>
                 </div>
@@ -152,7 +152,7 @@
                        <div class="">
                         <a href="#" class="btn btn-outline-light  p-3"> <i class="fas fa-home"></i></a>
                         <a href="#"  class="btn btn-outline-light  p-3"> <i class="fab fa-facebook"></i></a>
-                        <a href="#"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
+                        <a href="/forum"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
                        </div>
                     </div>
                 </div>
