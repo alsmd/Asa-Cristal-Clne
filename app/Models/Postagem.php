@@ -9,7 +9,15 @@ class Postagem extends Model
 {
     use HasFactory;
     protected $table = 'postagens';
-    protected $fillable = ['titulo','conteudo','autor','fk_id_categoria','fk_id_user'];
+    protected $fillable = ['titulo','conteudo','autor','fk_id_categoria','fk_id_forum'];
+
+
+
+
+
+
+    //***********RELAÇÕES***********//
+
 
 
     //Postagem pertence a um usuario e a um forum

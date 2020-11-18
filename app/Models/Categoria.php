@@ -9,7 +9,7 @@ class Categoria extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome','descricao','slug'];
     //tem varias postagens
 
     public function postagens(){
