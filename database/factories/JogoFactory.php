@@ -24,7 +24,9 @@ class JogoFactory extends Factory
         return [
             //
             'nome' => $this->faker->name,
-            'slug' =>$this->faker->slug
+            'slug' =>$this->faker->slug,
+            'descricao' => 'Aqui vai Começar a sua Jornada',
+            'foto'=> 'https://img.gamesow.com/image/2016/0308/1457436842.jpg'
         ];
     }
 }

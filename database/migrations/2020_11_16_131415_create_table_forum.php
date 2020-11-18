@@ -16,6 +16,8 @@ class CreateTableForum extends Migration
         Schema::create('forum', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('fk_id_jogo');
+            $table->string('frase');
+            $table->string('foto');
             $table->string('slug');
             $table->timestamps();
 

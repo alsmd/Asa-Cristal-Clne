@@ -24,6 +24,8 @@ class ForumFactory extends Factory
         return [
             //
             'slug' => $this->faker->slug,
+            'frase' => 'O melhor MMORPG da gamesow',
+            'foto' => 'http://localhost:8080/src/image/asa-de-cristal.jpg'
         ];
     }
 }

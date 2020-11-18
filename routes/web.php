@@ -1,13 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use App\Models\Jogo;
-use App\Models\Forum;
-use App\Models\Categoria;
-use App\Models\Postagem;
-use App\Models\Produto;
-use App\Models\ProdutoUsuario;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\ForumController;
+use App\Http\Controllers\Admin\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,16 +16,18 @@ use App\Models\ProdutoUsuario;
 |
 */
 
-Route::get('/', function () {
-    return view('index.home');
-});
-Route::get('/forum', function () {
-    return view('forum.home');
-});
+Route::get('/', [IndexController::class,'index']);
+
+/* forum home page */
+Route::get('/forum',[ForumController::class, 'index']);
+/* Forum de um jogo especifico */
+Route::get('/forum/{slug_jogo}',[ForumController::class, 'forum']);
+/* Categoria para postagens dentro de um Forum */
+Route::get('/forum/{slug_jogo}/{slug_categoria}',[ForumController::class, 'forumCategoria']);
 
 
-Route::get('/criar', function(){
-    
+Route::get('/forum/create',[ForumController::class, 'create']);
 
-    return ProdutoUsuario::all();
-});
+Route::post('/forum/postagem',[ForumController::class, 'postagem']);
+
+

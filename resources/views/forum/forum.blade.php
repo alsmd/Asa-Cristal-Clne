@@ -11,12 +11,12 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     <!--FontAwesome -->
-    <link rel="stylesheet" href="src/fontawesome/css/all.css">
+    <link rel="stylesheet" href="../src/fontawesome/css/all.css">
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <!--Icone na aba -->
-    <link rel="shortcut icon" href="src/image/icon.jpg" >
+    <link rel="shortcut icon" href="../src/image/icon.jpg" >
     <!--Estilo costumizado -->
-    <link rel="stylesheet" href="src/css/forum.css">
+    <link rel="stylesheet" href="../src/css/forum.css">
 
 </head>
 <body class="bg-dark" >
@@ -43,8 +43,8 @@
         </div>
     </header>
     <!-- TABS -->
-    <div class="container">
-        <a href=""class="text-info">FÓRUM</a> <span class="text-info">» Página inicial</span>
+    <div class="container text-info">
+        <a href=""class="text-info">FÓRUM</a> » <a href="/forum" class="text-info">Página inicial</a href="/forum"> <span class="text-info">» Jogo</span>
     </div>
 
     <main class="container bg-black text-light rounded">
@@ -55,21 +55,20 @@
                 <small class="text-success">Hoje: 26, Ontem: 33, Membros: 211836</small>
             </div>
         </header>
-        <h3 class="display-4 mt-2 mb-4">Jogos</h3>
+        <h3 class="display-4 mt-2 mb-4">Categorias</h3>
 
         
         <!-- Lista Dos forum disponiveis -->
         <div id="jogos mx-2">
-
             <!-- Forums desponiveis no DB -->
-            @foreach($forums as $forum)
+            @foreach($categorias as $categoria)
             <div class="row jogo text-light mb-3 mx-0">
                 <div class="col-md-8">
                    <div class="d-flex">
-                        <img src="./src/image/asa-de-cristal.jpg" alt="" class="rounded align-self-stretch" width="135" height="103" >
+                        <img src="../src/image/asa-de-cristal.jpg" alt="" class="rounded align-self-stretch" width="135" height="103" >
                         <div class="d-flex flex-column ml-3">
-                            <h3 class="m-0 d-inline jogo-titulo"><a href="/forum/{{$forum->slug}}" class="text-warning">Asa de Cristal</a><small class="d-none d-lg-inline ml-1">(Hoje: <span class="text-warning">26</span>)</small></h3> 
-                            <p class="lead m-0 jogo-conteudo">{{$forum->frase}}</p>
+                            <h3 class="m-0 d-inline jogo-titulo"><a href="/forum/{{$slug}}/{{$categoria->slug}}" class="text-warning">{{$categoria->nome}}</a></h3> 
+                            <p class="lead m-0 jogo-conteudo"></p>
                             <div class="dropdown">
                                 <button class="dropdown-toggle btn btn-secondary btn-sm" data-toggle="dropdown" id="dropdown-jogo1-button" aria-haspopup="true" aria-expanded="false">Moderador</button>
 
@@ -80,7 +79,6 @@
                                 </div>
                             </div>  
                         </div>
-                        <span class="float-right d-none d-lg-inline">14686 / 49619</span> 
                    </div>
                 </div>
                 <div class="col-md-4">
@@ -93,11 +91,6 @@
                 </div>
             </div>
            @endforeach
-            
-
-           
-
-            
             
         </div>
 

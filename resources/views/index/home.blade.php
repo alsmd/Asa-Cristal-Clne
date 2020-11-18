@@ -78,16 +78,17 @@
         <div class="row  px-4">
             <!-- PRINCIPAL -->
             <div class="col-md-8 principal mb-4">
-                <!-- Item -->
+                <!-- Jogos salvos no banco de dados -->
+                @foreach($jogos as $jogo)
                 <div class="row item-jogo">
                     <!-- Banner -->
                     <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0 border-esquerda">
-                        <img src="https://img.gamesow.com/image/2018/0309/1520575930.jpg" alt="" class="w-100">
+                        <img src="{{$jogo->foto}}" alt="" class="w-100">
                     </div>
                     <!-- Descrição -->
                     <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0 border-direita">
-                        <h2>Asa de Cristal</h2>
-                        <p>Aqui vai começar a sua jornada!</p>
+                        <h2>{{$jogo->nome}}</h2>
+                        <p>{{$jogo->descricao}}</p>
                     </div>
                     <!-- links -->
                     <div class="links d-flex align-items-center justify-content-center">
@@ -99,63 +100,9 @@
                     </div>
                 </div>
                 
-                  <!-- Item -->
-                <div class="row item-jogo">
-                    <div class=" col-lg-6 col-md-6 col-sm-6 col-12 p-0 order-last border-direita">
-                        <img src="https://img.gamesow.com/image/2016/1117/1479434557.jpg" alt="" class="w-100">
-                    </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-dark text-light p-0 order-first border-esquerda">
-                        <h2>Asa de Cristal</h2>
-                        <p>Aqui vai começar a sua jornada!</p>
-                    </div>
+                @endforeach
 
-                    <div class="links d-flex align-items-center justify-content-center">
-                       <div class="">
-                        <a href="#" class="btn btn-outline-light  p-3"> <i class="fas fa-home"></i></a>
-                        <a href="#"  class="btn btn-outline-light  p-3"> <i class="fab fa-facebook"></i></a>
-                        <a href="/forum"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
-                       </div>
-                    </div>
-                </div>
-
-                 <!-- Item -->
-                 <div class="row item-jogo">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0 border-esquerda">
-                        <img src="https://img.gamesow.com/image/2016/0729/1469776144.jpg" alt="" class="w-100">
-                    </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0 border-direita">
-                        <h2>Asa de Cristal</h2>
-                        <p>Aqui vai começar a sua jornada!</p>
-                    </div>
-
-                    <div class="links d-flex align-items-center justify-content-center">
-                       <div class="">
-                        <a href="#" class="btn btn-outline-light  p-3"> <i class="fas fa-home"></i></a>
-                        <a href="#"  class="btn btn-outline-light  p-3"> <i class="fab fa-facebook"></i></a>
-                        <a href="/forum"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
-                       </div>
-                    </div>
-                </div>
-
-
-                 <!-- Item -->
-                 <div class="row item-jogo">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0 order-last border-direita">
-                        <img src="https://img.gamesow.com/image/2016/0308/1457436842.jpg" alt="" class="w-100">
-                    </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-dark text-light p-0 order-first border-esquerda">
-                        <h2>Asa de Cristal</h2>
-                        <p>Aqui vai começar a sua jornada!</p>
-                    </div>
-
-                    <div class="links d-flex align-items-center justify-content-center">
-                       <div class="">
-                        <a href="#" class="btn btn-outline-light  p-3"> <i class="fas fa-home"></i></a>
-                        <a href="#"  class="btn btn-outline-light  p-3"> <i class="fab fa-facebook"></i></a>
-                        <a href="/forum"  class="btn btn-outline-light  p-3"> <i class="far fa-comments"></i></a>
-                       </div>
-                    </div>
-                </div>
+                 
 
                  
             </div>

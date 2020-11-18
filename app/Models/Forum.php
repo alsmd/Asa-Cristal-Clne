@@ -9,7 +9,7 @@ class Forum extends Model
 {
     use HasFactory;
     protected $table = 'forum';
-    protected $fillable = ['slug'];
+    protected $fillable = ['slug','frase','foto'];
 
 
     //Um forum pertence a um Jogo
