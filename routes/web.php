@@ -36,7 +36,7 @@ Route::get('/criar', function(){
     //Criar um Novo Forum para o Jogo
     //$asa_forum = $jogo->forum()->save(Forum::make(['slug'=>'asa-de-cristal-forum']));
 
-    //Criar um Categoria 
+    //Criar uma Categoria 
 
     //$categoria = Categoria::create(['nome'=>'suporte','descricao'=> 'Duvidas ou Problemas que o usuario possa ter com relação a algum sistema ou problemas no site ou jogo','slug'=> 'categoria-suporte']);
 
@@ -45,14 +45,16 @@ Route::get('/criar', function(){
     $forum = Forum::where('slug','asa-de-cristal-forum')->first();
     $usuario = User::where('email','teste@gmail.com')->first();
     $postagem = Postagem::make([
-        'titulo'=> 'Problem ao Entrar no Jogo',
-        'conteudo'=>'Quando tento acessar a pagina do jogo meu navegador fecha sozino',
-        'autor'=> $usuario->name,
-        'fk_id_categoria' => $categoria->id,
-        'fk_id_forum' =>$forum->id
+        'titulo'=> 'Item Sumiu',
+        'conteudo'=>'Depois da manutenção semanal minha manopla sumiu do meu inventario',
+        'autor'=> $usuario->name
     ]);
-
-    dd($usuario->postagens()->save($postagem));
+    $postagem->categoria()->associate($categoria->id);
+    $postagem->forum()->associate($forum->id);
+    $postagem->user()->associate($usuario->id);
+   $postagem->save();
+   
+    //dd($usuario->postagens()->save($postagem));
 
     return $postagem ;
 });
