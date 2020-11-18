@@ -29,7 +29,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     /**
@@ -38,6 +38,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime'
     ];
+    
+    
+    //pode comprar varios produtos
+
+    public function produtos(){
+        return $this->belongsToMany(Produto::class,'produto_usuario','fk_id_produto');
+    }
+
+    //Usuario tem muitas postagens
+
+    public function postagens(){
+        return $this->hasMany(Postagem::class,'fk_id_user');
+    }
 }

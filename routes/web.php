@@ -23,6 +23,8 @@ Route::get('/forum', function () {
 
 Route::get('/criar', function(){
     //$user = new \App\Models\User;
+    //dd($user);
+    dd(\App\Models\User::factory(40)->make());
+    //return ;
 
-    return \App\Models\User::paginate(10);
 });
