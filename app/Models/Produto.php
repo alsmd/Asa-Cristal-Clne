@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
     use HasFactory;
+    protected $fillable =[
+        'nome',
+        'valor',
+        'descricao',
+        'corpo',
+        'moeda_utilizada',
+        'slug'
+    ];
 
 
 
@@ -18,6 +26,6 @@ class Produto extends Model
 
     //Pode ser comprado por varios usuarios
     public function users(){
-        return $this->belongsToMany(User::class,'produto_usuario','fk_id_user');
+        return $this->belongsToMany(User::class,'produto_usuario','fk_id_produto','fk_id_user');
     }
 }

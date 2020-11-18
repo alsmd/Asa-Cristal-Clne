@@ -45,7 +45,7 @@ class User extends Authenticatable
     //pode comprar varios produtos
 
     public function produtos(){
-        return $this->belongsToMany(Produto::class,'produto_usuario','fk_id_produto');
+        return $this->belongsToMany(Produto::class,'produto_usuario','fk_id_user','fk_id_produto');
     }
 
     //Usuario tem muitas postagens

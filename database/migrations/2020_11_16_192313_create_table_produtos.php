@@ -18,7 +18,7 @@ class CreateTableProdutos extends Migration
             $table->string('nome');
             $table->decimal('valor',10,2);
             $table->string('descricao');
-            $table->text('corpo');
+            $table->text('corpo')->nullable();;
             $table->string('moeda_utilizada');
             $table->string('slug');
             $table->timestamps();

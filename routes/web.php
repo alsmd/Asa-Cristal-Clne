@@ -6,6 +6,9 @@ use App\Models\Jogo;
 use App\Models\Forum;
 use App\Models\Categoria;
 use App\Models\Postagem;
+use App\Models\Produto;
+use App\Models\ProdutoUsuario;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,7 +44,7 @@ Route::get('/criar', function(){
     //$categoria = Categoria::create(['nome'=>'suporte','descricao'=> 'Duvidas ou Problemas que o usuario possa ter com relação a algum sistema ou problemas no site ou jogo','slug'=> 'categoria-suporte']);
 
     //Criar uma Postagem que se encaixa em uma categoria, foi feita por um usuario dentro de um Forum
-    $categoria = Categoria::where('nome','suporte')->first();
+    /* $categoria = Categoria::where('nome','suporte')->first();
     $forum = Forum::where('slug','asa-de-cristal-forum')->first();
     $usuario = User::where('email','teste@gmail.com')->first();
     $postagem = Postagem::make([
@@ -52,9 +55,29 @@ Route::get('/criar', function(){
     $postagem->categoria()->associate($categoria->id);
     $postagem->forum()->associate($forum->id);
     $postagem->user()->associate($usuario->id);
-   $postagem->save();
-   
+   $postagem->save(); */
+
     //dd($usuario->postagens()->save($postagem));
 
-    return $postagem ;
+
+    //Criando associação de usuarios e produtos
+/*     $jogo = Jogo::where('slug','Asa-De-Cristal')->first();
+    $produto = Produto::make(
+        [
+            'nome'=>'Gamesow-Coins',
+            'valor'=>200.00,
+            'descricao'=>'Ganhe Dois Mil Coins na plataforma para gastar em seus jogos',
+            'moeda_utilizada'=>'pt-br',
+            'slug'=>'gamesow-buy-coins'
+        ]
+    );
+    $produto->jogo()->associate($jogo->id);
+    $produto->save(); */
+    $produto = Produto::find(1)->first();
+    $usuario = User::where('email','teste@gmail.com')->first();
+
+    //$produto->users()->attach(41);
+   dd( $usuario->produtos()->sync([2]));
+
+    return ProdutoUsuario::all();
 });
