@@ -6,14 +6,12 @@
 </div>
 
 <main class="container bg-black text-light rounded">
-    <header id="main-header ">
-        <button class="btn btn-outline-primary">Novo</button>  Bem vindo Usuario, Sua última visita foi em 04:27 2020-10-26, <a href="">Postagens</a>, <a href="">Ver novo tópico</a>, <a href="">Marcar lido</a>
+    <header id="main-header " class="border-bottom pb-3 mb-2 rounded">
+        <h2 class="text-info">{{$forum_nome}}</h2> 
+        <p class="text-warning"> {{$forum_frase}}</p> 
 
-        <div class="d-flex justify-content-end">
-            <small class="text-success">Hoje: 26, Ontem: 33, Membros: 211836</small>
-        </div>
+        Moderado: 
     </header>
-    <h3 class="display-4 mt-2 mb-4">Categorias</h3>
 
     
     <!-- Lista Dos forum disponiveis -->

@@ -22,6 +22,7 @@ body{
 /* Conteudo princiapal */
 main{
     padding:30px;
+    min-height: 500px;
 }
 #main-header{
     border-bottom: 3px solid rgb(220, 220, 220);
@@ -36,8 +37,12 @@ main{
     background: linear-gradient(rgb(72, 72, 72),rgb(67, 70, 71),rgb(63, 69, 71),rgb(58, 66, 68));
     padding: 12px;
     border-top: 2px ridge black;
+    border-left: 1px ridge black;
+    border-right:1px ridge black;
     border-bottom: 2px ridge black;
+    box-shadow: 1px 1px 1px .5px gray;
 }
+
 footer .container-lg{
     max-width: 650px;
 }

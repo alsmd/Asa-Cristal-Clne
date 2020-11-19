@@ -21,9 +21,10 @@ class ForumController extends Controller
     **Recupera o slug do forum selecionado e renderiza o forum do jogo com as categorias disponiveis
     */
     public function forumJogo($slug_forum){
-        $forum_nome = (Forum::where('slug',$slug_forum)->first())->nome;
+        $forum_nome = (Forum::where('slug',$slug_forum)->first(['nome']))->nome;
+        $forum_frase = (Forum::where('slug',$slug_forum)->first(['frase']))->frase;
         $categorias = Categoria::all();
-        return view('forum.forumJogo',compact('categorias','slug_forum','forum_nome'));
+        return view('forum.forumJogo',compact('categorias','slug_forum','forum_nome','forum_frase'));
     }
     /*
     **Recupera o slug do jogo e da categoria da postagem e devolve uma view mostrando as postagens correspondentes
@@ -63,5 +64,13 @@ class ForumController extends Controller
         }else{
             return redirect("forum/$slug_forum/$slug_categoria?postagem=false");
         }
+    }
+    public function MostrarPostagem($slug_forum,$slug_categoria,$id){
+        $forum = Forum::where('slug',$slug_forum)->first();
+        $forum_nome = $forum->nome;
+        $categoria =Categoria::where('slug',$slug_categoria)->first();
+        $categoria_nome = $categoria->nome;
+        $postagem = Postagem::where('id',$id)->first();
+       return view('forum.postagem',compact('slug_forum','slug_categoria','categoria_nome','forum_nome','postagem'));
     }
 }

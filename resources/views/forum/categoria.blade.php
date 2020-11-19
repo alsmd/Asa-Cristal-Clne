@@ -6,16 +6,12 @@
 </div>
 
 <main class="container bg-black text-light rounded pb-1">
-    <header id="main-header ">
-        <a href="/forum/{{$slug_forum}}/{{$slug_categoria}}/criar" class="btn btn-outline-primary">Novo</a>  Bem vindo Usuario, Sua última visita foi em 04:27 2020-10-26, <a href="">Postagens</a>, <a href="">Ver novo tópico</a>, <a href="">Marcar lido</a>
+    <header id="main-header" class="mb-2 border-bottom border-secondary">
+        <h3 class="text-info display-4">{{$categoria_nome}}</h3>    
+        <p>Moderado: </p> 
+        <a href="/forum/{{$slug_forum}}/{{$slug_categoria}}/criar" class="btn btn-outline-primary ">Novo</a>
 
-        <div class="d-flex justify-content-end">
-            <small class="text-success">Hoje: 26, Ontem: 33, Membros: 211836</small>
-        </div>
     </header>
-    <h3 class="display-4 mt-2 mb-4">Postagens</h3>
-
-    
     <!-- Lista Dos forum disponiveis -->
     <div id="jogos mx-2">
         <!-- Forums desponiveis no DB -->
@@ -23,9 +19,9 @@
         <div class="row jogo text-light mb-3 mx-0">
             <div class="col-md-8">
                 <div class="d-flex">
-                    <img src="https://image.flaticon.com/icons/png/512/50/50050.png" alt="" class="rounded align-self-stretch" width="135" height="103" >
+                    <img src="{{($postagem->user()->first())->foto }}" alt="" class="rounded align-self-stretch border border-secondary" width="135" height="103" >
                     <div class="d-flex flex-column ml-3">
-                        <h3 class="m-0 d-inline jogo-titulo"><a href="/forum/{{$slug_forum}}/{{$slug_categoria}}" class="text-warning">{{$postagem->titulo}}</a></h3> 
+                        <h3 class="m-0 d-inline jogo-titulo"><a href="/forum/{{$slug_forum}}/{{$slug_categoria}}/{{$postagem->id}}" class="text-warning">{{$postagem->titulo}}</a></h3> 
                         <p class="lead m-0 jogo-conteudo"></p>
                     </div>
                 </div>
