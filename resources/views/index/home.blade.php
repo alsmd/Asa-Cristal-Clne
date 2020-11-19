@@ -1,3 +1,5 @@
+@extends('index.login')
+@extends('index.registrar')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,8 +161,7 @@
         </div>
     </footer>
 
-    @extends('index.login')
-    @extends('index.registrar')
+   
 </body>
 </html>
 <script>

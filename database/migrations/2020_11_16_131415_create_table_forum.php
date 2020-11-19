@@ -17,6 +17,7 @@ class CreateTableForum extends Migration
             $table->id();
             $table->unsignedBigInteger('fk_id_jogo');
             $table->string('frase');
+            $table->string('nome');
             $table->string('foto');
             $table->string('slug');
             $table->timestamps();

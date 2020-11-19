@@ -19,15 +19,26 @@ use App\Http\Controllers\Admin\IndexController;
 Route::get('/', [IndexController::class,'index']);
 
 /* forum home page */
-Route::get('/forum',[ForumController::class, 'index']);
-/* Forum de um jogo especifico */
-Route::get('/forum/{slug_jogo}',[ForumController::class, 'forum']);
-/* Categoria para postagens dentro de um Forum */
-Route::get('/forum/{slug_jogo}/{slug_categoria}',[ForumController::class, 'forumCategoria']);
 
-
-Route::get('/forum/create',[ForumController::class, 'create']);
-
-Route::post('/forum/postagem',[ForumController::class, 'postagem']);
+//   /forum
+Route::prefix('/forum')->group(function(){
+    Route::get('/',[ForumController::class, 'forumHome']);
+    //   /forum/slug_forum
+    Route::prefix('/{slug_forum}')->group(function(){
+        /* Forum de um jogo especifico */
+        Route::get('',[ForumController::class, 'forumJogo']);
+        //   /forum/slug_forum/slug_categoria
+        Route::prefix('/{slug_categoria}')->group(function(){
+            /* Categoria para postagens dentro de um Forum */
+            Route::get('/',[ForumController::class, 'forumJogoCategoria']);
+            //Rota que contera o formulario de criação de uma nova postagem
+            Route::get('/criar',[ForumController::class, 'criar']);
+            //Rota que ira processar a criação da postagem
+            Route::post('/postagem',[ForumController::class, 'postagem']);
+        });
+        
+    });
+    
+});
 
 

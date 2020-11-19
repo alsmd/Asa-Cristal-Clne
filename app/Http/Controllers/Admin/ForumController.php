@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+//Models
 use App\Models\Forum;
 use App\Models\Categoria;
+use App\Models\Postagem;
 class ForumController extends Controller
 {
     //
-    public function index(){
+    public function forumHome(){
         $forums = \App\Models\Forum::paginate(5);
         
         return view('forum.home',compact('forums'));
@@ -18,26 +20,48 @@ class ForumController extends Controller
     /*
     **Recupera o slug do forum selecionado e renderiza o forum do jogo com as categorias disponiveis
     */
-    public function forum($slug){
+    public function forumJogo($slug_forum){
+        $forum_nome = (Forum::where('slug',$slug_forum)->first())->nome;
         $categorias = Categoria::all();
-        return view('forum.forum',compact('categorias','slug'));
+        return view('forum.forumJogo',compact('categorias','slug_forum','forum_nome'));
     }
     /*
     **Recupera o slug do jogo e da categoria da postagem e devolve uma view mostrando as postagens correspondentes
     */
-    public function forumCategoria($slug_jogo,$slug_categoria){
-        $forum = Forum::where('slug',$slug_jogo)->first();
+    public function forumJogoCategoria($slug_forum,$slug_categoria){
+        $forum = Forum::where('slug',$slug_forum)->first();
+        $forum_nome = $forum->nome;
         $categoria =Categoria::where('slug',$slug_categoria)->first();
-        $postagens = $forum->postagens()->where('fk_id_categoria',$categoria->id)->get();
-        return view('forum.categoria',compact('postagens','slug_jogo','slug_categoria'));
+        $categoria_nome = $categoria->nome;
+        //recupera as postagens ao forum e categorias selecionadas
+        $postagens = $forum->postagens()->where('fk_id_categoria',$categoria->id)->paginate(5);
+        return view('forum.categoria',compact('postagens','slug_forum','slug_categoria','categoria_nome','forum_nome'));
     }
-
-    public function create(){
-        return view('forum.create');
+    //Retorna pagina para criar uma nova postagem
+    public function criar($slug_forum, $slug_categoria){
+        $forum = Forum::where('slug',$slug_forum)->first();
+        $forum_nome = $forum->nome;
+        $categoria = Categoria::where('slug',$slug_categoria)->first();
+        $categoria_nome = $categoria->nome;
+        return view('forum.criarPoste',compact('slug_forum','slug_categoria','categoria_nome','forum_nome'));
     }
-
-    public function postagem(Request $request){
-        dd($request->all());
-        return view('forum.create');
+    //Recebe um Post contendo as informações da Nova postagem e salva no local correto
+    public function postagem(Request $request,$slug_forum,$slug_categoria){
+        $titulo = $request->all()['titulo'];
+        $conteudo = $request->all()['conteudo'];
+        $autor = 'Susan Wisoky'; //sera o nome do usuario logado futuramente
+        $forum = Forum::where('slug',$slug_forum)->first(); //forum atual
+        $categoria = Categoria::where('slug',$slug_categoria)->first(); //categoria selecionado
+        $postagem = Postagem::make(compact('titulo','conteudo','autor'));
+        //linkando a postagem a um forum/categoria/usuario
+        $postagem->forum()->associate($forum->id);
+        $postagem->categoria()->associate($categoria->id);
+        $postagem->user()->associate(1); //sera associado ao usuario logado futuramente
+        //salvando dado no DB
+        if($postagem->save() == 1){
+            return redirect("forum/$slug_forum/$slug_categoria?postagem=true");
+        }else{
+            return redirect("forum/$slug_forum/$slug_categoria?postagem=false");
+        }
     }
 }
