@@ -65,7 +65,7 @@
             <div class="row jogo text-light mb-3 mx-0">
                 <div class="col-md-8">
                    <div class="d-flex">
-                        <img src="../src/image/asa-de-cristal.jpg" alt="" class="rounded align-self-stretch" width="135" height="103" >
+                        <img src="{{$categoria->foto}}" alt="" class="rounded align-self-stretch border" width="135" height="103" >
                         <div class="d-flex flex-column ml-3">
                             <h3 class="m-0 d-inline jogo-titulo"><a href="/forum/{{$slug}}/{{$categoria->slug}}" class="text-warning">{{$categoria->nome}}</a></h3> 
                             <p class="lead m-0 jogo-conteudo"></p>
@@ -97,96 +97,6 @@
         <!-- Footer do conteudo principal -->
         <div class="container-footer p-3 d-flex my-2">
             Membros Online - 29 Onlines - 17 Membros(0 Invisíveis), 12 Clientes - Máximo de linhas é 252 em 28-12-2016.
-        </div>
-        <!-- Siginificado dos itens -->
-        <div class="icones-significados p-3 border row mx-0">
-            <div class="col-lg-3 col-md-6">
-                <i class="fas fa-user text-danger mx-2"></i><span class="mr-4">Administrador</span>
-
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <i class="fas fa-user text-warning  mx-2"></i> <span class="mr-4">Super Moderador</span>
-                
-            </div>
-            <div class="col-lg-3 col-md-6 d-flex text-truncate">
-                <i class="fas fa-user text-info  mx-2"></i><span class="mr-4  ">Moderado</span>       
-                
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <i class="fas fa-user text-sucess  mx-2"></i><span>Membro</span>   
-            </div>
-        </div>
-
-        <!-- Usuarios logados -->
-        <div class="usuarios-ativos p-3 border row mx-0">
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            <!-- Usuario -->
-            <div class="col-md-3 mb-2 col-sm-4 col-6 text-truncate">
-                <i class="fas fa-user text-success mx-2"></i><span class="mr-4">Fernando meideira</span>
-            </div>
-            
-           
-            
-
         </div>
     </main>
     <!-- FOOTER -->

@@ -24,7 +24,8 @@ class CategoriaFactory extends Factory
         return [
             //
             'nome' => $this->faker->title,
-            'slug' => $this->faker->slug
+            'slug' => $this->faker->slug,
+            'foto'=>'http://bbs.gamesow.com/attachments/month_1803/18030519031e16769914a66ea0.png'
 
         ];
     }
