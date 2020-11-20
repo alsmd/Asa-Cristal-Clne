@@ -36,7 +36,9 @@ Route::prefix('/forum')->group(function(){
             //Rota que ira processar a criação da postagem
             Route::post('/postagem',[ForumController::class, 'postagem']);
             //Rota ira mostrar uma postagem especifica
-            Route::get('/{id}',[ForumController::class, 'mostrarPostagem']);
+            Route::get('/{id_postagem}',[ForumController::class, 'mostrarPostagem']);
+            //
+            Route::post('/update/{id_postagem}',[ForumController::class,'update']);
         });
         
     });

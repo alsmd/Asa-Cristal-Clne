@@ -71,6 +71,13 @@ class ForumController extends Controller
         $categoria =Categoria::where('slug',$slug_categoria)->first();
         $categoria_nome = $categoria->nome;
         $postagem = Postagem::where('id',$id)->first();
-       return view('forum.postagem',compact('slug_forum','slug_categoria','categoria_nome','forum_nome','postagem'));
+       return view('forum.postagem',compact('slug_forum','slug_categoria','categoria_nome','forum_nome','postagem','id'));
+    }
+    //realizando update da postagem
+    public function update(Request $request, $slug_forum,$slug_categoria,$id){
+        $conteudo = $request->all()['conteudo'];
+        $titulo = $request->all()['titulo'];
+        Postagem::where('id',$id)->update($request->all());
+        return  $conteudo;
     }
 }
