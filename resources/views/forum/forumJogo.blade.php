@@ -2,7 +2,7 @@
 @section('content')
 <!-- TABS -->
 <div class="container text-info">
-    <a href=""class="text-info">FÓRUM</a> » <a href="/forum" class="text-info">Página inicial</a href="/forum"> <span class="text-info">» {{$forum_nome}}</span>
+    <a href=""class="text-info">FÓRUM</a> » <a href="{{route('forum.home')}}" class="text-info">Página inicial</a > <span class="text-info">» {{$forum_nome}}</span>
 </div>
 
 <main class="container bg-black text-light rounded">
@@ -23,7 +23,7 @@
                 <div class="d-flex">
                     <img src="{{$categoria->foto}}" alt="" class="rounded align-self-stretch border" width="135" height="103" >
                     <div class="d-flex flex-column ml-3">
-                        <h3 class="m-0 d-inline jogo-titulo"><a href="/forum/{{$slug_forum}}/{{$categoria->slug}}" class="text-warning">{{$categoria->nome}}</a></h3> 
+                        <h3 class="m-0 d-inline jogo-titulo"><a href="{{route('forum.jogo.categoria.home',[$slug_forum,$categoria->slug])}}" class="text-warning">{{$categoria->nome}}</a></h3> 
                         <p class="lead m-0 jogo-conteudo"></p>
                         <div class="dropdown">
                             <button class="dropdown-toggle btn btn-secondary btn-sm" data-toggle="dropdown" id="dropdown-jogo1-button" aria-haspopup="true" aria-expanded="false">Moderador</button>

@@ -27,7 +27,7 @@
                 <div class="d-flex">
                     <img src="{{$forum->foto}}" alt="" class="rounded align-self-stretch" width="135" height="103" >
                     <div class="d-flex flex-column ml-3">
-                        <h3 class="m-0 d-inline jogo-titulo"><a href="/forum/{{$forum->slug}}" class="text-warning">{{$forum->nome}}</a><small class="d-none d-lg-inline ml-1">(Hoje: <span class="text-warning">26</span>)</small></h3> 
+                        <h3 class="m-0 d-inline jogo-titulo"><a href="{{route('forum.jogo.home',[$forum->slug])}}" class="text-warning">{{$forum->nome}}</a><small class="d-none d-lg-inline ml-1">(Hoje: <span class="text-warning">26</span>)</small></h3> 
                         <p class="lead m-0 jogo-conteudo">{{$forum->frase}}</p>
                         <div class="dropdown">
                             <button class="dropdown-toggle btn btn-secondary btn-sm" data-toggle="dropdown" id="dropdown-jogo1-button" aria-haspopup="true" aria-expanded="false">Moderador</button>

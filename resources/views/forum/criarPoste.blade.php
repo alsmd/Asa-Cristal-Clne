@@ -8,7 +8,7 @@
 
 <main class="container bg-black text-light rounded mt-3">
     <h3>Novo Poste</h3>   
-    <form action="/forum/{{$slug_forum}}/{{$slug_categoria}}/postagem" method="post">
+    <form action="{{route('forum.jogo.categoria.postagem.create',[$slug_forum,$slug_categoria])}}" method="post">
         @csrf
         <div class="form-group">
             <label for="titulo">Titulo</label>

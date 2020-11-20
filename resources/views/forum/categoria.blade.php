@@ -2,14 +2,14 @@
 @section('content')
 <!-- TABS -->
 <div class="container text-info">
-    <a href=""class="text-info">FÓRUM</a> » <a href="/forum" class="text-info">Página inicial</a href="/forum"> »<a href="/forum/{{$slug_forum}}"class="text-info"> {{$forum_nome}}</a> <span class="text-info">» {{$categoria_nome}}</span>
+    <a href=""class="text-info">FÓRUM</a> » <a href="{{route('forum.home')}}" class="text-info">Página inicial</a > »<a href="{{route('forum.jogo.home',$slug_forum)}}"class="text-info"> {{$forum_nome}}</a> <span class="text-info">» {{$categoria_nome}}</span>
 </div>
 
 <main class="container bg-black text-light rounded pb-1">
     <header id="main-header" class="mb-2 border-bottom border-secondary">
         <h3 class="text-info display-4">{{$categoria_nome}}</h3>    
         <p>Moderado: </p> 
-        <a href="/forum/{{$slug_forum}}/{{$slug_categoria}}/criar" class="btn btn-outline-primary ">Novo</a>
+        <a href="{{route('forum.jogo.categoria.postagem.criar',[$slug_forum,$slug_categoria])}}" class="btn btn-outline-primary ">Novo</a>
 
     </header>
     <!-- Lista Dos forum disponiveis -->
@@ -21,7 +21,7 @@
                 <div class="d-flex">
                     <img src="{{($postagem->user()->first())->foto }}" alt="" class="rounded align-self-stretch border border-secondary" width="135" height="103" >
                     <div class="d-flex flex-column ml-3">
-                        <h3 class="m-0 d-inline jogo-titulo"><a href="/forum/{{$slug_forum}}/{{$slug_categoria}}/{{$postagem->id}}" class="text-warning">{{$postagem->titulo}}</a></h3> 
+                        <h3 class="m-0 d-inline jogo-titulo"><a href="{{route('forum.jogo.categoria.postagem.mostrar',[$slug_forum,$slug_categoria,$postagem->id])}}" class="text-warning">{{$postagem->titulo}}</a></h3> 
                         <p class="lead m-0 jogo-conteudo"></p>
                     </div>
                 </div>

@@ -22,12 +22,12 @@
         </div>
     </div>
     <div class="d-flex justify-content-end mt-2 justify-self-end" style="display: absolute;">
-        <form action="/forum/{{$slug_forum}}/{{$slug_categoria}}/delete/{{$id}}" method="POST">
+        <form action="{{route('forum.jogo.categoria.postagem.delete',[$slug_forum,$slug_categoria,$id])}}" method="POST">
             @csrf
             <button type="submit"  class="btn btn-danger">Apagar</button>
         </form>
         <button id="btn-editar-postagem"  class="btn btn-success ml-1">Editar</button> <!-- href="" -->
-        <button id="btn-enviar-postagem" name="/forum/{{$slug_forum}}/{{$slug_categoria}}/update/{{$id}}"class="btn btn-info ml-1" style="display:none">Enviar</button>
+        <button id="btn-enviar-postagem" name="{{route('forum.jogo.categoria.postagem.update',[$slug_forum,$slug_categoria,$id])}}"class="btn btn-info ml-1" style="display:none">Enviar</button>
     </div>
 </main>
 @endsection
