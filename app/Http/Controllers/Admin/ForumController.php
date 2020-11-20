@@ -80,4 +80,14 @@ class ForumController extends Controller
         Postagem::where('id',$id)->update($request->all());
         return  $conteudo;
     }
+    //realizando update da postagem
+    public function delete(Request $request, $slug_forum,$slug_categoria,$id){
+        
+        if(Postagem::where('id',$id)->delete() == 1){
+            return redirect("forum/$slug_forum/$slug_categoria?delete=true");
+
+        }else{
+            return redirect("forum/$slug_forum/$slug_categoria?delete=false");
+        }
+    }
 }

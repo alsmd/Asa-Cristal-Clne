@@ -15,15 +15,19 @@
         <div class="col-sm-9 container-postagem">
             <h3 class="text-center display-4 titulo ">{{$postagem->titulo}}</h3>
             
-            <div class="conteudo mt-4 bg-dark   rounded" style="padding:50px">
+            <div class="conteudo mt-4 bg-dark   rounded" style="padding:50px" >
                 {{$postagem->conteudo}}
             </div>
             
         </div>
     </div>
     <div class="d-flex justify-content-end mt-2 justify-self-end" style="display: absolute;">
-        <button id="btn-editar-postagem"  class="btn btn-success">Editar</button> <!-- href="" -->
-        <button id="btn-enviar-postagem" name="/forum/{{$slug_forum}}/{{$slug_categoria}}/update/{{$id}}"class="btn btn-info" style="display:none">Enviar</button>
+        <form action="/forum/{{$slug_forum}}/{{$slug_categoria}}/delete/{{$id}}" method="POST">
+            @csrf
+            <button type="submit"  class="btn btn-danger">Apagar</button>
+        </form>
+        <button id="btn-editar-postagem"  class="btn btn-success ml-1">Editar</button> <!-- href="" -->
+        <button id="btn-enviar-postagem" name="/forum/{{$slug_forum}}/{{$slug_categoria}}/update/{{$id}}"class="btn btn-info ml-1" style="display:none">Enviar</button>
     </div>
 </main>
 @endsection

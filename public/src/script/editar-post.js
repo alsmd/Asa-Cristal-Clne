@@ -17,6 +17,8 @@ $(document).ready(()=>{
         $(textarea).addClass('p-4')
         $(textarea).addClass('h-50')
         $(textarea).attr('id','conteudo');
+        $(textarea).attr('minlength','5');
+
         //estilizando input
         $(input).val(titulo);
         $(input).addClass('form-control')
@@ -24,6 +26,7 @@ $(document).ready(()=>{
         $(input).addClass('text-light')
         $(input).addClass('my-4')
         $(input).attr('id','titulo');
+        $(input).attr('minlength','5');
         
         //escondendo titulo e postagem atual
         $('.conteudo').addClass('d-none');

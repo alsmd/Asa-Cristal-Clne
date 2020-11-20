@@ -39,6 +39,7 @@ Route::prefix('/forum')->group(function(){
             Route::get('/{id_postagem}',[ForumController::class, 'mostrarPostagem']);
             //
             Route::post('/update/{id_postagem}',[ForumController::class,'update']);
+            Route::post('/delete/{id_postagem}',[ForumController::class,'delete']);
         });
         
     });
