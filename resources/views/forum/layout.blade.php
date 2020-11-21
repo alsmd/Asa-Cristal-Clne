@@ -21,6 +21,7 @@
     <!--Estilo costumizado -->
     <link rel="stylesheet" href="http://localhost:8080/src/css/forum.css">
     <script src="http://localhost:8080/src/script/editar-post.js"></script>
+    <script src="http://localhost:8080/src/script/novo-comentario.js"></script>
 
 </head>
 <body class="bg-dark" >

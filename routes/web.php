@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\ForumController;
+use App\Http\Controllers\Admin\PostagemController;
 use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\ComentarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,6 @@ use App\Http\Controllers\Admin\IndexController;
 
 Route::get('/', [IndexController::class,'index']);
 
-/* forum home page */
 
 //   /forum
 Route::prefix('/forum')->name('forum.')->group(function(){
@@ -32,13 +33,16 @@ Route::prefix('/forum')->name('forum.')->group(function(){
             /* Categoria para postagens dentro de um Forum */
             Route::get('/',[ForumController::class, 'forumJogoCategoria'])->name('home');
             //Rota que contera o formulario de criação de uma nova postagem
-            Route::get('/criar',[ForumController::class, 'criar'])->name('postagem.criar');
+            Route::get('/criar',[PostagemController::class, 'criar'])->name('postagem.criar');
             //Rota ira mostrar uma postagem especifica
-            Route::get('/{id_postagem}',[ForumController::class, 'mostrarPostagem'])->name('postagem.mostrar');
-            //crud
-            Route::post('/postagem',[ForumController::class, 'create'])->name('postagem.create');
-            Route::post('/update/{id_postagem}',[ForumController::class,'update'])->name('postagem.update');
-            Route::post('/delete/{id_postagem}',[ForumController::class,'delete'])->name('postagem.delete');
+            Route::get('/{id_postagem}',[PostagemController::class, 'mostrarPostagem'])->name('postagem.mostrar');
+            //crud postagem
+            Route::post('/postagem',[PostagemController::class, 'create'])->name('postagem.create');
+            Route::post('/update/{id_postagem}',[PostagemController::class,'update'])->name('postagem.update');
+            Route::post('/delete/{id_postagem}',[PostagemController::class,'delete'])->name('postagem.delete');
+            //crud comentarios
+            Route::post('/{id_postagem}/comentario/create',[ComentarioController::class, 'create'])->name('postagem.comentario.create');
+
         });
         
     });
