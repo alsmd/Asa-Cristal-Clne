@@ -47,7 +47,7 @@ $(document).ready(()=>{
         let titulo = $("#titulo").val();
         let url = $("#btn-enviar-postagem").attr('name');
         $.ajax({
-            type:"post",
+            type:"GET",
             data:`conteudo=${conteudo}&&titulo=${titulo}`,
             url:url,
             headers:{

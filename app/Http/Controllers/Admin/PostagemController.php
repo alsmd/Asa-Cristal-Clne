@@ -16,12 +16,8 @@ class PostagemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($slug_forum,$slug_categoria,$id){
-        $forum_nome = ( Forum::where('slug',$slug_forum)->first())->nome;
-        $categoria_nome= (Categoria::where('slug',$slug_categoria)->first())->nome;
-        $postagem = Postagem::where('id',$id)->first();
-        $comentarios = $postagem->comentarios;
-       return view('forum.postagem',compact('slug_forum','slug_categoria','categoria_nome','forum_nome','postagem','id','comentarios'));
+    public function index(){
+
     }
 
     /**
@@ -69,9 +65,12 @@ class PostagemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($slug_forum,$slug_categoria,$id){
+        $forum_nome = ( Forum::where('slug',$slug_forum)->first())->nome;
+        $categoria_nome= (Categoria::where('slug',$slug_categoria)->first())->nome;
+        $postagem = Postagem::where('id',$id)->first();
+        $comentarios = $postagem->comentarios;
+       return view('forum.postagem',compact('slug_forum','slug_categoria','categoria_nome','forum_nome','postagem','id','comentarios'));
     }
 
     /**
@@ -112,9 +111,9 @@ class PostagemController extends Controller
             return redirect()->route('forum.jogo.categoria.home',[$slug_forum,$slug_categoria]);
 
 
-        }else{
-            flash('Houve um erro na tentativa de apagar a postagem.')->error()->important();
-            return redirect()->route('forum.jogo.categoria.home',[$slug_forum,$slug_categoria]);
         }
+        flash('Houve um erro na tentativa de apagar a postagem.')->error()->important();
+        return redirect()->route('forum.jogo.categoria.home',[$slug_forum,$slug_categoria]);
+    
     }
 }

@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-end mt-2 justify-self-end" style="display: absolute;">
-        <form action="{{route('forum.jogo.categoria.postagem.destroy',[$slug_forum,$slug_categoria,$id])}}" method="POST">
+        <form action="{{route('forum.jogo.categoria.postagem.destroy',[$slug_forum,$slug_categoria,$id])}}" method="GET">
             @csrf
             <button type="submit"  class="btn btn-danger">Apagar</button>
         </form>
