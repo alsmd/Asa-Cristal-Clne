@@ -32,16 +32,14 @@ Route::prefix('/forum')->name('forum.')->group(function(){
         Route::prefix('/{slug_categoria}')->name('categoria.')->group(function(){
             /* Categoria para postagens dentro de um Forum */
             Route::get('/',[ForumController::class, 'forumJogoCategoria'])->name('home');
-            //Rota que contera o formulario de criação de uma nova postagem
-            Route::get('/criar',[PostagemController::class, 'criar'])->name('postagem.criar');
-            //Rota ira mostrar uma postagem especifica
-            Route::get('/{id_postagem}',[PostagemController::class, 'mostrarPostagem'])->name('postagem.mostrar');
+            Route::get('/criar',[PostagemController::class, 'create'])->name('postagem.criar');
+            Route::get('/{id_postagem}',[PostagemController::class, 'index'])->name('postagem.mostrar');
             //crud postagem
-            Route::post('/postagem',[PostagemController::class, 'create'])->name('postagem.create');
+            Route::post('/store',[PostagemController::class, 'store'])->name('postagem.store');
             Route::post('/update/{id_postagem}',[PostagemController::class,'update'])->name('postagem.update');
-            Route::post('/delete/{id_postagem}',[PostagemController::class,'delete'])->name('postagem.delete');
+            Route::post('/destroy/{id_postagem}',[PostagemController::class,'destroy'])->name('postagem.destroy');
             //crud comentarios
-            Route::post('/{id_postagem}/comentario/create',[ComentarioController::class, 'create'])->name('postagem.comentario.create');
+            Route::post('/{id_postagem}/comentario/store',[ComentarioController::class, 'store'])->name('postagem.comentario.store');
 
         });
         

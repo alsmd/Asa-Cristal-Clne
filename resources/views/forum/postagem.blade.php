@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-end mt-2 justify-self-end" style="display: absolute;">
-        <form action="{{route('forum.jogo.categoria.postagem.delete',[$slug_forum,$slug_categoria,$id])}}" method="POST">
+        <form action="{{route('forum.jogo.categoria.postagem.destroy',[$slug_forum,$slug_categoria,$id])}}" method="POST">
             @csrf
             <button type="submit"  class="btn btn-danger">Apagar</button>
         </form>
@@ -41,7 +41,7 @@
                 <p class="text-center text-warning mt-1">{{($comentario->user()->first())->name}}</p>
             </div>
             <div class="col-sm-9">
-                <div class="conteudo bg-dark  text-light rounded h-100 " style="padding:50px" >
+                <div class=" bg-dark  text-light rounded h-100 " style="padding:50px" >
                     {{$comentario->conteudo}}
                 </div>
             </div>
@@ -55,7 +55,7 @@
     <div class="bg-black mt-4 p-4 rounded border border-dark">
         <div class="row">
             <div class="col-sm-12">
-                <textarea name="{{route('forum.jogo.categoria.postagem.comentario.create',[$slug_forum,$slug_categoria,$id])}}" id="novo-comentario" cols="15" rows="4" class="form-control bg-dark text-light"></textarea>
+                <textarea name="{{route('forum.jogo.categoria.postagem.comentario.store',[$slug_forum,$slug_categoria,$id])}}" id="novo-comentario" cols="15" rows="4" class="form-control bg-dark text-light"></textarea>
                 <button class="btn btn-outline-light mt-1 float-right" id="enviar-comentario">Enviar</button>
             </div>
         </div>
@@ -71,7 +71,7 @@
             <p class="text-center text-warning mt-1 nome" ></p>
         </div>
         <div class="col-sm-9">
-            <div class="conteudo bg-dark  text-light rounded h-100 comentario-conteudo " style="padding:50px" >
+            <div class="bg-dark  text-light rounded h-100 comentario-conteudo " style="padding:50px" >
                 
             </div>
         </div>

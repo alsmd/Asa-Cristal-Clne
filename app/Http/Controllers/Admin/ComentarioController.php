@@ -12,10 +12,7 @@ use App\Models\Comentario;
 use App\Models\User;
 class ComentarioController extends Controller
 {
-    //
-
-
-    public function create(Request $request,$slug_forum,$slug_categoria,$postagem_id){
+    public function store(Request $request,$slug_forum,$slug_categoria,$postagem_id){
         $conteudo = $request->all()['conteudo'];
         $user = User::find(2); //sera o usuario da session atual
         $comentario = Comentario::make([

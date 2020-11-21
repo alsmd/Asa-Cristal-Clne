@@ -15,7 +15,6 @@ class ForumController extends Controller
         $forums = \App\Models\Forum::paginate(5);
         return view('forum.home',compact('forums'));
     }  
-
     /*
     **Recupera o slug do forum selecionado e renderiza o forum do jogo com as categorias disponiveis
     */
