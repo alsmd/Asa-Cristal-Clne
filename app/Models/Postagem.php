@@ -34,4 +34,9 @@ class Postagem extends Model
     public function categoria(){
         return $this->belongsTo(Categoria::class,'fk_id_categoria');
     }
+
+    //possui comentarios
+    public function comentarios(){
+        return $this->hasMany(Comentario::class,'fk_id_postagem');
+    }
 }

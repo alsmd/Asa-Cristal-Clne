@@ -54,4 +54,9 @@ class User extends Authenticatable
     public function postagens(){
         return $this->hasMany(Postagem::class,'fk_id_user');
     }
+
+    //Pode realizar varios comentarios
+    public function comentarios(){
+        return $this->hasMany(Comentario::class,'fk_id_user');
+    }
 }

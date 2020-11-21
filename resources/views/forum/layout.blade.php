@@ -46,6 +46,8 @@
             </nav>
         </div>
     </header>
+    @include('flash::message')
+
     @yield('content')
     
     <!-- FOOTER -->

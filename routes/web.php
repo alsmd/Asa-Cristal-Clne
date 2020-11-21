@@ -35,10 +35,8 @@ Route::prefix('/forum')->name('forum.')->group(function(){
             Route::get('/criar',[ForumController::class, 'criar'])->name('postagem.criar');
             //Rota ira mostrar uma postagem especifica
             Route::get('/{id_postagem}',[ForumController::class, 'mostrarPostagem'])->name('postagem.mostrar');
-            //Rota que ira processar a criação da postagem
-            Route::post('/postagem',[ForumController::class, 'postagem'])->name('postagem.create');
-
-            //
+            //crud
+            Route::post('/postagem',[ForumController::class, 'create'])->name('postagem.create');
             Route::post('/update/{id_postagem}',[ForumController::class,'update'])->name('postagem.update');
             Route::post('/delete/{id_postagem}',[ForumController::class,'delete'])->name('postagem.delete');
         });
