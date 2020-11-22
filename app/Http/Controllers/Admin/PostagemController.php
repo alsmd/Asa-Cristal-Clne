@@ -24,7 +24,8 @@ class PostagemController extends Controller{
 
     /**
      * Display a listing of the resource.
-     *
+     *@param  string  $slug_forum //slug do forum que queremos acessar
+     *@param  string  $slug_categoria // slug da categoria do forum
      * @return \Illuminate\Http\Response
      */
     public function index($slug_forum,$slug_categoria){
@@ -39,7 +40,8 @@ class PostagemController extends Controller{
 
     /**
      * Show the form for creating a new resource.
-     *
+     *@param  string  $slug_forum //slug do forum que queremos acessar
+     *@param  string  $slug_categoria // slug da categoria do forum
      * @return \Illuminate\Http\Response
      */
     public function create($slug_forum, $slug_categoria){
@@ -53,7 +55,9 @@ class PostagemController extends Controller{
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *@param  string  $slug_forum //slug do forum que queremos acessar
+     *@param  string  $slug_categoria // slug da categoria do forum
+     * @return $redireciona  para a view index de postagem
      */
     public function store(Request $request,$slug_forum,$slug_categoria){
         $titulo = $request->all()['titulo'];
@@ -78,7 +82,8 @@ class PostagemController extends Controller{
 
     /**
      * Display the specified resource.
-     *
+     *@param  string  $slug_forum //slug do forum que queremos acessar
+     *@param  string  $slug_categoria // slug da categoria do forum
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -105,6 +110,8 @@ class PostagemController extends Controller{
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+    *@param  string  $slug_forum //slug do forum que queremos acessar
+     *@param  string  $slug_categoria // slug da categoria do forum
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -117,9 +124,10 @@ class PostagemController extends Controller{
 
     /**
      * Remove the specified resource from storage.
-     *
+     *@param  string  $slug_forum //slug do forum que queremos acessar
+     *@param  string  $slug_categoria // slug da categoria do forum
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return $redireciona  para a view index de postagem
      */
     public function destroy(Request $request, $slug_forum,$slug_categoria,$id){
         //

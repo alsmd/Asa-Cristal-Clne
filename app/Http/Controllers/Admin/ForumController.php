@@ -18,13 +18,15 @@ class ForumController extends Controller
         $this->categoria = $categoria;
         $this->forum = $forum;
     }
-
+    /*
+    **Lista os foruns disponiveis
+    */
     public function index(){
         $forums =$this->forum->paginate(5);
         return view('forum.index',compact('forums'));
     }  
     /*
-    **Recupera o slug do forum selecionado e renderiza o forum do jogo com as categorias disponiveis
+    **mostra um forum especifico
     */
     public function show($slug_forum){
         $forum_nome = ($this->forum->where('slug',$slug_forum)->first(['nome']))->nome;
