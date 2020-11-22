@@ -90,7 +90,7 @@ class PostagemController extends Controller{
     public function show($slug_forum,$slug_categoria,$id){
         $forum_nome = ( $this->forum->where('slug',$slug_forum)->first())->nome;
         $categoria_nome= ($this->categoria->where('slug',$slug_categoria)->first())->nome;
-        $postagem = $this->postagem->where('id',$id)->first();
+        $postagem = $this->postagem->findOrFail($id);
         $comentarios = $postagem->comentarios;
        return view('forum.postagem.show',compact('slug_forum','slug_categoria','categoria_nome','forum_nome','postagem','id','comentarios'));
     }

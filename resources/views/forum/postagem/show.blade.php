@@ -22,8 +22,9 @@
         </div>
     </div>
     <div class="d-flex justify-content-end mt-2 justify-self-end" style="display: absolute;">
-        <form action="{{route('forum.jogo.categoria.postagem.destroy',[$slug_forum,$slug_categoria,$id])}}" method="delete">
+        <form action="{{route('forum.jogo.categoria.postagem.destroy',[$slug_forum,$slug_categoria,$id])}}" method="POST">
             @csrf
+            @method("delete")
             <button type="submit"  class="btn btn-danger">Apagar</button>
         </form>
         <button id="btn-editar-postagem"  class="btn btn-success ml-1">Editar</button> <!-- href="" -->
