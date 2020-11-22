@@ -1,8 +1,8 @@
-@extends('forum.layout')
+@extends('layouts.forumLayout')
 @section('content')
 <!-- TABS -->
 <div class="container text-info">
-    <a href=""class="text-info">FÓRUM</a> » <a href="{{route('forum.home')}}" class="text-info">Página inicial</a > »<a href="{{route('forum.jogo.home',$slug_forum)}}"class="text-info"> {{$forum_nome}}</a> <span class="text-info">» {{$categoria_nome}}</span>
+    <a href=""class="text-info">FÓRUM</a> » <a href="{{route('forum.index')}}" class="text-info">Página inicial</a > »<a href="{{route('forum.jogo.show',[$slug_forum])}}"class="text-info"> {{$forum_nome}}</a> <span class="text-info">» {{$categoria_nome}}</span>
 </div>
 
 <main class="container bg-black text-light rounded pb-1">

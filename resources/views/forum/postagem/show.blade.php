@@ -1,8 +1,8 @@
-@extends('forum.layout')
+@extends('layouts.forumLayout')
 @section('content')
 <!-- TABS -->
 <div class="container text-info">
-    <a href=""class="text-info">FÓRUM</a> » <a href="/forum" class="text-info">Página inicial</a href="/forum"> »<a href="/forum/{{$slug_forum}}"class="text-info"> {{$forum_nome}}</a> » <a class="text-info" href="/forum/{{$slug_forum}}/{{$slug_categoria}}"> {{$categoria_nome}}</a>
+    <a href=""class="text-info">FÓRUM</a> » <a href="{{route('forum.index')}}" class="text-info">Página inicial</a > »<a href="{{route('forum.jogo.show',[$slug_forum])}}"class="text-info"> {{$forum_nome}}</a> » <a class="text-info" href="{{route('forum.jogo.categoria.postagem.index',[$slug_forum,$slug_categoria])}}"> {{$categoria_nome}}</a>
 </div>
 
 <main class="container bg-black text-light rounded mt-3 d-flex flex-column justify-content-between">
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-end mt-2 justify-self-end" style="display: absolute;">
-        <form action="{{route('forum.jogo.categoria.postagem.destroy',[$slug_forum,$slug_categoria,$id])}}" method="GET">
+        <form action="{{route('forum.jogo.categoria.postagem.destroy',[$slug_forum,$slug_categoria,$id])}}" method="delete">
             @csrf
             <button type="submit"  class="btn btn-danger">Apagar</button>
         </form>
