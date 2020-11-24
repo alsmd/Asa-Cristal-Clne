@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostagemRequest;
 //Models
 use App\Models\Forum;
 use App\Models\Categoria;
@@ -54,12 +55,12 @@ class PostagemController extends Controller{
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\PostagemRequest $request
      *@param  string  $slug_forum //slug do forum que queremos acessar
      *@param  string  $slug_categoria // slug da categoria do forum
      * @return $redireciona  para a view index de postagem
      */
-    public function store(Request $request,$slug_forum,$slug_categoria){
+    public function store(PostagemRequest $request,$slug_forum,$slug_categoria){
         $titulo = $request->all()['titulo'];
         $conteudo = $request->all()['conteudo'];
         $autor = auth()->user()->name; 
@@ -88,7 +89,6 @@ class PostagemController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function show($slug_forum,$slug_categoria,$id){
-
         $forum_nome = ( $this->forum->where('slug',$slug_forum)->first())->nome;
         $categoria_nome= ($this->categoria->where('slug',$slug_categoria)->first())->nome;
         $postagem = $this->postagem->findOrFail($id);
@@ -110,13 +110,13 @@ class PostagemController extends Controller{
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\PostagemRequest  $request
     *@param  string  $slug_forum //slug do forum que queremos acessar
      *@param  string  $slug_categoria // slug da categoria do forum
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug_forum,$slug_categoria,$id){
+    public function update(PostagemRequest $request, $slug_forum,$slug_categoria,$id){
         $conteudo = $request->all()['conteudo'];
         $titulo = $request->all()['titulo'];
         $postagem = $this->postagem->where('id',$id)->first();
@@ -154,4 +154,5 @@ class PostagemController extends Controller{
         return redirect()->route('forum.jogo.categoria.postagem.index',[$slug_forum,$slug_categoria]);
     
     }
+
 }

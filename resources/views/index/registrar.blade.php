@@ -23,7 +23,7 @@
                             <label for="re_email">Email:</label>
                             <input type="email" id="email" name="email" class="form-control bg-dark">
                         </div>
-    
+                        
                         <!-- <div class="form-group">
                             <label for="con_email">Confirmar Email:</label>
                             <input type="email" id="con_email" name="email" class="form-control bg-dark">
@@ -32,10 +32,12 @@
                             <label for="password">Senha:</label>
                             <input type="password" id="password" name="password" class="form-control bg-dark">
                         </div>
+                       
                         <div class="form-group">
                             <label for="con_senha">Confirmar Senha:</label>
                             <input type="password" id="con_senha" name="password_confirmation" class="form-control bg-dark">
                         </div>
+                        
 
                         <div class="row mx-0">
                             <div class="custom-control custom-checkbox col-6">

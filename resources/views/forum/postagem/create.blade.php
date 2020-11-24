@@ -12,20 +12,26 @@
         @csrf
         <div class="form-group">
             <label for="titulo">Titulo</label>
-            <input type="text" class="form-control bg-black text-light" id="titulo" name="titulo" required minlength="5" placeholder="Min 5 Caracteres">
+            <input type="text" class="form-control bg-black text-light @error('titulo') is-invalid @enderror" id="titulo" name="titulo"  placeholder="Min 5 Caracteres">
+            @error('titulo')
+                <div class="invalid-feedback">{{$message}}</div>
+            @enderror
         </div>
-    
-
+        
         <div class="form-conteudo">
             <div class="form-conteudo-header">
                 conteudo
             </div>
             <div class="form-group">
-                <textarea name="conteudo" id="" cols="30" rows="10" class="form-control bg-black text-light" required minlength="5" placeholder="Min 5 Caracteres"></textarea>
+                <textarea name="conteudo" id="" cols="30" rows="10" class="form-control bg-black text-light @error('conteudo') is-invalid @enderror"  placeholder="Min 5 Caracteres"></textarea>
+                @error('conteudo')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
             </div>
         </div>
 
         <button class="btn btn-outline-warning">Postar</button>
     </form>
+
 </main>
 @endsection
