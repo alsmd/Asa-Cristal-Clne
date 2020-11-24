@@ -20,9 +20,7 @@
     <link rel="shortcut icon" href="http://localhost:8080/src/image/icon.jpg" >
     <!--Estilo costumizado -->
     <link rel="stylesheet" href="http://localhost:8080/src/css/forum.css">
-    <script src="http://localhost:8080/src/script/editar-post.js"></script>
-    <script src="http://localhost:8080/src/script/novo-comentario.js"></script>
-
+    @yield('head')
 </head>
 <body class="bg-dark" >
     <!-- Navbar -->
@@ -38,10 +36,16 @@
             <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="menu-principal">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="" class="nav-link">Principal</a></li>
-                    <li class="nav-item"><a href="" class="nav-link">Centro Pessoal</a></li>
+                    <li class="nav-item"><a href="{{route('forum.index')}}" class="nav-link">Principal</a></li>
+                    @auth
+                    <li class="nav-item"><a href="" class="nav-link text-light">{{auth()->user()->name}}</a></li>
+                    @endauth
                     <li class="nav-item"><a href="" class="nav-link">Forúm</a></li>
                     <li class="nav-item"><a href="" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="document.querySelector('.sair-forum').submit();">Sair</a></li>
+                    <form action="{{route('logout')}}" method="post" class="sair-forum d-none">
+                        @csrf
+                    </form>
                 </ul>
             </div>
             </nav>

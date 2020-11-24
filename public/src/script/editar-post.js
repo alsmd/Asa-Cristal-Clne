@@ -54,15 +54,21 @@ $(document).ready(()=>{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success:(e)=>{
+                console.log(e);
                 //remove os campos utilizados para a edição e mostra os campos referentes ao poste que estava escondido ja com os novos valores
-                $("#conteudo").remove();
-                $("#titulo").remove();
-                $('.conteudo').html(conteudo);
-                $('.conteudo').removeClass('d-none');
-                $('.titulo').html(titulo);
-                $('.titulo').removeClass('d-none');
+                if(e == 1){
+                    $('.conteudo').html(conteudo);
+                    $('.titulo').html(titulo);
+
+                }
                 $("#btn-editar-postagem").removeClass('d-none');
                 $("#btn-enviar-postagem").removeClass('d-block');
+                $("#conteudo").remove();
+                $("#titulo").remove();
+                $('.conteudo').removeClass('d-none');
+                $('.titulo').removeClass('d-none');
+
+
             },
             error: (e)=>{
                 console.log(e)

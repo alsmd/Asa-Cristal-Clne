@@ -32,9 +32,27 @@
 
             <div class="collapse navbar-collapse" id="menu-principal">
                 <ul class="navbar-nav ml-auto">
+                    @guest
                     <li class="nav-item"><a href="#" class="nav-link" id="btn-login">Login</a></li>
                     <li class="nav-item divisao d-none d-sm-inline-block"><a href="" class="nav-link"></a></li>
                     <li class="nav-item"><a href="#" class="nav-link" id="btn-registrar">Registrar</a></li>
+                    @endguest
+                    @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Bem vindo, {{auth()->user()->name}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Perfil</a>
+                            <a class="dropdown-item" href="#">Recarga</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" onclick="document.querySelector('.sair-forum').submit();">Sair</a>
+                        </div>
+                    </li>
+                    <form action="{{route('logout')}}" method="post" class="sair-forum d-none">
+                        @csrf
+                    </form>
+                    @endauth
                 </ul>
             </div>
         </nav>

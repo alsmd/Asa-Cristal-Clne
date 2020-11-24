@@ -19,11 +19,11 @@ class ComentarioController extends Controller{
     }
     public function store(Request $request,$slug_forum,$slug_categoria,$postagem_id){
         $conteudo = $request->all()['conteudo'];
-        $user = $this->user->find(2); //sera o usuario da session atual
+        $user = $this->user->find(auth()->user()->id); //sera o usuario da session atual
         $comentario = $this->comentario->make([
             'conteudo'=>$conteudo,
             'fk_id_postagem' => $postagem_id,
-            'autor'=>'Flavio' //sera o nome do usuario da session
+            'autor'=> auth()->user()->name//sera o nome do usuario da session
         ]);
         $user->comentarios()->save($comentario);
         return ['foto'=>$user->foto,'nome'=>$user->name,'conteudo'=>$comentario->conteudo];

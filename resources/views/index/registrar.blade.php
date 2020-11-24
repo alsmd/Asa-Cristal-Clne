@@ -13,28 +13,33 @@
             <div class="login-body row">
                 <!-- REGISTRAR NO CONTA DO SITE -->
                 <div class="col-md-6 login-body-item1">
-                    <form action="">
+                    <form action="/register" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name">Nome:</label>
+                            <input type="text" id="name" name="name" class="form-control bg-dark">
+                        </div>
                         <div class="form-group">
                             <label for="re_email">Email:</label>
-                            <input type="email" id="re_email" name="email" class="form-control bg-dark">
+                            <input type="email" id="email" name="email" class="form-control bg-dark">
                         </div>
     
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="con_email">Confirmar Email:</label>
                             <input type="email" id="con_email" name="email" class="form-control bg-dark">
-                        </div>
+                        </div> -->
                         <div class="form-group">
-                            <label for="re_senha">Senha:</label>
-                            <input type="password" id="re_senha" name="senha" class="form-control bg-dark">
+                            <label for="password">Senha:</label>
+                            <input type="password" id="password" name="password" class="form-control bg-dark">
                         </div>
                         <div class="form-group">
                             <label for="con_senha">Confirmar Senha:</label>
-                            <input type="password" id="con_senha" name="senha" class="form-control bg-dark">
+                            <input type="password" id="con_senha" name="password_confirmation" class="form-control bg-dark">
                         </div>
 
                         <div class="row mx-0">
                             <div class="custom-control custom-checkbox col-6">
-                                <input type="checkbox" class="custom-control-input" id="aceitar_termos">
+                                <input type="checkbox" class="custom-control-input" id="aceitar_termos" required>
                                 <label class="custom-control-label" for="aceitar_termos">Aceito e concordo com as politicas da empresa.</label>
                             </div>
                         </div>

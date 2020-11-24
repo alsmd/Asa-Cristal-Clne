@@ -1,4 +1,10 @@
 @extends('layouts.forumLayout')
+@section('head')
+    @if($postagem->user->id == auth()->user()->id)
+        <script src="http://localhost:8080/src/script/editar-post.js"></script>
+    @endif
+    <script src="http://localhost:8080/src/script/novo-comentario.js"></script>
+@endsection
 @section('content')
 <!-- TABS -->
 <div class="container text-info">
@@ -9,7 +15,7 @@
     
     <div class="row">
         <div class="col-sm-3 ">
-            <img src="https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2020/06/michael-keaton-batman-1280x720.jpg" alt="" class="w-100 rounded border border-secondary">
+            <img src="{{($postagem->user()->first())->foto}}" alt="" class="w-100 rounded border border-secondary">
             <p class="text-center text-warning">{{($postagem->user()->first())->name}}</p>
         </div>
         <div class="col-sm-9 container-postagem">
@@ -21,15 +27,17 @@
             
         </div>
     </div>
-    <div class="d-flex justify-content-end mt-2 justify-self-end" style="display: absolute;">
-        <form action="{{route('forum.jogo.categoria.postagem.destroy',[$slug_forum,$slug_categoria,$id])}}" method="POST">
-            @csrf
-            @method("delete")
-            <button type="submit"  class="btn btn-danger">Apagar</button>
-        </form>
-        <button id="btn-editar-postagem"  class="btn btn-success ml-1">Editar</button> <!-- href="" -->
-        <button id="btn-enviar-postagem" name="{{route('forum.jogo.categoria.postagem.update',[$slug_forum,$slug_categoria,$id])}}"class="btn btn-info ml-1" style="display:none">Enviar</button>
-    </div>
+    @if($postagem->user->id == auth()->user()->id)
+        <div class="d-flex justify-content-end mt-2 justify-self-end" style="display: absolute;">
+            <form action="{{route('forum.jogo.categoria.postagem.destroy',[$slug_forum,$slug_categoria,$id])}}" method="POST">
+                @csrf
+                @method("delete")
+                <button type="submit"  class="btn btn-danger">Apagar</button>
+            </form>
+            <button id="btn-editar-postagem"  class="btn btn-success ml-1">Editar</button> <!-- href="" -->
+            <button id="btn-enviar-postagem" name="{{route('forum.jogo.categoria.postagem.update',[$slug_forum,$slug_categoria,$id])}}"class="btn btn-info ml-1" style="display:none">Enviar</button>
+        </div>
+    @endif
 </main>
 <div class="container  px-0">
     <!-- Lista de Comentarios -->

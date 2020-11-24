@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Jogo;
 class IndexController extends Controller{
 
-    private $jogos;
+    private $jogo;
 
-    public function __construct(Jogo $jogos){
-        $this->jogos = $jogos;
+    public function __construct(Jogo $jogo){
+        $this->jogo = $jogo;
     }
     //
     public function index(){

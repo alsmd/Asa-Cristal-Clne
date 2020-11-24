@@ -13,7 +13,8 @@
             <div class="login-body row">
                 <!-- LOGIN COM CONTA DO SITE -->
                 <div class="col-md-6 login-body-item1">
-                    <form action="">
+                    <form action="/login" method="POST">
+                        @csrf
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="email" id="email" name="email" class="form-control bg-dark">
@@ -21,7 +22,7 @@
     
                         <div class="form-group">
                             <label for="senha">Senha:</label>
-                            <input type="password" id="senha" name="senha" class="form-control bg-dark">
+                            <input type="password" id="password" name="password" class="form-control bg-dark">
                         </div>
 
                         <div class="row mx-0">

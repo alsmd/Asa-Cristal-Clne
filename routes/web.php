@@ -18,23 +18,29 @@ use App\Http\Controllers\Admin\ComentarioController;
 |
 */
 
-Route::get('/', [IndexController::class,'index']);
+Route::get('/', [IndexController::class,'index'])->name('home');
 
 
 //   /forum
-Route::prefix('/forum')->name('forum.')->group(function(){
-    Route::get('/',[ForumController::class, 'index'])->name('index');
-
-    Route::prefix('/{slug_forum}')->name('jogo.')->group(function(){
-        /* Forum de um jogo especifico */
-        Route::get('/',[ForumController::class, 'show'])->name('show');
-        //
-        Route::prefix('/{slug_categoria}')->name('categoria.')->group(function(){
-            Route::resource('postagem','App\Http\Controllers\Admin\PostagemController');
-            //crud comentarios
-            Route::post('/{id_postagem}/comentario/store',[ComentarioController::class, 'store'])->name('postagem.comentario.store');
+Route::middleware(['auth'])->group(function(){
+    Route::prefix('/forum')->name('forum.')->group(function(){
+        Route::get('/',[ForumController::class, 'index'])->name('index');
+    
+        Route::prefix('/{slug_forum}')->name('jogo.')->group(function(){
+            /* Forum de um jogo especifico */
+            Route::get('/',[ForumController::class, 'show'])->name('show');
+            //
+            Route::prefix('/{slug_categoria}')->name('categoria.')->group(function(){
+                Route::resource('postagem','App\Http\Controllers\Admin\PostagemController');
+                //crud comentarios
+                Route::post('/{id_postagem}/comentario/store',[ComentarioController::class, 'store'])->name('postagem.comentario.store');
+            });
+            
         });
         
     });
-    
 });
+
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

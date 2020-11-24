@@ -62,14 +62,14 @@ class PostagemController extends Controller{
     public function store(Request $request,$slug_forum,$slug_categoria){
         $titulo = $request->all()['titulo'];
         $conteudo = $request->all()['conteudo'];
-        $autor = 'Susan Wisoky'; //sera o nome do usuario logado futuramente
+        $autor = auth()->user()->name; 
         $forum = $this->forum->where('slug',$slug_forum)->first(); //forum atual
         $categoria = $this->categoria->where('slug',$slug_categoria)->first(); //categoria selecionado
         $postagem = $this->postagem->make(compact('titulo','conteudo','autor'));
         //linkando a postagem a um forum/categoria/usuario
         $postagem->forum()->associate($forum->id);
         $postagem->categoria()->associate($categoria->id);
-        $postagem->user()->associate(1); //sera associado ao usuario logado futuramente
+        $postagem->user()->associate(auth()->user()->id); 
         //salvando dado no DB
         if($postagem->save() == 1){
             flash('Postagem realizada com sucesso.')->success()->important();
@@ -88,6 +88,7 @@ class PostagemController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function show($slug_forum,$slug_categoria,$id){
+
         $forum_nome = ( $this->forum->where('slug',$slug_forum)->first())->nome;
         $categoria_nome= ($this->categoria->where('slug',$slug_categoria)->first())->nome;
         $postagem = $this->postagem->findOrFail($id);
@@ -118,8 +119,14 @@ class PostagemController extends Controller{
     public function update(Request $request, $slug_forum,$slug_categoria,$id){
         $conteudo = $request->all()['conteudo'];
         $titulo = $request->all()['titulo'];
-        $this->postagem->where('id',$id)->update($request->all());
-        return  $conteudo;
+        $postagem = $this->postagem->where('id',$id)->first();
+        $postsUser = $postagem->user->id;
+        $sessionsUser = auth()->user()->id;
+        if($postsUser == $sessionsUser){
+            $postagem->update($request->all());
+            return 1;
+        }
+        return  0;
     }
 
     /**
@@ -131,11 +138,17 @@ class PostagemController extends Controller{
      */
     public function destroy(Request $request, $slug_forum,$slug_categoria,$id){
         //
-        if($this->postagem->where('id',$id)->delete() == 1){
+        $status = false;
+        $postagem = $this->postagem->where('id',$id)->first();
+        //apenas as postagens pertencentes ao usuario logado podem ser apagadas por ele
+        if($postagem->user->id == auth()->user()->id){
+            if($postagem->delete() == 1){
+                $status = true;
+            }
+        }
+        if($status){
             flash('Postagem apagada com sucesso.')->success()->important();
             return redirect()->route('forum.jogo.categoria.postagem.index',[$slug_forum,$slug_categoria]);
-
-
         }
         flash('Houve um erro na tentativa de apagar a postagem.')->error()->important();
         return redirect()->route('forum.jogo.categoria.postagem.index',[$slug_forum,$slug_categoria]);
