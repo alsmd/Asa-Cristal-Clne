@@ -1,4 +1,4 @@
-@extends('layouts.forumLayout')
+@extends('layouts.layout2')
 @section('content')
 <!-- TABS -->
 <div class="container text-info">

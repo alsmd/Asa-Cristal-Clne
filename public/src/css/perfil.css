@@ -1,0 +1,41 @@
+body,hmtl{
+    overflow-x: hidden;
+}
+main{
+    position: relative;
+}
+.conteudo{
+    padding: 30px;
+}
+
+.sidebar{
+    padding: 0;
+}
+#foto-perfil-background{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fa-camera{
+    font-size: 2em;
+    position: absolute;
+    z-index: 1;
+}
+.foto-perfil{
+    z-index: 10;
+    transition: opacity .4s;
+}
+.foto-perfil:hover{
+    cursor: pointer;
+    opacity: .7;
+}
+@media(max-width:380px){
+    .list-group-item,.postagens, .comentarios{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    .postagens, .comentarios{
+        font-size: .6em;
+    }
+}

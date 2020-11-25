@@ -38,7 +38,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="{{route('forum.index')}}" class="nav-link">Principal</a></li>
                     @auth
-                    <li class="nav-item"><a href="" class="nav-link text-light">{{auth()->user()->name}}</a></li>
+                    <li class="nav-item"><a href="/perfil" class="nav-link text-light">{{auth()->user()->name}}</a></li>
                     @endauth
                     <li class="nav-item"><a href="" class="nav-link">Forúm</a></li>
                     <li class="nav-item"><a href="" class="nav-link">FAQ</a></li>

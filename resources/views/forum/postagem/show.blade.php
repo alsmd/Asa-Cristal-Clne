@@ -1,4 +1,4 @@
-@extends('layouts.forumLayout')
+@extends('layouts.layout2')
 @section('head')
     @if($postagem->user->id == auth()->user()->id)
         <script src="http://localhost:8080/src/script/editar-post.js"></script>

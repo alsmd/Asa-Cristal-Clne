@@ -39,6 +39,9 @@ Route::middleware(['auth'])->group(function(){
         });
         
     });
+    Route::get('/perfil',function(){
+        return view('perfil.index');
+    });
 });
 
 Auth::routes();
