@@ -11,6 +11,7 @@ main{
 .sidebar{
     padding: 0;
 }
+/* Configuração da foto profile */
 #foto-perfil-background{
     position: relative;
     display: flex;
@@ -30,6 +31,11 @@ main{
     cursor: pointer;
     opacity: .7;
 }
+.mensagens-nav{
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-radius: 5px;
+}
 @media(max-width:380px){
     .list-group-item,.postagens, .comentarios{
         padding-left: 0px !important;
@@ -38,4 +44,14 @@ main{
     .postagens, .comentarios{
         font-size: .6em;
     }
+}
+
+/* Mensagens */ 
+.pm{
+    border-bottom: 1px solid rgb(130, 171, 179);
+    border-radius: 10px;
+
+}
+.pm-informacoes-user{
+    max-width: 140px;
 }

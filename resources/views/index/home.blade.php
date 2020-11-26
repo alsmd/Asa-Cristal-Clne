@@ -43,7 +43,7 @@
                         Bem vindo, {{auth()->user()->name}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/perfil">Perfil</a>
+                            <a class="dropdown-item" href="{{route('configuracao')}}">Perfil</a>
                             <a class="dropdown-item" href="#">Recarga</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" onclick="document.querySelector('.sair-forum').submit();">Sair</a>

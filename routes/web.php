@@ -39,9 +39,12 @@ Route::middleware(['auth'])->group(function(){
         });
         
     });
-    Route::get('/perfil',function(){
-        return view('perfil.index');
-    });
+    Route::get('/configuracao',function(){
+        return view('configuracao.index');
+    })->name('configuracao');
+    Route::post('/pm',function(){
+        return view('pm.show');
+    })->name('pm');
 });
 
 Auth::routes();

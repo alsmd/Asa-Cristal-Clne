@@ -1,0 +1,37 @@
+
+.chat{
+    min-height: 450px;
+    max-height: 450px;
+    background: rgba(128, 128, 128,.4);
+    padding: 30px;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.mensagem{
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: .4em;
+    max-width: 75%;
+
+}
+.mensagem-recebida .mensagem{
+    border-top-left-radius: 0px !important;
+    position: relative;
+}
+.mensagem-enviada{
+    display: flex;
+    justify-content: flex-end;
+}
+.fa-cog{
+    font-size: 2em;
+}
+@media(max-width:690px){
+    .mensagem{
+        padding: 10px 15px;
+        max-width: 100%;
+    }
+    .chat{
+        padding: 30px 10px;
+    }
+}
