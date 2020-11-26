@@ -30,7 +30,7 @@
                         <!-- Postagens -->
                         <div class="col-lg-6 postagens">
                             <h3 class="text-center my-4 text-warning">Postagens</h3>
-                            <table class="table table-hover table-dark">
+                            <table class="table table-hover table-dark ">
                                 <thead>
                                     <tr>
                                         <th scope="col">Titulo</th>
@@ -39,33 +39,20 @@
                                         <th scope="col">Ultimo Comentario</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                      <td>Titulo</td>
-                                      <td>Jogo</td>
-                                      <td>Categoria</td>
-                                      <td>Ultimo Comentario</td>
+                                <tbody >
+                                    @foreach($postagens as $postagem)
+                                    <?php $ultimo_comentario = $postagem->comentarios()->orderBy('created_at','desc')->get()?> <!-- //recupera o ultimo comentario da postagem -->
+                                    <tr >
+                                      <td class="text-truncate"><a href="{{route('forum.jogo.categoria.postagem.show',[$postagem->forum->slug,$postagem->categoria->slug, $postagem->id])}}" class="text-light"  target="_blank">{{$postagem->titulo}}</a></td>
+                                      <td class="text-truncate"><a href="{{route('forum.jogo.show',[$postagem->forum->slug])}}" class="text-light"  target="_blank">{{$postagem->forum->slug}}</a></td>
+                                      <td class="text-truncate"><a href="{{route('forum.jogo.categoria.postagem.index',[$postagem->forum->slug,$postagem->categoria->slug ])}}" class="text-light" target="_blank" >{{$postagem->categoria->nome}}</a></td>
+                                      <td class="text-truncate">@foreach($ultimo_comentario as $uc) {{$uc->conteudo}} @endforeach</td>
                                     </tr>
-                                    <tr>
-                                        <td>Titulo</td>
-                                        <td>Jogo</td>
-                                        <td>Categoria</td>
-                                        <td>Ultimo Comentario</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Titulo</td>
-                                        <td>Jogo</td>
-                                        <td>Categoria</td>
-                                        <td>Ultimo Comentario</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Titulo</td>
-                                        <td>Jogo</td>
-                                        <td>Categoria</td>
-                                        <td>Ultimo Comentario</td>
-                                    </tr>
+                                    @endforeach
                                   </tbody>
                             </table>
+                            <div class="d-flex justify-content-center">{{$postagens->links()}}</div>
+
                         </div>
                         <!-- Comentarios -->
                         <div class="col-lg-6 comentarios">
@@ -73,39 +60,25 @@
                             <table class="table table-hover table-dark">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Titulo</th>
+                                        <th scope="col">Postagem</th>
                                         <th scope="col">Jogo</th>
-                                        <th scope="col">Categoria</th>
-                                        <th scope="col">Ultimo Comentario</th>
+                                        <th scope="col">Comentario</th>
+                                        <th scope="col">Dono</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($comentarios as $comentario)
                                     <tr>
-                                      <td>Titulo</td>
-                                      <td>Jogo</td>
-                                      <td>Categoria</td>
-                                      <td>Ultimo Comentario</td>
+                                      <td class="text-truncate"><a href="{{route('forum.jogo.categoria.postagem.show',[$comentario->postagem->forum->slug,$comentario->postagem->categoria->slug, $comentario->postagem->id])}}" class="text-light"  target="_blank">{{$comentario->postagem->titulo}}</a></td>
+                                      <td class="text-truncate"><a href="{{route('forum.jogo.show',[$comentario->postagem->forum->slug])}}" class="text-light"  target="_blank">{{$comentario->postagem->forum->slug}}</a></td>
+                                      <td class="text-truncate">{{$comentario->conteudo}}</td>
+                                      <td class="text-truncate">{{$comentario->postagem->user->name}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Titulo</td>
-                                        <td>Jogo</td>
-                                        <td>Categoria</td>
-                                        <td>Ultimo Comentario</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Titulo</td>
-                                        <td>Jogo</td>
-                                        <td>Categoria</td>
-                                        <td>Ultimo Comentario</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Titulo</td>
-                                        <td>Jogo</td>
-                                        <td>Categoria</td>
-                                        <td>Ultimo Comentario</td>
-                                    </tr>
+                                    @endforeach
                                   </tbody>
                             </table>
+                            <div class="d-flex justify-content-center">{{$comentarios->links()}}</div>
+
                         </div>
                     </div>
                 </div> 

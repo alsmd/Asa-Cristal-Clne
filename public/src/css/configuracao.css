@@ -41,9 +41,7 @@ main{
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
-    .postagens, .comentarios{
-        font-size: .6em;
-    }
+    
 }
 
 /* Mensagens */ 
@@ -54,4 +52,20 @@ main{
 }
 .pm-informacoes-user{
     max-width: 140px;
+}
+
+/* Tabela */
+table{
+    font-size: .7em;
+}
+table td{
+    max-width:110px;
+}
+@media(max-width:480px){
+    .postagens, .comentarios{
+        font-size: .7em;
+    }
+    table td{
+        max-width:80px;
+    }
 }

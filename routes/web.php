@@ -35,12 +35,12 @@ Route::middleware(['auth'])->group(function(){
                 //crud comentarios
                 Route::post('/{id_postagem}/comentario/store',[ComentarioController::class, 'store'])->name('postagem.comentario.store');
             });
-            
         });
-        
     });
     Route::get('/configuracao',function(){
-        return view('configuracao.index');
+        $postagens = auth()->user()->postagens()->paginate(5);
+        $comentarios = auth()->user()->comentarios()->paginate(5);
+        return view('configuracao.index',compact('postagens','comentarios'));
     })->name('configuracao');
     Route::post('/pm',function(){
         return view('pm.show');
