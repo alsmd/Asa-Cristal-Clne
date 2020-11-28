@@ -43,10 +43,11 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/configuracao',function(){
         $postagens = auth()->user()->postagens()->paginate(5);
         $comentarios = auth()->user()->comentarios()->paginate(5);
-        $users = User::paginate(5);
+        $users = User::where('id','!=',auth()->user()->id)->paginate(5);
         return view('configuracao.index',compact('postagens','comentarios','users'));
     })->name('configuracao');
     Route::post('/chat', [MensagemController::class,'index'])->name('chat');
+    Route::post('/chat/store', [MensagemController::class,'store'])->name('chat.store');
 
 });
 

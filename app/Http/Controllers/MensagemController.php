@@ -20,8 +20,9 @@ class MensagemController extends Controller{
         $this->id_user_selecionado = $user_selecionado ; //user selecionado
         $user_selecionado = User::find($user_selecionado);
         $chat = $this->getChat();
+        $chat_id = $chat->id;
         $mensagens = $chat->mensagens()->orderBy('created_at','asc')->get();
-        return view('mensagem.index',compact('mensagens','user_selecionado'));
+        return view('mensagem.index',compact('mensagens','user_selecionado','chat_id'));
     }
 
     /**
@@ -43,6 +44,12 @@ class MensagemController extends Controller{
     public function store(Request $request)
     {
         //
+        $id_user = $request->all()['id_user'];
+        $chat_id = $request->all()['chat_id'];
+        $mensagem = $request->all()['mensagem'];
+        $chat = Chat::find($chat_id);
+        $mensagem = $chat->mensagens()->create(['fk_id_user' => $id_user,'mensagem' => $mensagem]);
+        return $mensagem;
     }
 
     /**

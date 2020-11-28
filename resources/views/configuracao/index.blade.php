@@ -156,6 +156,9 @@
                             <button class="btn btn-dark rounded"><i class="fas fa-times"></i></button>
                         </div>
                         @endforeach
+                        <div class="d-flex justify-content-center">
+                            {{$users->links()}}
+                        </div>
                    </div>
                 </div>  
                 <!-- Settings -->

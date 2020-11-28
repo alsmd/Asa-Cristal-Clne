@@ -39,9 +39,9 @@
         </div>
         <div class="envio">
             <div class="input-group">
-                <input class="form-control form-control-lg " type="text" placeholder="Enviar" aria-label="Search">
+                <input class="form-control form-control-lg " type="text" placeholder="Enviar" id="mensagem">
                 <div class="input-group-append">
-                    <button class="input-group-text btn-info" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    <button class="input-group-text btn-info" type="button" id="enviar"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
@@ -50,7 +50,27 @@
     
 </main>
 <script>
-   
+   let chat_id = <?php echo $chat_id ?>;
+   let id_user = <?php echo auth()->user()->id ?>;
+   let url = '';
+   $("#enviar").on('click',function(){
+       let mensagem = $("#mensagem").val();
+       $("#mensagem").val('')
+       $.ajax({
+           type:'post',
+           data: `chat_id=${chat_id}&&id_user=${id_user}&&mensagem=${mensagem}`,
+           url: 'chat/store',
+           headers:{
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           },
+           success: (resposta)=>{
+            console.log(resposta)
+           },
+           error: (resposta)=>{
+               console.log(resposta)
+           }
+       })
+   })
 </script>
 @endsection
 
