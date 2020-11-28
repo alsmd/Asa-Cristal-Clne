@@ -22,6 +22,11 @@ class MensagemController extends Controller{
         $chat = $this->getChat();
         $chat_id = $chat->id;
         $mensagens = $chat->mensagens()->orderBy('created_at','asc')->get();
+        //marcando as mensagens como lidas
+        foreach($mensagens->where('fk_id_user',$this->id_user_selecionado) as $mensagem){
+            $mensagem->update(['status'=>'lido']);
+        }
+
         return view('mensagem.index',compact('mensagens','user_selecionado','chat_id'));
     }
 
@@ -97,7 +102,9 @@ class MensagemController extends Controller{
         //
     }
 
-
+    /*
+        *Retorna o chat do usuario logado com o usaurio selecionado, caso essa relação ainda não exista ela sera criada e retornada
+    */
     public function getChat(){
         //verifica se existe relação entre o usuario logado e o usuario selecionado na tabela chat, caso não exista, uma relação sera criada
         $chat = Chat::where('fk_id_user1',$this->id_user)->get();
