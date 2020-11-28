@@ -15,7 +15,6 @@ class CreateChatTable extends Migration
     {
         Schema::create('chat', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->default('nlido');
             $table->unsignedBigInteger('fk_id_user1');
             $table->unsignedBigInteger('fk_id_user2');
             $table->timestamps();

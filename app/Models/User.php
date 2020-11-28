@@ -59,4 +59,8 @@ class User extends Authenticatable
     public function comentarios(){
         return $this->hasMany(Comentario::class,'fk_id_user');
     }
+    //Tem varias mensagens
+    public function mensagens(){
+        return $this->hasMany(Mensagem::class,'fk_id_user');
+    }
 }

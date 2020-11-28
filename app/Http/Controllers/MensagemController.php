@@ -3,17 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Chat;
+use App\Models\User;
 
-class MensagemController extends Controller
-{
+class MensagemController extends Controller{
+    protected $id_user_logado;
+    protected $id_user_selecionado;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request){
+        $user_selecionado = $request->all()['user_selecionado'];
+        $this->id_user = auth()->user()->id;//user logado
+        $this->id_user_selecionado = $user_selecionado ; //user selecionado
+        $user_selecionado = User::find($user_selecionado);
+        $chat = $this->getChat();
+        $mensagens = $chat->mensagens()->orderBy('created_at','asc')->get();
+        return view('mensagem.index',compact('mensagens','user_selecionado'));
     }
 
     /**
@@ -80,5 +88,21 @@ class MensagemController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function getChat(){
+        //verifica se existe relação entre o usuario logado e o usuario selecionado na tabela chat, caso não exista, uma relação sera criada
+        $chat = Chat::where('fk_id_user1',$this->id_user)->get();
+        $chat = $chat->where('fk_id_user2',$this->id_user_selecionado)->first();
+
+        if($chat == null){
+            $chat = Chat::where('fk_id_user2',$this->id_user)->get();
+            $chat = $chat->where('fk_id_user1',$this->id_user_selecionado)->first();
+        }
+        if($chat == null){
+            $chat = Chat::create(['fk_id_user1' => $this->id_user, 'fk_id_user2' => $this->id_user_selecionado]);
+        }
+        return $chat;
     }
 }

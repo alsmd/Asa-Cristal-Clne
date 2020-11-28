@@ -13,28 +13,29 @@
         <div class="chat-header py-3 px-3 d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
                 <img src="{{auth()->user()->foto}}" alt="" width="50" height="50" style="border-radius:50%" class="mr-2">
-                <h3>{{auth()->user()->name}}</h3>
+                <h3>{{$user_selecionado->name}}</h3>
             </div>
             <div class="menus">
                 <button class="btn btn-outine-dark"><i class="fas fa-cog"></i></button>
             </div>
         </div>
         <div class="chat text-dark m-0">
-            <!-- Mensagem Recebida -->
-            <div class="mensagem-recebida">
-                <div class="d-inline-block bg-warning mensagem">Mensagem enviada Mensagem enviada Mensagem enviada Mensagem enviada Mensagem enviadav Mensagem enviada Mensagem enviada</div>
-            </div>
+            @foreach($mensagens as $mensagem)
+            @if($mensagem->user->id == auth()->user()->id)
             <!-- Mensagem Enviada -->
             <div class="mensagem-enviada">
-                <div class="d-inline-block bg-success mensagem">Mensagem recebida</div>
-            </div>
-
+                <div class="d-inline-block bg-success mensagem">{{$mensagem->mensagem}}</div>
+            </div> 
+            @endif
+            @if($mensagem->user->id != auth()->user()->id)
+            <!-- Mensagem Recebida -->
             <div class="mensagem-recebida">
-                <div class="d-inline-block bg-warning mensagem">Mensagem enviada Mensagem enviada Mensagem enviada Mensagem enviada Mensagem enviadav Mensagem enviada Mensagem enviada</div>
+                <div class="d-inline-block bg-warning mensagem">{{$mensagem->mensagem}}</div>
             </div>
-            <div class="mensagem-enviada">
-                <div class="d-inline-block bg-success mensagem">Mensagem recebida</div>
-            </div>
+            
+            @endif
+            @endforeach
+
         </div>
         <div class="envio">
             <div class="input-group">

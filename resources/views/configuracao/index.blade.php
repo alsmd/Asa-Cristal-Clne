@@ -137,23 +137,25 @@
 
                    <!--  Area de PM's -->
                    <div class="pms row m-0">
+                        @foreach($users as $user)
                         <!-- PM -->
                         <div class="col-12 pm px-0 py-2 d-flex align-items-start justify-content-between my-2">
                             <div class="d-flex ">
                                 <img src="{{auth()->user()->foto}}" alt="" height="100" style="border-radius: 50%;" class="mr-3 foto-perfil ">
                                 <div class="pm-informacoes-user">
-                                    <h3>nome</h3>
-                                    <p class="text-truncate m-0 p-0 ">Previa do conteudo Previa do conteudo Previa do conteudo</p>
-                                    <small class="text-secondary">01/01/2021 13:59</small>
-                                    <a href="#" class="text-info" onclick="document.querySelector('#pm').submit()">vizualizar</a>
-                                    <form action="{{route('pm')}}" class="d-none" method="post" id="pm">
+                                    <h3 class="text-truncate">{{$user->name}}</h3>
+                                    <p class="text-truncate m-0 p-0 ">{{$user->name}}</p>
+                                    <small class="text-secondary">{{$user->created_at}}</small>
+                                    <a href="#" class="text-info" onclick="document.querySelector('#chat' + <?php echo $user->id;?>).submit()">vizualizar</a>
+                                    <form action="{{route('chat')}}" class="d-none" method="post" id="chat{{$user->id}}">
                                         @csrf
-                                        <input type="text" name="chat" id="" value="chat">
+                                        <input type="text" name="user_selecionado" id="" value="{{$user->id}}">
                                     </form>
                                 </div>
                             </div>
                             <button class="btn btn-dark rounded"><i class="fas fa-times"></i></button>
                         </div>
+                        @endforeach
                    </div>
                 </div>  
                 <!-- Settings -->

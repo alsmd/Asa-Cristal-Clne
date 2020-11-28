@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ForumController;
 use App\Http\Controllers\Admin\PostagemController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\ComentarioController;
+use App\Http\Controllers\MensagemController;
 use App\Models\User;
 use App\Models\Chat;
 
@@ -42,17 +43,13 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/configuracao',function(){
         $postagens = auth()->user()->postagens()->paginate(5);
         $comentarios = auth()->user()->comentarios()->paginate(5);
-        return view('configuracao.index',compact('postagens','comentarios'));
+        $users = User::paginate(5);
+        return view('configuracao.index',compact('postagens','comentarios','users'));
     })->name('configuracao');
-    Route::post('/pm',function(){
-        return view('pm.show');
-    })->name('pm');
+    Route::post('/chat', [MensagemController::class,'index'])->name('chat');
+
 });
-Route::get('/teste',function(){
-    //Chat::make(['fk_id_user1'=>1,'fk_id_user2'=>2])->save();
-    $user = User::find(1)->first();
-    dd(Chat::where('fk_id_user1',$user->id)->orwhere('fk_id_user2',$user->id)->get());
-});
+
 Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
