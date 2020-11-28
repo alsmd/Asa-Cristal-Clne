@@ -29,56 +29,59 @@
                     <div class="row ">
                         <!-- Postagens -->
                         <div class="col-lg-6 postagen aba" id="postagem-list">
-                            <h3 class="text-center my-4 text-warning">Postagens</h3>
-                            <table class="table table-hover table-dark ">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Titulo</th>
-                                        <th scope="col">Jogo</th>
-                                        <th scope="col">Categoria</th>
-                                        <th scope="col">Ultimo Comentario</th>
-                                    </tr>
-                                </thead>
-                                <tbody >
-                                    @foreach($postagens as $postagem)
-                                    <?php $ultimo_comentario = $postagem->comentarios()->orderBy('created_at','desc')->get()?> <!-- //recupera o ultimo comentario da postagem -->
-                                    <tr >
-                                      <td class="text-truncate"><a href="{{route('forum.jogo.categoria.postagem.show',[$postagem->forum->slug,$postagem->categoria->slug, $postagem->id])}}" class="text-light"  target="_blank">{{$postagem->titulo}}</a></td>
-                                      <td class="text-truncate"><a href="{{route('forum.jogo.show',[$postagem->forum->slug])}}" class="text-light"  target="_blank">{{$postagem->forum->slug}}</a></td>
-                                      <td class="text-truncate"><a href="{{route('forum.jogo.categoria.postagem.index',[$postagem->forum->slug,$postagem->categoria->slug ])}}" class="text-light" target="_blank" >{{$postagem->categoria->nome}}</a></td>
-                                      <td class="text-truncate">@foreach($ultimo_comentario as $uc) {{$uc->conteudo}} @endforeach</td>
-                                    </tr>
-                                    @endforeach
-                                  </tbody>
-                            </table>
-                            <div class="d-flex justify-content-center">{{$postagens->links()}}</div>
+                            <h3 class="text-center my-4 text-warning titulo">Postagens</h3>
+                            <div id="tabela-postagem-list">
+                                <table class="table table-hover table-dark ">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Titulo</th>
+                                            <th scope="col">Jogo</th>
+                                            <th scope="col">Categoria</th>
+                                            <th scope="col">Data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        @foreach($postagens as $postagem)
+                                        <tr >
+                                          <td class="text-truncate"><a href="{{route('forum.jogo.categoria.postagem.show',[$postagem->forum->slug,$postagem->categoria->slug, $postagem->id])}}" class="text-light"  target="_blank">{{$postagem->titulo}}</a></td>
+                                          <td class="text-truncate"><a href="{{route('forum.jogo.show',[$postagem->forum->slug])}}" class="text-light"  target="_blank">{{$postagem->forum->slug}}</a></td>
+                                          <td class="text-truncate"><a href="{{route('forum.jogo.categoria.postagem.index',[$postagem->forum->slug,$postagem->categoria->slug ])}}" class="text-light" target="_blank" >{{$postagem->categoria->nome}}</a></td>
+                                          <td class="text-truncate">{{$postagem->created_at}}</td>
+                                        </tr>
+                                        @endforeach
+                                      </tbody>
+                                </table>
+                                <div class="d-flex justify-content-center">{{$postagens->links()}}</div>
+
+                            </div>
 
                         </div>
                         <!-- Comentarios -->
                         <div class="col-lg-6 comentarios aba" id="comentario-list">
                             <h3 class="text-center my-4 text-warning">Comentarios</h3>
-                            <table class="table table-hover table-dark">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Postagem</th>
-                                        <th scope="col">Jogo</th>
-                                        <th scope="col">Comentario</th>
-                                        <th scope="col">Dono</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($comentarios as $comentario)
-                                    <tr>
-                                      <td class="text-truncate"><a href="{{route('forum.jogo.categoria.postagem.show',[$comentario->postagem->forum->slug,$comentario->postagem->categoria->slug, $comentario->postagem->id])}}" class="text-light"  target="_blank">{{$comentario->postagem->titulo}}</a></td>
-                                      <td class="text-truncate"><a href="{{route('forum.jogo.show',[$comentario->postagem->forum->slug])}}" class="text-light"  target="_blank">{{$comentario->postagem->forum->slug}}</a></td>
-                                      <td class="text-truncate">{{$comentario->conteudo}}</td>
-                                      <td class="text-truncate">{{$comentario->postagem->user->name}}</td>
-                                    </tr>
-                                    @endforeach
-                                  </tbody>
-                            </table>
-                            <div class="d-flex justify-content-center">{{$comentarios->links()}}</div>
-
+                            <div id="tabela-comentario-list">
+                                <table class="table table-hover table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Postagem</th>
+                                            <th scope="col">Jogo</th>
+                                            <th scope="col">Comentario</th>
+                                            <th scope="col">Dono</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($comentarios as $comentario)
+                                        <tr>
+                                          <td class="text-truncate"><a href="{{route('forum.jogo.categoria.postagem.show',[$comentario->postagem->forum->slug,$comentario->postagem->categoria->slug, $comentario->postagem->id])}}" class="text-light"  target="_blank">{{$comentario->postagem->titulo}}</a></td>
+                                          <td class="text-truncate"><a href="{{route('forum.jogo.show',[$comentario->postagem->forum->slug])}}" class="text-light"  target="_blank">{{$comentario->postagem->forum->slug}}</a></td>
+                                          <td class="text-truncate">{{$comentario->conteudo}}</td>
+                                          <td class="text-truncate">{{$comentario->postagem->user->name}}</td>
+                                        </tr>
+                                        @endforeach
+                                      </tbody>
+                                </table>
+                                <div class="d-flex justify-content-center">{{$comentarios->links()}}</div>
+                            </div>
                         </div>
                     </div>
                 </div> 
@@ -221,21 +224,42 @@
     $(document).on('click','.pagination a',function(e){
         let aba = $(this).closest('.aba').attr('id');
         console.log(aba);
-        getPosts($(this).attr('href').split('page=')[1],aba);
+        getData($(this).attr('href').split('page=')[1],aba);
         e.preventDefault();
     });
    });
-
-   function getPosts(page,aba){
+   //recupera a nova os dados da nova paginação no DB
+   function getData(page,aba){
        $.ajax({
            url: `?page=${page}&&aba=${aba}`,
            dataType: 'json'
        }).done(function(data){
-        console.log(data)
+        let links = JSON.stringify(data.links);
+        let dados = JSON.stringify(data.data);
+        putNewContent(aba,dados,links);
        }).fail(function(data){
         console.log(data)
 
        });
+   }
+   //coloca o novo conteudo na tela
+   function putNewContent(aba,dados,links){
+        //let t = $('#'+tabela + ' table');
+        $.ajax({
+            type: 'POST',
+            url:'/components/'+aba,
+            data:{
+                'dados':dados,
+                'links': links
+            },
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).done(function(data){
+            $("#tabela-"+aba).html(data);
+        }).fail(function(data){
+            console.log(data)
+        })
    }
 </script>
 @endsection

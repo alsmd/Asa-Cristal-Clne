@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PostagemController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\ComentarioController;
 use App\Http\Controllers\MensagemController;
+use App\Http\Controllers\ComponentsController;
 use App\Models\User;
 use App\Models\Chat;
 use App\Models\Mensagem;
@@ -42,9 +43,9 @@ Route::middleware(['auth'])->group(function(){
         });
     });
     Route::get('/configuracao',function(){
-        $postagens = auth()->user()->postagens()->paginate(5);
-        $comentarios = auth()->user()->comentarios()->paginate(5);
-        $users = User::where('id','!=',auth()->user()->id)->paginate(5);
+        $postagens = auth()->user()->postagens()->orderBy('created_at','desc')->paginate(5);
+        $comentarios = auth()->user()->comentarios()->orderBy('created_at','desc')->paginate(5);
+        $users = User::where('id','!=',auth()->user()->id)->orderBy('created_at','desc')->paginate(5);
         
         
         //recupera as mensagens dos chats ao qual o usuario faz parte
@@ -74,6 +75,8 @@ Route::middleware(['auth'])->group(function(){
     })->name('configuracao');
     Route::post('/chat', [MensagemController::class,'index'])->name('chat');
     Route::post('/chat/store', [MensagemController::class,'store'])->name('chat.store');
+    Route::post('/components/postagem-list', [ComponentsController::class,'postagem']);
+    Route::post('/components/comentario-list', [ComponentsController::class,'comentario']);
 
 });
 
