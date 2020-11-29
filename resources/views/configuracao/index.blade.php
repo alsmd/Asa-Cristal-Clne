@@ -57,7 +57,7 @@
 
                         </div>
                         <!-- Comentarios -->
-                        <div class="col-lg-6 comentarios aba" id="comentario-list">
+                        <div class="col-lg-6 comentarios aba pb-2" id="comentario-list">
                             <h3 class="text-center my-4 text-warning">Comentarios</h3>
                             <div id="tabela-comentario-list">
                                 <table class="table table-hover table-dark">
@@ -223,6 +223,8 @@
    $(document).ready(function(){
     $(document).on('click','.pagination a',function(e){
         let aba = $(this).closest('.aba').attr('id');
+        $("#tabela-"+aba).html('<div class="d-flex w-100 justify-content-center align-items-center"><img src="https://astelbg.com/wp-content/uploads/2019/10/loading.gif" style="max-width:200px;height:auto;"></div>');
+
         console.log(aba);
         getData($(this).attr('href').split('page=')[1],aba);
         e.preventDefault();

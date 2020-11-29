@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="http://localhost:8080/src/fontawesome/css/all.css">
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <!--Icone na aba -->
-    <link rel="shortcut icon" href="http://localhost:8080/src/image/icon.jpg" >
+    <link rel="shortcut icon" href="http://localhost:8080/src/image/icon.jpg" id="aba_icone">
     <!--Estilo costumizado -->
     <link rel="stylesheet" href="http://localhost:8080/src/css/forum.css">
     @yield('head')
