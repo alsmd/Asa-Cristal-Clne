@@ -17,7 +17,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Nome:</label>
-                            <input type="text" id="name" name="name" class="form-control bg-dark">
+                            <input type="text" id="name" name="name" class="form-control bg-dark" placeholder="Min 5 caracteres">
                         </div>
                         <div class="form-group">
                             <label for="re_email">Email:</label>

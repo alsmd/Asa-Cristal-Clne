@@ -1,6 +1,8 @@
 @extends('layouts.layout2')
 @section('head')
 <link rel="stylesheet" href="src/css/configuracao.css">
+<script src="src/script/paginacao-dinamica.js"></script>
+
 @endsection
 @section('content')
 
@@ -30,7 +32,7 @@
                         <!-- Postagens -->
                         <div class="col-lg-6 postagen aba" id="postagem-list">
                             <h3 class="text-center my-4 text-warning titulo">Postagens</h3>
-                            <div id="tabela-postagem-list">
+                            <div id="area-postagem-list">
                                 <table class="table table-hover table-dark ">
                                     <thead>
                                         <tr>
@@ -59,7 +61,7 @@
                         <!-- Comentarios -->
                         <div class="col-lg-6 comentarios aba pb-2" id="comentario-list">
                             <h3 class="text-center my-4 text-warning">Comentarios</h3>
-                            <div id="tabela-comentario-list">
+                            <div id="area-comentario-list">
                                 <table class="table table-hover table-dark">
                                     <thead>
                                         <tr>
@@ -139,7 +141,7 @@
                     </ul>
 
                    <!--  Area de PM's -->
-                   <div class="pms row m-0">
+                   <div class=" row m-0" id="area-list-messages">
                         @foreach($mensagens as $mensagem)
                         <!-- PM -->
                         <div class="col-12 pm px-0 py-2 d-flex align-items-start justify-content-between my-2">
@@ -188,7 +190,7 @@
                         </li>
                     </ul>
                     <!--  Usuarios -->
-                   <div class="pms row m-0">
+                   <div class="row m-0" id="area-list-users">
                         @foreach($users as $user)
                         <!-- Usuario -->
                         <div class="col-12 pm px-0 py-2 d-flex align-items-start justify-content-between my-2">
@@ -219,50 +221,5 @@
    
     
 </main>
-<script>
-   $(document).ready(function(){
-    $(document).on('click','.pagination a',function(e){
-        let aba = $(this).closest('.aba').attr('id');
-        $("#tabela-"+aba).html('<div class="d-flex w-100 justify-content-center align-items-center"><img src="https://astelbg.com/wp-content/uploads/2019/10/loading.gif" style="max-width:200px;height:auto;"></div>');
-
-        console.log(aba);
-        getData($(this).attr('href').split('page=')[1],aba);
-        e.preventDefault();
-    });
-   });
-   //recupera a nova os dados da nova paginação no DB
-   function getData(page,aba){
-       $.ajax({
-           url: `?page=${page}&&aba=${aba}`,
-           dataType: 'json'
-       }).done(function(data){
-        let links = JSON.stringify(data.links);
-        let dados = JSON.stringify(data.data);
-        putNewContent(aba,dados,links);
-       }).fail(function(data){
-        console.log(data)
-
-       });
-   }
-   //coloca o novo conteudo na tela
-   function putNewContent(aba,dados,links){
-        //let t = $('#'+tabela + ' table');
-        $.ajax({
-            type: 'POST',
-            url:'/components/'+aba,
-            data:{
-                'dados':dados,
-                'links': links
-            },
-            headers:{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        }).done(function(data){
-            $("#tabela-"+aba).html(data);
-        }).fail(function(data){
-            console.log(data)
-        })
-   }
-</script>
 @endsection
 

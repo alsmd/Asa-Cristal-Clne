@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\PostagemController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\ComentarioController;
 use App\Http\Controllers\MensagemController;
-use App\Http\Controllers\ComponentsController;
+use App\Http\Controllers\PaginacaoDinamicaController;
 use App\Models\User;
 use App\Models\Chat;
 use App\Models\Mensagem;
@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/',[ForumController::class, 'show'])->name('show');
             //
             Route::prefix('/{slug_categoria}')->name('categoria.')->group(function(){
+                //todas operações relacionadas a postagem
                 Route::resource('postagem','App\Http\Controllers\Admin\PostagemController');
                 //crud comentarios
                 Route::post('/{id_postagem}/comentario/store',[ComentarioController::class, 'store'])->name('postagem.comentario.store');
@@ -52,7 +53,7 @@ Route::middleware(['auth'])->group(function(){
         $mensagens = Mensagem::rightJoin('chat',function($join){
             $join->on('chat.id','mensagem.fk_id_chat')
             ->where('chat.fk_id_user1',auth()->user()->id)->orWhere('chat.fk_id_user2',auth()->user()->id);
-        })->where('mensagem.fk_id_user','!=',auth()->user()->id)->select(['mensagem.mensagem','mensagem.fk_id_user'])->paginate(5);
+        })->where('mensagem.fk_id_user','!=',auth()->user()->id)->select(['mensagem.mensagem','mensagem.fk_id_user','mensagem.id'])->paginate(5);
         //retorna o dado referente a paginação selecionada
         if(Request::ajax()){
             $acao = $_GET['aba'];
@@ -66,20 +67,25 @@ Route::middleware(['auth'])->group(function(){
                 case 'list-messages':
                     return $mensagens;
                 break;
-                case 'list-user':
-                    return users;
+                case 'list-users':
+                    return $users;
                 break;
             }
         }
         return view('configuracao.index',compact('postagens','comentarios','users','mensagens'));
     })->name('configuracao');
+
     Route::post('/chat', [MensagemController::class,'index'])->name('chat');
     Route::post('/chat/store', [MensagemController::class,'store'])->name('chat.store');
-    Route::post('/components/postagem-list', [ComponentsController::class,'postagem']);
-    Route::post('/components/comentario-list', [ComponentsController::class,'comentario']);
+    Route::post('/components/postagem-list', [PaginacaoDinamicaController::class,'postagem']);
+    Route::post('/components/comentario-list', [PaginacaoDinamicaController::class,'comentario']);
+    Route::post('/components/list-messages', [PaginacaoDinamicaController::class,'messages']);
+    Route::post('/components/list-users', [PaginacaoDinamicaController::class,'users']);
 
 });
 
 Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
