@@ -15,7 +15,7 @@
     
     <div class="row">
         <div class="col-sm-3 ">
-            <img src="{{($postagem->user()->first())->foto}}" alt="" class="w-100 rounded border border-secondary">
+            <a href="{{route('user.show',[$postagem->user->id])}}"  target="_blank"><img src="{{asset('storage/'.$postagem->user->foto)}}" alt="" class="w-100 rounded border border-secondary"></a>
             <p class="text-center text-warning">{{($postagem->user()->first())->name}}</p>
         </div>
         <div class="col-sm-9 container-postagem">
@@ -46,7 +46,7 @@
         @foreach($comentarios as $comentario)
         <div class="row my-2 p-2 border border-dark rounded">
             <div class="col-sm-3">
-                <img src="{{($comentario->user()->first())->foto}}" alt="" class="w-100  border border-secondary" style="border-radius: 50% !important;">
+                <a href="{{route('user.show',[$comentario->user->id])}}"  target="_blank"><img src="{{asset('storage/'.$comentario->user->foto)}}" alt="" class="w-100 border border-secondary" style="border-radius: 50% !important;"></a> 
                 <p class="text-center text-warning mt-1">{{($comentario->user()->first())->name}}</p>
             </div>
             <div class="col-sm-9">
@@ -76,7 +76,7 @@
 <div class="d-none" id="comentario-modelo">
     <div class="row my-2 p-2 border border-dark rounded">
         <div class="col-sm-3">
-            <img src="" alt="" class="w-100  border border-secondary foto" style="border-radius: 50% !important;">
+            <a href="{{route('user.show',[auth()->user()->id])}}"  target="_blank"><img src="asset('storage')" alt="" class="w-100  border border-secondary foto" style="border-radius: 50% !important;"></a>
             <p class="text-center text-warning mt-1 nome" ></p>
         </div>
         <div class="col-sm-9">

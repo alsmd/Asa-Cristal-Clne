@@ -90,28 +90,44 @@
                 <!-- Profile -->
                 <div class="tab-pane fade conteudo " id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                     <!-- Informações opcionais -->
-                    <form action="" class="">
+                    <form action="{{route('user.update')}}" class="" enctype="multipart/form-data" method="POST">
+                    @csrf
                         <div class="d-flex justify-content-center mb-2">
-                            <label for="foto" id="foto-perfil-background"><img src="{{auth()->user()->foto}}" alt="" width="150" height="150" style="border-radius: 50%;" class="border border-secondary foto-perfil"> <i class="fas fa-camera "></i></label>
+                            <label for="foto" id="foto-perfil-background"><img src="{{asset('storage/'.auth()->user()->foto)}}" alt="" width="150" height="150" style="border-radius: 50%;" class="border border-secondary foto-perfil @error('foto') border-danger @enderror"> <i class="fas fa-camera "></i></label>
                         </div>
                         <div class="custom-file mb-2 d-none">
-                            <input type="file" class="custom-file-input" id="foto" required>
+                            <input type="file" class="custom-file-input" id="foto" name="foto">
                         </div>
+                        @error('foto')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-row">
                             <div class="col">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nome">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Nome" value="{{auth()->user()->name}}">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome">
+                                <input type="text" class="form-control  @error('sobrenome') is-invalid @enderror" name="sobrenome" id="sobrenome" placeholder="Sobrenome" value="{{auth()->user()->sobrenome}}">
                             </div>
                         </div>
+                        @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                        @error('sobrenome')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="linkedin">Linkedin</label>
-                            <input type="url" class="form-control" name="linkedin" id="linkedin" placeholder="utilize http://">
+                            <input type="url" class="form-control  @error('linkedin') is-invalid @enderror" name="linkedin" id="linkedin" placeholder="utilize http://" value="{{auth()->user()->linkedin}}">
+                            @error('linkedin')
+                                <div class=" text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="name">Biografia</label>
-                            <textarea id=""rows="5" class="form-control" name="name" id="name" placeholder="Mostre para o mundo quem você é!"></textarea>
+                            <label for="biografia">Biografia</label>
+                            <textarea id=""rows="5" class="form-control  @error('biografia') is-invalid @enderror" name="biografia" id="biografia" placeholder="Mostre para o mundo quem você é!">{{auth()->user()->biografia}}</textarea>
+                            @error('biografia')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <button class="btn btn-success btn-lg btn-block">Salvar</button>
                     </form>
@@ -146,7 +162,7 @@
                         <!-- PM -->
                         <div class="col-12 pm px-0 py-2 d-flex align-items-start justify-content-between my-2">
                             <div class="d-flex ">
-                                <img src="{{auth()->user()->foto}}" alt="" height="100" style="border-radius: 50%;" class="mr-3 foto-perfil ">
+                                <a href="{{route('user.show',[$mensagem->user->id])}}"  target="_blank"><img src="{{asset('storage/'.$mensagem->user->foto)}}" alt="" height="100" style="border-radius: 50%;" class="mr-3 foto-perfil "></a>
                                 <div class="pm-informacoes-user">
                                     <h3 class="text-truncate">{{$mensagem->user->name}}</h3>
                                     <p class="text-truncate m-0 p-0 ">{{$mensagem->mensagem}}</p>
@@ -195,7 +211,7 @@
                         <!-- Usuario -->
                         <div class="col-12 pm px-0 py-2 d-flex align-items-start justify-content-between my-2">
                             <div class="d-flex ">
-                                <img src="{{auth()->user()->foto}}" alt="" height="100" style="border-radius: 50%;" class="mr-3 foto-perfil ">
+                                <a href="{{route('user.show',[$user->id])}}"  target="_blank"><img src="{{asset('storage/'.$user->foto)}}" alt="" height="100" style="border-radius: 50%;" class="mr-3 foto-perfil"></a> 
                                 <div class="pm-informacoes-user">
                                     <h3 class="text-truncate">{{$user->name}}</h3>
                                     <p class="text-truncate m-0 p-0 ">{{$user->name}}</p>

@@ -38,7 +38,16 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a href="{{route('forum.index')}}" class="nav-link">Principal</a></li>
                     @auth
-                    <li class="nav-item"><a href="{{route('configuracao')}}" class="nav-link text-light">{{auth()->user()->name}}</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{auth()->user()->name}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('user.show',[auth()->user()->id])}}">Perfil</a>
+                            <a class="dropdown-item" href="{{route('configuracao')}}">Configuração</a>
+                            <a class="dropdown-item" href="#">Recarga</a>
+                        </div>
+                    </li>
                     @endauth
                     <li class="nav-item"><a href="{{route('forum.index')}}" class="nav-link">Forúm</a></li>
                     <li class="nav-item"><a href="" class="nav-link">FAQ</a></li>

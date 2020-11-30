@@ -12,7 +12,7 @@
     <div class="d-flex flex-column">
         <div class="chat-header py-3 px-3 d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
-                <img src="{{auth()->user()->foto}}" alt="" width="50" height="50" style="border-radius:50%" class="mr-2">
+                <img src="{{asset('storage/'.$user_selecionado->foto)}}" alt="" width="50" height="50" style="border-radius:50%" class="mr-2">
                 <h3>{{$user_selecionado->name}}</h3>
             </div>
             <div class="menus">

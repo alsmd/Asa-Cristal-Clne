@@ -2,7 +2,7 @@
 <!-- PM -->
 <div class="col-12 pm px-0 py-2 d-flex align-items-start justify-content-between my-2">
     <div class="d-flex ">
-        <img src="{{auth()->user()->foto}}" alt="" height="100" style="border-radius: 50%;" class="mr-3 foto-perfil ">
+        <a href="{{route('user.show',[$mensagem->user->id])}}"  target="_blank"><img src="{{asset('storage/'.$mensagem->user->foto)}}" alt="" height="100" style="border-radius: 50%;" class="mr-3 foto-perfil "></a>
         <div class="pm-informacoes-user">
             <h3 class="text-truncate">{{$mensagem->user->name}}</h3>
             <p class="text-truncate m-0 p-0 ">{{$mensagem->mensagem}}</p>

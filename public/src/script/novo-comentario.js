@@ -16,7 +16,8 @@ $(document).ready(()=>{
                 //montando o comentario com as informações do novo comentario inserido no DB
                let comentario_modelo = (new DOMParser()).parseFromString($("#comentario-modelo").html(),'text/html');
                $(comentario_modelo).find('.nome').html(e.nome);
-               $(comentario_modelo).find('.foto').attr('src',e.foto);
+               let foto_src ='http://localhost:8080/storage/';
+               $(comentario_modelo).find('.foto').attr('src',foto_src + e.foto);
                $(comentario_modelo).find('.comentario-conteudo').html(e.conteudo);
                let comentario = $(comentario_modelo).find('body');
                comentario = comentario.html();

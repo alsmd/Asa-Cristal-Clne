@@ -19,7 +19,7 @@
         <div class="row jogo text-light mb-3 mx-0">
             <div class="col-md-8">
                 <div class="d-flex">
-                    <img src="{{($postagem->user()->first())->foto }}" alt="" class="rounded align-self-stretch border border-secondary" width="135" height="103" >
+                    <a href="{{route('user.show',[$postagem->user->id])}}"  target="_blank"><img src="{{asset('storage/'.$postagem->user->foto )}}" alt="" class="rounded align-self-stretch border border-secondary" width="135" height="103" ></a> 
                     <div class="d-flex flex-column ml-3">
                         <h3 class="m-0 d-inline jogo-titulo"><a href="{{route('forum.jogo.categoria.postagem.show',[$slug_forum,$slug_categoria,$postagem->id])}}" class="text-warning">{{$postagem->titulo}}</a></h3> 
                         <p class="lead m-0 jogo-conteudo"></p>

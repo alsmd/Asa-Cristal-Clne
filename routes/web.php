@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\ComentarioController;
 use App\Http\Controllers\MensagemController;
 use App\Http\Controllers\PaginacaoDinamicaController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use App\Models\Chat;
 use App\Models\Mensagem;
@@ -54,7 +55,7 @@ Route::middleware(['auth'])->group(function(){
             $join->on('chat.id','mensagem.fk_id_chat')
             ->where('chat.fk_id_user1',auth()->user()->id)->orWhere('chat.fk_id_user2',auth()->user()->id);
         })->where('mensagem.fk_id_user','!=',auth()->user()->id)->select(['mensagem.mensagem','mensagem.fk_id_user','mensagem.id'])->paginate(5);
-        //retorna o dado referente a paginação selecionada
+        //retorna os dados referente a proxima paginação selecionada
         if(Request::ajax()){
             $acao = $_GET['aba'];
             switch($acao){
@@ -81,6 +82,10 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/components/comentario-list', [PaginacaoDinamicaController::class,'comentario']);
     Route::post('/components/list-messages', [PaginacaoDinamicaController::class,'messages']);
     Route::post('/components/list-users', [PaginacaoDinamicaController::class,'users']);
+
+    Route::post('user/update',[UserController::class,'update'])->name('user.update');
+    
+    Route::get('user/{user}',[UserController::class,'show'])->name('user.show');
 
 });
 

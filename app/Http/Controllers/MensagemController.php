@@ -16,6 +16,10 @@ class MensagemController extends Controller{
      */
     public function index(Request $request){
         $user_selecionado = $request->all()['user_selecionado'];
+        //usuario logado não pode entrar em chat com ele mesmo
+        if($user_selecionado == auth()->user()->id){
+            return false;
+        }
         $this->id_user = auth()->user()->id;//user logado
         $this->id_user_selecionado = $user_selecionado ; //user selecionado
         $user_selecionado = User::find($user_selecionado);
