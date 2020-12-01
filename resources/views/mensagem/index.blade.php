@@ -47,7 +47,13 @@
         </div>
     </div>
   
-    
+    <!-- Model para mensagem enviada -->
+        <!-- Mensagem Enviada -->
+        <div class="model-mensagem-enviada d-none">
+            <div class="mensagem-enviada">
+                <div class="d-inline-block bg-success mensagem"></div>
+            </div> 
+        </div>
 </main>
 <script>
    let chat_id = <?php echo $chat_id ?>;
@@ -64,7 +70,9 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
            },
            success: (resposta)=>{
-            console.log(resposta)
+               $('.model-mensagem-enviada .mensagem').html(resposta.mensagem);
+               let model_mensagem = $('.model-mensagem-enviada').html();
+               $('.chat').append(model_mensagem);
            },
            error: (resposta)=>{
                console.log(resposta)

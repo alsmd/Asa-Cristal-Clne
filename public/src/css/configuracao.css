@@ -26,6 +26,7 @@ main{
 .foto-perfil{
     z-index: 10;
     transition: opacity .4s;
+    background: gray;
 }
 .foto-perfil:hover{
     cursor: pointer;
