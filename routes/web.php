@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ForumController;
 use App\Http\Controllers\Admin\PostagemController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\ComentarioController;
+use App\Http\Controllers\Admin\ProdutoController;
 use App\Http\Controllers\MensagemController;
 use App\Http\Controllers\PaginacaoDinamicaController;
 use App\Http\Controllers\UserController;
@@ -96,6 +97,7 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/',[AdminController::class,'index'])->name('index');
             Route::resource('jogo','App\Http\Controllers\Admin\JogoController');
             Route::resource('categoria','App\Http\Controllers\Admin\CategoriaController');
+            Route::resource('produto','App\Http\Controllers\Admin\ProdutoController');
         });
     });
    

@@ -66,6 +66,36 @@
                     <button class="btn btn-warning" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Remover</button>
                 </form>
             </div>
+
+            <!-- CRUD Produtos -->
+            <div class="produto_crud">
+                <h3 class="text-center">Produtos</h3>
+                <div>
+                <!-- CRIAR produto -->
+                    <a href="{{route('admin.produto.create')}}" class="btn btn-warning active d-block">Criar Produto</a>
+                </div>
+                <!--  EDITAR produto -->
+                <form action="{{route('admin.produto.edit',['0'])}}" class="form-group d-flex mb-0">
+                    @csrf
+                    <select name="id" id="" class="form-control "style="border-top-right-radius: 0;border-bottom-right-radius: 0;" required>
+                        @foreach($produtos as $produto)
+                            <option value="{{$produto->id}}">{{$produto->nome}}</option>
+                        @endforeach
+                    </select>
+                    <button class="btn btn-warning" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Editar</button>
+                </form>
+                <!-- REMOVER produto -->
+                <form action="{{route('admin.produto.destroy',['0'])}} mt-0" class="form-group d-flex" method="POST">
+                    @csrf
+                    <input type="hidden" name="_method" value="delete" />
+                    <select name="id" id="" class="form-control "style="border-top-right-radius: 0;border-bottom-right-radius: 0;">
+                        @foreach($produtos as $produto)
+                            <option value="{{$produto->id}}">{{$produto->nome}}</option>
+                        @endforeach
+                    </select>
+                    <button class="btn btn-warning" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Remover</button>
+                </form>
+            </div>
         </div>
         
         <div class="col-md-9">

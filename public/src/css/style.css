@@ -63,10 +63,23 @@ ul{
     opacity: 1;
 } 
 /* item lateral */
-
+.item-lateral{
+    position: relative;
+}
 .item-lateral:hover{
     cursor: pointer;
     padding: 3px !important;
+}
+.item-lateral .produto_informacoes{
+    position:absolute;
+    opacity:0;
+    transition:  1s;
+}
+.item-lateral:hover .produto_informacoes{
+    opacity:1;
+}
+.item-lateral:hover img{
+    opacity:.4;
 }
 /* icones */
 .fa-home, .fa-facebook,.fa-comments{

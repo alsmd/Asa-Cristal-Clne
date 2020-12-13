@@ -15,7 +15,7 @@ class CreateTableJogo extends Migration
     {
         Schema::create('jogos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->string('nome')->unique();
             $table->string('descricao');
             $table->string('foto');
             $table->string('slug');

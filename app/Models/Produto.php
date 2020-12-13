@@ -4,28 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 class Produto extends Model
 {
     use HasFactory;
+    use HasSlug;
+
     protected $fillable =[
         'nome',
         'valor',
         'descricao',
-        'corpo',
-        'moeda_utilizada',
-        'slug'
+        'body',
+        'slug',
+        'foto'
     ];
 
-
-
-    //Varios produtos pertencem a um jogo
-    public function jogo(){
-        return $this->belongsTo(Jogo::class,'fk_id_jogo');
-    }
-
-    //Pode ser comprado por varios usuarios
-    public function users(){
-        return $this->belongsToMany(User::class,'produto_usuario','fk_id_produto','fk_id_user');
+    public function getSlugOptions() : SlugOptions{
+        return SlugOptions::create()
+        ->generateSlugsFrom('nome')
+        ->saveSlugsTo('slug');
     }
 }

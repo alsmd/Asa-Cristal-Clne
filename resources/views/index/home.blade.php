@@ -107,7 +107,7 @@
                 <div class="row item-jogo">
                     <!-- Banner -->
                     <div class="col-lg-6 col-md-6 col-sm-6 col-12 p-0 border-esquerda">
-                        <img src="{{$jogo->foto}}" alt="" class="w-100">
+                        <img src="{{asset('storage/'.$jogo->foto)}}" alt="" class="w-100">
                     </div>
                     <!-- Descrição -->
                     <div class="col-lg-6  col-md-6 col-sm-6 col-12 d-flex flex-column justify-content-center align-items-center bg-info text-light p-0 border-direita">
@@ -133,17 +133,18 @@
             <!-- LATERAL -->
             <div class="col-md-3 secundario offset-1">
                 <div class="row justify-content-between">
-                    <div class="col-md-12 col-sm-6  item-lateral p-0">
-                        <img src="https://img.gamesow.com/image/2016/1227/1482832598.jpg" alt="" width="100%" class="rounded">
-                    </div>
-                    <div class="col-md-12 col-sm-6  item-lateral p-0">
-                        <img src="https://img.gamesow.com/image/2016/0818/1471516568.jpg" alt="" width="100%" class="rounded">
-                    </div>
-                    <div class="col-md-12 col-sm-6  item-lateral p-0">
-                        <img src="https://img.gamesow.com/image/2016/0309/1457493072.png" alt="" width="100%" class="rounded">
-                    </div>
-                    <div class="col-md-12 col-sm-6  item-lateral p-0">
-                        <img src="https://img.gamesow.com/image/2015/0701/1435733586.jpg" alt="" width="100%" class="rounded">
+                    @foreach($produtos as $produto)
+                        <div class="col-md-12 col-sm-6  item-lateral p-0 d-flex align-items-start ">
+                            <img src="{{asset('storage/'.$produto->foto)}}" alt="" width="100%" class="rounded">
+                            <div class="produto_informacoes align-self-center ">
+                                <h4 class="text-light font-weight-bold">{{$produto->nome}}</h4>
+                                <p class="text-light font-weight-bold  p-1">{{$produto->descricao}}</p>
+                                <p class="text-light font-weight-bold">R$ {{$produto->valor}}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                    <div class="d-flex justify-content-center">
+                        {{$produtos->links()}}
                     </div>
                 </div>
             </div>

@@ -18,14 +18,10 @@ class CreateTableProdutos extends Migration
             $table->string('nome');
             $table->decimal('valor',10,2);
             $table->string('descricao');
-            $table->text('corpo')->nullable();;
-            $table->string('moeda_utilizada');
+            $table->string('foto');
+            $table->text('body')->nullable();;
             $table->string('slug');
             $table->timestamps();
-            $table->unsignedBigInteger('fk_id_jogo');
-
-
-            $table->foreign('fk_id_jogo')->references('id')->on('jogos');
         });
     }
 
