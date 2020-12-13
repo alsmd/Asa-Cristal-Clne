@@ -21,7 +21,7 @@
         <div class="row jogo text-light mb-3 mx-0">
             <div class="col-md-8">
                 <div class="d-flex">
-                    <img src="{{$categoria->foto}}" alt="" class="rounded align-self-stretch border" width="135" height="103" >
+                    <img src="{{asset('storage/'.$categoria->foto)}}" alt="" class="rounded align-self-stretch border" width="135" height="103" >
                     <div class="d-flex flex-column ml-3">
                         <h3 class="m-0 d-inline jogo-titulo"><a href="{{route('forum.jogo.categoria.postagem.index',[$slug_forum,$categoria->slug])}}" class="text-warning">{{$categoria->nome}}</a></h3> 
                         <p class="lead m-0 jogo-conteudo"></p>

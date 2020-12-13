@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Jogo extends Model
 {
     use HasFactory;
+    use HasSlug;
 
-    protected $fillable = ['nome','slug','descricao','foto'];
+    protected $fillable = ['nome','descricao','foto','slug'];
 
     //protected $table = 'jogos';
 
@@ -23,4 +26,11 @@ class Jogo extends Model
     public function produtos(){
         return $this->hasMany(Produto::class,'fk_id_jogo');
     }
+
+    public function getSlugOptions() : SlugOptions{
+        return SlugOptions::create()
+        ->generateSlugsFrom('nome')
+        ->saveSlugsTo('slug');
+    }
 }
+

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ForumController;
 use App\Http\Controllers\Admin\PostagemController;
 use App\Http\Controllers\Admin\IndexController;
@@ -31,6 +32,8 @@ Route::get('/', [IndexController::class,'index'])->name('home');
 Route::middleware(['auth'])->group(function(){
     Route::prefix('/forum')->name('forum.')->group(function(){
         Route::get('/',[ForumController::class, 'index'])->name('index');
+        Route::get('/create',[ForumController::class, 'create'])->name('create')->middleware('admin');
+        Route::get('/edit',[ForumController::class, 'edit'])->name('edit')->middleware('admin');
     
         Route::prefix('/{slug_forum}')->name('jogo.')->group(function(){
             /* Forum de um jogo especifico */
@@ -51,10 +54,10 @@ Route::middleware(['auth'])->group(function(){
         
         
         //recupera as mensagens dos chats ao qual o usuario faz parte
-        $mensagens = Mensagem::rightJoin('chat',function($join){
+        $mensagens = Mensagem::rightJoin('chat',function($join){ //QUERY  A SER ARRUMADA
             $join->on('chat.id','mensagem.fk_id_chat')
             ->where('chat.fk_id_user1',auth()->user()->id)->orWhere('chat.fk_id_user2',auth()->user()->id);
-        })->where('mensagem.fk_id_user','!=',auth()->user()->id)->select(['mensagem.mensagem','mensagem.fk_id_user','mensagem.id'])->paginate(5);
+        })->select(['mensagem.mensagem','mensagem.fk_id_user','mensagem.id'])->where('mensagem.fk_id_user','!=',auth()->user()->id)->paginate(5);
         //retorna os dados referente a proxima paginação selecionada
         if(Request::ajax()){
             $acao = $_GET['aba'];
@@ -86,6 +89,16 @@ Route::middleware(['auth'])->group(function(){
     Route::post('user/update',[UserController::class,'update'])->name('user.update');
     
     Route::get('user/{user}',[UserController::class,'show'])->name('user.show');
+
+    //
+    Route::middleware(['admin'])->group(function(){
+        Route::prefix('admin')->name('admin.')->group(function(){
+            Route::get('/',[AdminController::class,'index'])->name('index');
+            Route::resource('jogo','App\Http\Controllers\Admin\JogoController');
+            Route::resource('categoria','App\Http\Controllers\Admin\CategoriaController');
+        });
+    });
+   
 
 });
 

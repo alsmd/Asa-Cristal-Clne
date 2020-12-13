@@ -43,6 +43,9 @@
                         Bem vindo, {{auth()->user()->name}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @if(count(auth()->user()->administrador) > 0)
+                                <a class="dropdown-item" href="{{route('admin.index')}}">Admin</a>
+                            @endif     
                             <a class="dropdown-item" href="{{route('user.show',[auth()->user()->id])}}">Perfil</a>
                             <a class="dropdown-item" href="{{route('configuracao')}}">Configuração</a>
                             <a class="dropdown-item" href="#">Recarga</a>

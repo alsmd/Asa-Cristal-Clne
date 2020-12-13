@@ -25,7 +25,7 @@
         <div class="row jogo text-light mb-3 mx-0">
             <div class="col-md-8">
                 <div class="d-flex">
-                    <img src="{{$forum->foto}}" alt="" class="rounded align-self-stretch" width="135" height="103" >
+                    <img src="{{asset('storage/'.$forum->foto)}}" alt="" class="rounded align-self-stretch" width="135" height="103" >
                     <div class="d-flex flex-column ml-3">
                         <h3 class="m-0 d-inline jogo-titulo"><a href="{{route('forum.jogo.show',[$forum->slug])}}" class="text-warning">{{$forum->nome}}</a><small class="d-none d-lg-inline ml-1">(Hoje: <span class="text-warning">26</span>)</small></h3> 
                         <p class="lead m-0 jogo-conteudo">{{$forum->frase}}</p>

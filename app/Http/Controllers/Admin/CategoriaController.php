@@ -1,19 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Categoria;
+use App\Models\Administrador;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\UserRequest;
 use App\Http\Traits\TratarDados;
 
-class UserController extends Controller
+class CategoriaController extends Controller
 {
     use TratarDados;
     protected $instancia;
-    protected $foto_padrao = 'users_fotos/default.png';
-    protected $foto_src = 'users_fotos';
+    protected $foto_padrao = 'categoria_fotos/default.png';
+    protected $foto_src = 'categoria_fotos';
+
     /**
      * Display a listing of the resource.
      *
@@ -32,6 +34,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('categoria.create');
     }
 
     /**
@@ -43,6 +46,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        
+        $dados = $this->tratarDados($request,false);
+        $categoria = Categoria::create($dados);
+
+        flash('Categoria criado com sucesso')->success()->important();
+        return redirect(route('admin.index'));
     }
 
     /**
@@ -54,8 +63,6 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        $user = User::find($id);
-        return view('usuario.show',compact('user'));
     }
 
     /**
@@ -67,30 +74,27 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $id = request()->all()['id'];
+        $dados = Categoria::find($id);
+        return view('categoria.edit',compact('dados'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request)
+    public function update(Request $request, $id)
     {
         //
-        $user = User::find(auth()->user()->id);
-        $this->instancia = $user;
+        $categoria = Categoria::find($id);
+        $this->instancia = $categoria;
         $dados = $this->tratarDados($request,true);
-
-        if($user->update($dados)){
-            flash('Dados alterados com sucesso')->success()->important();
-        }else{
-            flash('Erro ao tentar alterar os Dados')->error()->important();
-
-        }
-        return redirect()->route('configuracao');
-        
-
+        $categoria->update($dados);
+        flash('Categoria atualizada com sucesso')->success()->important();
+        return redirect(route('admin.index'));
     }
 
     /**
@@ -102,5 +106,13 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        //Deleta o Jogo e seu respectivo Forum, assim como sua foto que esta armazenada
+        $id = request()->all()['id'];
+        $categoria = Categoria::find($id);
+
+        Storage::disk('public')->delete($categoria->foto);
+        $categoria->delete();
+        flash('Categoria apagada com sucesso')->success()->important();
+        return redirect(route('admin.index'));
     }
 }

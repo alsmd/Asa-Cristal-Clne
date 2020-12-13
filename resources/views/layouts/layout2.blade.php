@@ -43,6 +43,9 @@
                         {{auth()->user()->name}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @if(count(auth()->user()->administrador) > 0)
+                                <a class="dropdown-item" href="{{route('admin.index')}}">Admin</a>
+                            @endif                            
                             <a class="dropdown-item" href="{{route('user.show',[auth()->user()->id])}}">Perfil</a>
                             <a class="dropdown-item" href="{{route('configuracao')}}">Configuração</a>
                             <a class="dropdown-item" href="#">Recarga</a>
@@ -50,6 +53,7 @@
                     </li>
                     @endauth
                     <li class="nav-item"><a href="{{route('forum.index')}}" class="nav-link">Forúm</a></li>
+                            
                     <li class="nav-item"><a href="" class="nav-link">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="document.querySelector('.sair-forum').submit();">Sair</a></li>
                     <form action="{{route('logout')}}" method="post" class="sair-forum d-none">

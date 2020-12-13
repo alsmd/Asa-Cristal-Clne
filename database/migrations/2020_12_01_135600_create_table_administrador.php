@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdministradorTable extends Migration
+class CreateTableAdministrador extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateAdministradorTable extends Migration
      */
     public function up()
     {
-        Schema::create('administrador', function (Blueprint $table) {
+        Schema::create('administrador', function (Blueprint $table){
             $table->id();
-            $table->string('nome');
-            $table->string('email');
-            $table->string('senha');
-            $table->unsignedBigInteger('fk_id_jogo');
-            $table->foreign('fk_id_jogo')->references('id')->on('jogos');
-
+            $table->unsignedBigInteger('fk_id_user');
             $table->timestamps();
+            $table->foreign('fk_id_user')->references('id')->on('users');
+
         });
     }
 

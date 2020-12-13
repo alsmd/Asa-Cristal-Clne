@@ -65,4 +65,7 @@ class User extends Authenticatable
     public function mensagens(){
         return $this->hasMany(Mensagem::class,'fk_id_user');
     }
+    public function administrador(){
+        return $this->hasMany(Administrador::class,'fk_id_user');
+    }
 }
