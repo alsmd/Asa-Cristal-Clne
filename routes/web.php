@@ -31,7 +31,7 @@ Route::get('/', [IndexController::class,'index'])->name('home');
 
 Route::get('/produto/{slug}', [ProdutoController::class,'show'])->name('produto');
 
-Route::prefix('cart')->name('carrinho.')->group(function(){
+Route::prefix('carrinho')->name('carrinho.')->group(function(){
     Route::get('/',[CartController::class,'index'])->name('index');
 
     Route::post('add',[CartController::class,'add'])->name('add');

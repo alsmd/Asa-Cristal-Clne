@@ -7,29 +7,31 @@
         <div class="col-md-8">
 
             <div class="row m-0">
-                <?php $valorTotal = 0;?>
-                @foreach($produtos as $produto)
-                <div class="col-lg-6 col-md-12 mt-2">
-                    <div class="card w-100" style="width: 18rem;">
-                        <div class="card-header bg-dark">
-                            <p class="card-text text-center">{{$produto['nome']}}</p>
-                        </div>
-                        <a href="{{route('produto',[$produto['slug']])}}" target="_blank" rel="noopener noreferrer">
-                            <img class="card-img-top" src="{{asset('storage/'.$produto['foto'])}}" alt="Card image cap">
-                        </a>
+                 <?php $valorTotal = 0;?>
+                @if(session()->has('carrinho'))
+                    @foreach($produtos as $produto)
+                    <div class="col-lg-6 col-md-12 mt-2">
+                        <div class="card w-100" style="width: 18rem;">
+                            <div class="card-header bg-dark">
+                                <p class="card-text text-center">{{$produto['nome']}}</p>
+                            </div>
+                            <a href="{{route('produto',[$produto['slug']])}}" target="_blank" rel="noopener noreferrer">
+                                <img class="card-img-top" src="{{asset('storage/'.$produto['foto'])}}" alt="Card image cap">
+                            </a>
 
-                        <div class="card-footer bg-dark d-flex justify-content-between">
-                            <span>R$ {{$produto['valor']}}</span>
-                            <span >qnt: {{$produto['quantidade']}}</span>
-                            <form action="{{route('carrinho.remove',[$produto['slug']])}}" method="post">
-                                @csrf
-                                <button class=" btn btn-warning">Retirar</button>
-                            </form>
+                            <div class="card-footer bg-dark d-flex justify-content-between">
+                                <span>R$ {{$produto['valor']}}</span>
+                                <span >qnt: {{$produto['quantidade']}}</span>
+                                <form action="{{route('carrinho.remove',[$produto['slug']])}}" method="post">
+                                    @csrf
+                                    <button class=" btn btn-warning">Retirar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <?php $valorTotal += $produto['valor'] * $produto['quantidade'];?>
-                @endforeach
+                    <?php $valorTotal += $produto['valor'] * $produto['quantidade'];?>
+                    @endforeach
+                @endif
             </div>
         </div>
         <div class="col-md-4">

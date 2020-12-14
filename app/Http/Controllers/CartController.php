@@ -40,12 +40,12 @@ class CartController extends Controller
     }
 
     public function remove($slug){
+        //remove o produto da chave produtos da session
         $produtos = session()->get('carrinho');
-        foreach($produtos as $indice => $produto_armazenado){
-            if($produto_armazenado['slug'] == $slug){
-                unset($produtos[$indice]);
-            }
-        }
+        $produtos = array_filter($produtos,function($line)use($slug){
+            return $line['slug'] != $slug;
+        });
+        
         session()->put('carrinho',$produtos);
         flash('Produto removido do carrinho!')->success()->important();
         return redirect()->route('carrinho.index');
