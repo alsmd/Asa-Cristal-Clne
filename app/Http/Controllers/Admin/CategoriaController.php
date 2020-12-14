@@ -15,7 +15,11 @@ class CategoriaController extends Controller
     protected $instancia;
     protected $foto_padrao = 'categoria_fotos/default.png';
     protected $foto_src = 'categoria_fotos';
+    protected $categoria;
 
+    public function __construct(Categoria $categoria){
+        $this->categoria = $categoria;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +52,7 @@ class CategoriaController extends Controller
         //
         
         $dados = $this->tratarDados($request,false);
-        $categoria = Categoria::create($dados);
+        $categoria = $this->categoria::create($dados);
 
         flash('Categoria criado com sucesso')->success()->important();
         return redirect(route('admin.index'));
@@ -75,7 +79,7 @@ class CategoriaController extends Controller
     {
         //
         $id = request()->all()['id'];
-        $dados = Categoria::find($id);
+        $dados = $this->categoria::find($id);
         return view('categoria.edit',compact('dados'));
     }
 
@@ -89,7 +93,7 @@ class CategoriaController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $categoria = Categoria::find($id);
+        $categoria = $this->categoria::find($id);
         $this->instancia = $categoria;
         $dados = $this->tratarDados($request,true);
         $categoria->update($dados);
@@ -108,7 +112,7 @@ class CategoriaController extends Controller
         //
         //Deleta o Jogo e seu respectivo Forum, assim como sua foto que esta armazenada
         $id = request()->all()['id'];
-        $categoria = Categoria::find($id);
+        $categoria = $this->categoria::find($id);
 
         Storage::disk('public')->delete($categoria->foto);
         $categoria->delete();

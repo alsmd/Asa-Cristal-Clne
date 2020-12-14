@@ -14,6 +14,11 @@ class UserController extends Controller
     protected $instancia;
     protected $foto_padrao = 'users_fotos/default.png';
     protected $foto_src = 'users_fotos';
+    private $user;
+
+    public function __construct(User $user){
+        $this->user = $user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +59,7 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        $user = User::find($id);
+        $user = $this->user::find($id);
         return view('usuario.show',compact('user'));
     }
 
@@ -78,7 +83,7 @@ class UserController extends Controller
     public function update(UserRequest $request)
     {
         //
-        $user = User::find(auth()->user()->id);
+        $user = $this->user::find(auth()->user()->id);
         $this->instancia = $user;
         $dados = $this->tratarDados($request,true);
 

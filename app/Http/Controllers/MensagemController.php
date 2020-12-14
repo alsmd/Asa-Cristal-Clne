@@ -9,6 +9,13 @@ use App\Models\User;
 class MensagemController extends Controller{
     protected $id_user_logado;
     protected $id_user_selecionado;
+    private $user;
+    private $chat;
+
+    public function __construct(User $user,Chat $chat){
+        $this->user = $user;
+        $this->chat = $chat;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +29,7 @@ class MensagemController extends Controller{
         }
         $this->id_user = auth()->user()->id;//user logado
         $this->id_user_selecionado = $user_selecionado ; //user selecionado
-        $user_selecionado = User::find($user_selecionado);
+        $user_selecionado = $this->user::find($user_selecionado);
         $chat = $this->getChat();
         $chat_id = $chat->id;
         $mensagens = $chat->mensagens()->orderBy('created_at','asc')->get();
@@ -56,7 +63,7 @@ class MensagemController extends Controller{
         $id_user = $request->all()['id_user'];
         $chat_id = $request->all()['chat_id'];
         $mensagem = $request->all()['mensagem'];
-        $chat = Chat::find($chat_id);
+        $chat = $this->chat::find($chat_id);
         $mensagem = $chat->mensagens()->create(['fk_id_user' => $id_user,'mensagem' => $mensagem]);
         return $mensagem;
     }
@@ -111,15 +118,15 @@ class MensagemController extends Controller{
     */
     public function getChat(){
         //verifica se existe relação entre o usuario logado e o usuario selecionado na tabela chat, caso não exista, uma relação sera criada
-        $chat = Chat::where('fk_id_user1',$this->id_user)->get();
+        $chat = $this->chat::where('fk_id_user1',$this->id_user)->get();
         $chat = $chat->where('fk_id_user2',$this->id_user_selecionado)->first();
 
         if($chat == null){
-            $chat = Chat::where('fk_id_user2',$this->id_user)->get();
+            $chat = $this->chat::where('fk_id_user2',$this->id_user)->get();
             $chat = $chat->where('fk_id_user1',$this->id_user_selecionado)->first();
         }
         if($chat == null){
-            $chat = Chat::create(['fk_id_user1' => $this->id_user, 'fk_id_user2' => $this->id_user_selecionado]);
+            $chat = $this->chat::create(['fk_id_user1' => $this->id_user, 'fk_id_user2' => $this->id_user_selecionado]);
         }
         return $chat;
     }

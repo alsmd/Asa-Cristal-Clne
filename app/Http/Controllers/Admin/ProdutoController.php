@@ -14,6 +14,12 @@ class ProdutoController extends Controller
     protected $instancia;
     protected $foto_padrao = 'produtos_fotos/default.png';
     protected $foto_src = 'produtos_fotos';
+    private $produto;
+    private $comentario;
+
+    public function __construct(Produto $produto){
+        $this->produto = $produto;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +53,7 @@ class ProdutoController extends Controller
         //
         $dados = $this->tratarDados($request,false);
         
-        $produto = Produto::create($dados);
+        $produto = $this->produto::create($dados);
 
         flash('Produto Criado com sucesso')->success()->important();
         return redirect(route('admin.index'));
@@ -62,7 +68,7 @@ class ProdutoController extends Controller
     public function show($slug)
     {
         //
-        $produto = Produto::where('slug',$slug)->first();
+        $produto = $this->produto::where('slug',$slug)->first();
 
         return view('produto.show',compact('produto'));
     }
@@ -77,7 +83,7 @@ class ProdutoController extends Controller
     {
         //
         $id = request()->all()['id'];
-        $dados = Produto::find($id);
+        $dados = $this->produto::find($id);
         return view('produto.edit',compact('dados'));
     }
 
@@ -91,7 +97,7 @@ class ProdutoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $produto = Produto::find($id);
+        $produto = $this->produto::find($id);
         $this->instancia = $produto;
         $dados = $this->tratarDados($request,true);
         $produto->update($dados);
@@ -109,7 +115,7 @@ class ProdutoController extends Controller
     {
         //Deleta o Jogo e seu respectivo Forum, assim como sua foto que esta armazenada
         $id = request()->all()['id'];
-        $produto = Produto::find($id);
+        $produto = $this->produto::find($id);
 
         Storage::disk('public')->delete($produto->foto);
         $produto->delete();

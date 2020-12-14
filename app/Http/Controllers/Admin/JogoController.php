@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jogo;
-use App\Models\User;
-use App\Models\Administrador;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Traits\TratarDados;
 
@@ -16,6 +14,11 @@ class JogoController extends Controller
     protected $instancia;
     protected $foto_padrao = 'jogos_fotos/default.png';
     protected $foto_src = 'jogos_fotos';
+    private $jogo;
+
+    public function __construct(Jogo $jogo){
+        $this->jogo = $jogo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +52,7 @@ class JogoController extends Controller
         //
         $dados = $this->tratarDados($request,false);
         
-        $jogo = Jogo::create($dados);
+        $jogo = $this->jogo::create($dados);
 
         $forum = $jogo->forum()->create(['slug'=>$jogo->slug,'nome'=>$jogo->nome,'frase'=>$jogo->descricao, 'foto'=>$jogo->foto]);
         flash('Jogo e seu respectivo Forum criados com sucesso')->success()->important();
@@ -78,7 +81,7 @@ class JogoController extends Controller
     {
         //
         $id = request()->all()['id'];
-        $dados = Jogo::find($id);
+        $dados = $this->jogo::find($id);
         return view('jogo.edit',compact('dados'));
 
     }
@@ -92,7 +95,7 @@ class JogoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $jogo = Jogo::find($id);
+        $jogo = $this->jogo::find($id);
         $this->instancia = $jogo;
         $dados = $this->tratarDados($request,true);
         $jogo->update($dados);
@@ -112,7 +115,7 @@ class JogoController extends Controller
     {
         //Deleta o Jogo e seu respectivo Forum, assim como sua foto que esta armazenada
         $id = request()->all()['id'];
-        $jogo = Jogo::find($id);
+        $jogo = $this->jogo::find($id);
 
         Storage::disk('public')->delete($jogo->foto);
         $forum = $jogo->forum;
