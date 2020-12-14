@@ -48,7 +48,13 @@
                             @endif                            
                             <a class="dropdown-item" href="{{route('user.show',[auth()->user()->id])}}">Perfil</a>
                             <a class="dropdown-item" href="{{route('configuracao')}}">Configuração</a>
-                            <a class="dropdown-item" href="{{route('carrinho.index')}}">Carrinho</a>
+                            <a class="dropdown-item" href="{{route('carrinho.index')}}">
+                                Carrinho
+                                <i class="fa fa-shopping-cart"></i>
+                                @if(@session()->has('carrinho'))
+                                    <span class="badge badge-danger ml-2">{{count(session()->get('carrinho'))}}</span>
+                                @endif
+                            </a>
                             <a class="dropdown-item" href="#">Recarga</a>
                         </div>
                     </li>

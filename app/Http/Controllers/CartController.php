@@ -55,4 +55,10 @@ class CartController extends Controller
         return redirect()->route('carrinho.index');
 
     }
+
+    public function cancelar(){
+        session()->forget('carrinho');
+        flash('Compra Cancelada!')->success()->important();
+        return redirect()->route('carrinho.index');
+    }
 }

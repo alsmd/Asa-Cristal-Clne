@@ -36,6 +36,7 @@ Route::prefix('carrinho')->name('carrinho.')->group(function(){
 
     Route::post('add',[CartController::class,'add'])->name('add');
     Route::post('remove/{slug}',[CartController::class,'remove'])->name('remove');
+    Route::get('cancelar',[CartController::class,'cancelar'])->name('cancelar');
 });
 //   /forum
 Route::middleware(['auth'])->group(function(){
