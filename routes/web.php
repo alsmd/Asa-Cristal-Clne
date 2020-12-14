@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProdutoController;
 use App\Http\Controllers\MensagemController;
 use App\Http\Controllers\PaginacaoDinamicaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 use App\Models\User;
 use App\Models\Chat;
 use App\Models\Mensagem;
@@ -30,6 +31,9 @@ Route::get('/', [IndexController::class,'index'])->name('home');
 
 Route::get('/produto/{slug}', [ProdutoController::class,'show'])->name('produto');
 
+Route::prefix('cart')->name('cart.')->group(function(){
+    Route::post('add',[CartController::class,'add'])->name('add');
+});
 //   /forum
 Route::middleware(['auth'])->group(function(){
     Route::prefix('/forum')->name('forum.')->group(function(){

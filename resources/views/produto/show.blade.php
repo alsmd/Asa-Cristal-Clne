@@ -12,12 +12,23 @@
             <div>
                 <p>Novo | 10 vendidos</p>
                 <h6 class="display-4">{{$produto->nome}}</h6>
-                <h5 class="display-4">R$ {{$produto->valor}} </h5>
+                <h5 class="display-4">R$ {{number_format($produto->valor,'2',',','.')}} </h5>
 
                 <p class="lead">{{$produto->descricao}}</p>
             </div>
             <div class="w-100">
-                <button class="btn btn-info d-block m-0 w-100 mt-1 py-2">Comprar Agora</button>
+                <hr class="border-warning ">
+                <form action="{{route('cart.add')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="produto[name]" value="{{$produto->nome}}">
+                    <input type="hidden" name="produto[valor]" value="{{$produto->valor}}">
+                    <input type="hidden" name="produto[slug]" value="{{$produto->slug}}">
+                    <div class="form-group">
+                        <label for="">Quantidade</label>
+                        <input type="number" class="rounded" max="5" min="1" name="produto[quantidade]" value='1'>
+                    </div>
+                    <button class="btn btn-info d-block m-0 w-100 mt-1 py-2">Comprar Agora</button>
+                </form>
                 <button class="btn btn-outline-success d-block m-0 w-100 mt-1 py-2">Adicionar no Carrinho</button>
             </div>
             

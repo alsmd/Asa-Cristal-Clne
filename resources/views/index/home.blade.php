@@ -140,7 +140,7 @@
                                 <div class="produto_informacoes align-self-center ">
                                     <h4 class="text-light font-weight-bold">{{$produto->nome}}</h4>
                                     <p class="text-light font-weight-bold  p-1">{{$produto->descricao}}</p>
-                                    <p class="text-light font-weight-bold">R$ {{$produto->valor}}</p>
+                                    <p class="text-light font-weight-bold">R$ {{number_format($produto->valor,'2',',','.')}}</p>
                                 </div>
                             </div>
                         </a>
