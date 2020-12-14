@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public function index(){
+        $hasNotCarrinho = !(session()->has('carrinho'));
+        if($hasNotCarrinho){
+            session()->put('carrinho',[]);
+        }
         $produtos = session()->get('carrinho');
         return view('carrinho.index',compact('produtos'));
     }

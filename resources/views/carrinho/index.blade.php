@@ -8,7 +8,7 @@
 
             <div class="row m-0">
                  <?php $valorTotal = 0;?>
-                @if(session()->has('carrinho'))
+                @if(count(session()->get('carrinho')))
                     @foreach($produtos as $produto)
                     <div class="col-lg-6 col-md-12 mt-2">
                         <div class="card w-100" style="width: 18rem;">
@@ -31,6 +31,11 @@
                     </div>
                     <?php $valorTotal += $produto['valor'] * $produto['quantidade'];?>
                     @endforeach
+
+                    @else
+                    <div class="col-12">
+                        <div class="alert alert-warning">Carrinho Vazio</div>
+                    </div>
                 @endif
             </div>
         </div>
