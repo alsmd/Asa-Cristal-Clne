@@ -134,14 +134,16 @@
             <div class="col-md-3 secundario offset-1">
                 <div class="row justify-content-between">
                     @foreach($produtos as $produto)
-                        <div class="col-md-12 col-sm-6  item-lateral p-0 d-flex align-items-start ">
-                            <img src="{{asset('storage/'.$produto->foto)}}" alt="" width="100%" class="rounded">
-                            <div class="produto_informacoes align-self-center ">
-                                <h4 class="text-light font-weight-bold">{{$produto->nome}}</h4>
-                                <p class="text-light font-weight-bold  p-1">{{$produto->descricao}}</p>
-                                <p class="text-light font-weight-bold">R$ {{$produto->valor}}</p>
+                        <a href="{{route('produto',[$produto->slug])}}">
+                            <div class="col-md-12 col-sm-6  item-lateral p-0 d-flex align-items-start ">
+                                <img src="{{asset('storage/'.$produto->foto)}}" alt="" width="100%" class="rounded">
+                                <div class="produto_informacoes align-self-center ">
+                                    <h4 class="text-light font-weight-bold">{{$produto->nome}}</h4>
+                                    <p class="text-light font-weight-bold  p-1">{{$produto->descricao}}</p>
+                                    <p class="text-light font-weight-bold">R$ {{$produto->valor}}</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                     <div class="d-flex justify-content-center">
                         {{$produtos->links()}}

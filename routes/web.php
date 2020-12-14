@@ -28,6 +28,7 @@ use App\Models\Mensagem;
 
 Route::get('/', [IndexController::class,'index'])->name('home');
 
+Route::get('/produto/{slug}', [ProdutoController::class,'show'])->name('produto');
 
 //   /forum
 Route::middleware(['auth'])->group(function(){
