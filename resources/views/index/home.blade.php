@@ -48,6 +48,7 @@
                             @endif     
                             <a class="dropdown-item" href="{{route('user.show',[auth()->user()->id])}}">Perfil</a>
                             <a class="dropdown-item" href="{{route('configuracao')}}">Configuração</a>
+                            <a class="dropdown-item" href="{{route('carrinho.index')}}">Carrinho</a>
                             <a class="dropdown-item" href="#">Recarga</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" onclick="document.querySelector('.sair-forum').submit();">Sair</a>

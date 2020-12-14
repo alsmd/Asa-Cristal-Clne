@@ -31,8 +31,11 @@ Route::get('/', [IndexController::class,'index'])->name('home');
 
 Route::get('/produto/{slug}', [ProdutoController::class,'show'])->name('produto');
 
-Route::prefix('cart')->name('cart.')->group(function(){
+Route::prefix('cart')->name('carrinho.')->group(function(){
+    Route::get('/',[CartController::class,'index'])->name('index');
+
     Route::post('add',[CartController::class,'add'])->name('add');
+    Route::post('remove/{slug}',[CartController::class,'remove'])->name('remove');
 });
 //   /forum
 Route::middleware(['auth'])->group(function(){
