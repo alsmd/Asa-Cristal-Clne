@@ -28,6 +28,7 @@ class CartController extends Controller
                     $produtos[$indice]['quantidade'] += $produto['quantidade'];
                 }
             }
+            
             //caso o produto selecionado ja exista no carrinho ele ira mudar sua quantidade e atualizar na sessão, caso não exista ele ira adicionar esse novo produto
             if($acesso){
                 session()->put('carrinho',$produtos);

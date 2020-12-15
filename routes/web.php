@@ -12,6 +12,7 @@ use App\Http\Controllers\MensagemController;
 use App\Http\Controllers\PaginacaoDinamicaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Models\User;
 use App\Models\Chat;
 use App\Models\Mensagem;
@@ -30,13 +31,17 @@ use App\Models\Mensagem;
 Route::get('/', [IndexController::class,'index'])->name('home');
 
 Route::get('/produto/{slug}', [ProdutoController::class,'show'])->name('produto');
-
+//carrinho
 Route::prefix('carrinho')->name('carrinho.')->group(function(){
     Route::get('/',[CartController::class,'index'])->name('index');
 
     Route::post('add',[CartController::class,'add'])->name('add');
     Route::post('remove/{slug}',[CartController::class,'remove'])->name('remove');
     Route::get('cancelar',[CartController::class,'cancelar'])->name('cancelar');
+});
+//checkout
+Route::prefix('checkout')->name('checkout.')->group(function(){
+    Route::get('/',[CheckoutController::class,'index'])->name('index');
 });
 //   /forum
 Route::middleware(['auth'])->group(function(){
