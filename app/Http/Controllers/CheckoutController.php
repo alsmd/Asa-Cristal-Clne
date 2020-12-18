@@ -17,6 +17,11 @@ class CheckoutController extends Controller
         return view('checkout.index');
     }
 
+    public function proccess(Request $request){
+        dd($request->all());
+    }
+
+
     private function makePagseguroSession(){
         $hasNotPagSeguroCode = !(session()->has('pagseguro_session_code'));
         //caso eu não possua a session code para saber qual que é a transação iremos ate a API do pagseguro e criar essa session e assim que ele retornar nos armazenamos na nossa session
