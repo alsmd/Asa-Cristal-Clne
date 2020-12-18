@@ -123,7 +123,20 @@ class CheckoutController extends Controller
         $result = $creditCard->register(
             \PagSeguro\Configuration\Configure::getAccountCredentials()
         );
-        dd($result);
+        $userOrder = [
+            'referencia' => $reference,
+            'pagseguro_code' => $result->getCode(),
+            'pagseguro_status' => $result->getStatus(),
+            'items' => serialize($cartItems)
+        ];
+        $user->orders()->create($userOrder);
+
+        return response()->json([
+            'data' => [
+                'status' => true,
+                'message' => 'Pedido criado com sucesso!'
+            ]
+        ]);
     }
 
 
