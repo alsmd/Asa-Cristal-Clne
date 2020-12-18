@@ -68,4 +68,8 @@ class User extends Authenticatable
     public function administrador(){
         return $this->hasMany(Administrador::class,'fk_id_user');
     }
+    //Um usuario pode realizar diversos pedidos
+    public function orders(){
+        return $this->hasMany(UserOrder::class,'fk_id_user');
+    }
 }
