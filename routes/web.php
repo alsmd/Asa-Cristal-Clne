@@ -43,6 +43,8 @@ Route::prefix('carrinho')->name('carrinho.')->group(function(){
 Route::prefix('checkout')->name('checkout.')->group(function(){
     Route::get('/',[CheckoutController::class,'index'])->name('index');
     Route::post('/proccess',[CheckoutController::class,'proccess'])->name('proccess');
+    Route::get('/thanks',[CheckoutController::class,'thanks'])->name('thanks');
+
 });
 //   /forum
 Route::middleware(['auth'])->group(function(){
