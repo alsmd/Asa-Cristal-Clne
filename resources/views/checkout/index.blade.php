@@ -9,6 +9,12 @@
         <form action="" method="post">
             <div class="row">
                 <div class="form-group col-md-12">
+                    <label for=""class="d-flex justify-content-between">Nome no Cartão</label>
+                    <input type="text" class="form-control" name="card_name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
                     <label for=""class="d-flex justify-content-between">Número do Cartão <span class="brand"></span></label>
                     <input type="text" class="form-control" name="card_number">
                 </div>
@@ -46,6 +52,7 @@
 
     <script>
         //recupera o cartão utilizado com base nos 6 primeiros digitos inseridos pelo usuario
+        let amountTransaction = '{{$total}}';
         let cardNumber = document.querySelector('input[name=card_number]');
         let spanBrand = document.querySelector('span.brand');
         let brandName;
@@ -58,7 +65,7 @@
                         spanBrand.innerHTML = `<img src=${imgFlag}>`;
                         brandName = res.brand.name;
                         if($('.opcoes-pagamentos').length == 0){
-                            getInstallments(200,res.brand.name);
+                            getInstallments(amountTransaction,res.brand.name);
                         }
                     },
                     error: function(res){
@@ -97,7 +104,8 @@
                 card_token: token,
                 hash: PagSeguroDirectPayment.getSenderHash(), //Ira nos retornar um hash que identifica o usuario para essa requisição de pagamento
                 installment: $('.select_installments').val(),
-                _token: '{{csrf_token()}}'
+                _token: '{{csrf_token()}}',
+                card_name:$('input[name=card_name]').val()
             }
             $.ajax({
                 type:'POST',
