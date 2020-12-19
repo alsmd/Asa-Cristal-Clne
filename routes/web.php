@@ -27,29 +27,10 @@ use App\Models\Mensagem;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//home
 Route::get('/', [IndexController::class,'index'])->name('home');
-
+//visualizar produto
 Route::get('/produto/{slug}', [ProdutoController::class,'show'])->name('produto');
-//carrinho
-Route::prefix('carrinho')->name('carrinho.')->group(function(){
-    Route::get('/',[CartController::class,'index'])->name('index');
-
-    Route::post('add',[CartController::class,'add'])->name('add');
-    Route::post('remove/{slug}',[CartController::class,'remove'])->name('remove');
-    Route::get('cancelar',[CartController::class,'cancelar'])->name('cancelar');
-});
-
-//checkout
-
-Route::middleware(['checkout'])->group(function(){
-    Route::prefix('checkout')->name('checkout.')->group(function(){
-        Route::get('/',[CheckoutController::class,'index'])->name('index');
-        Route::post('/proccess',[CheckoutController::class,'proccess'])->name('proccess');
-        Route::get('/thanks',[CheckoutController::class,'thanks'])->name('thanks');
-    
-    });
-});
 //   /forum
 Route::middleware(['auth'])->group(function(){
     Route::prefix('/forum')->name('forum.')->group(function(){
@@ -112,7 +93,7 @@ Route::middleware(['auth'])->group(function(){
     
     Route::get('user/{user}',[UserController::class,'show'])->name('user.show');
 
-    //
+    //area administrativa
     Route::middleware(['admin'])->group(function(){
         Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('/',[AdminController::class,'index'])->name('index');
@@ -122,7 +103,23 @@ Route::middleware(['auth'])->group(function(){
         });
     });
    
-
+    //carrinho
+    Route::prefix('carrinho')->name('carrinho.')->group(function(){
+        Route::get('/',[CartController::class,'index'])->name('index');
+    
+        Route::post('add',[CartController::class,'add'])->name('add');
+        Route::post('remove/{slug}',[CartController::class,'remove'])->name('remove');
+        Route::get('cancelar',[CartController::class,'cancelar'])->name('cancelar');
+    });
+    //checkout
+    Route::middleware(['checkout'])->group(function(){
+        Route::prefix('checkout')->name('checkout.')->group(function(){
+            Route::get('/',[CheckoutController::class,'index'])->name('index');
+            Route::post('/proccess',[CheckoutController::class,'proccess'])->name('proccess');
+            Route::get('/thanks',[CheckoutController::class,'thanks'])->name('thanks');
+        
+        });
+    });
 });
 
 Auth::routes();
