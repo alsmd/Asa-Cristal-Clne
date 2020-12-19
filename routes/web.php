@@ -13,6 +13,7 @@ use App\Http\Controllers\PaginacaoDinamicaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CategoriaParaProdutoController;
 use App\Models\User;
 use App\Models\Chat;
 use App\Models\Mensagem;
@@ -97,9 +98,13 @@ Route::middleware(['auth'])->group(function(){
     Route::middleware(['admin'])->group(function(){
         Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('/',[AdminController::class,'index'])->name('index');
+            //referente ao jogo
             Route::resource('jogo','App\Http\Controllers\Admin\JogoController');
             Route::resource('categoria','App\Http\Controllers\Admin\CategoriaController');
+            //referente ao produto
             Route::resource('produto','App\Http\Controllers\Admin\ProdutoController');
+            Route::resource('categoria_para_produto','App\Http\Controllers\CategoriaParaProdutoController');
+
         });
     });
    

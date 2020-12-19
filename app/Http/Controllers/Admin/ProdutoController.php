@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\CategoriaParaProduto;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Traits\TratarDados;
 
@@ -16,9 +17,10 @@ class ProdutoController extends Controller
     protected $foto_src = 'produtos_fotos';
     private $produto;
     private $comentario;
-
-    public function __construct(Produto $produto){
+    private $categoria_para_produto;
+    public function __construct(Produto $produto,CategoriaParaProduto $categoria_para_produto){
         $this->produto = $produto;
+        $this->categoria_para_produto = $categoria_para_produto;
     }
     /**
      * Display a listing of the resource.
@@ -38,7 +40,8 @@ class ProdutoController extends Controller
     public function create()
     {
         //
-        return view('produto.create');
+        $categorias_para_produtos = $this->categoria_para_produto->get();;
+        return view('produto.create',compact('categorias_para_produtos'));
     }
 
     /**
@@ -51,10 +54,12 @@ class ProdutoController extends Controller
     {
         //
         //
+        $categorias_para_produtos = $request->get('categorias_para_produtos');
+        unset($request->all()['categorias_para_produtos']);
         $dados = $this->tratarDados($request,false);
         
         $produto = $this->produto::create($dados);
-
+        $produto->categorias()->sync($categorias_para_produtos);
         flash('Produto Criado com sucesso')->success()->important();
         return redirect(route('admin.index'));
     }
@@ -82,9 +87,14 @@ class ProdutoController extends Controller
     public function edit($id)
     {
         //
+        $categorias_para_produtos = $this->categoria_para_produto->get();;
         $id = request()->all()['id'];
         $dados = $this->produto::find($id);
-        return view('produto.edit',compact('dados'));
+        $categorias_selecionadas;
+        foreach($dados->categorias()->select('fk_id_categoria_para_produto')->get() as $categoria){
+            $categorias_selecionadas[] = $categoria->fk_id_categoria_para_produto;
+        }
+        return view('produto.edit',compact('dados','categorias_para_produtos','categorias_selecionadas'));
     }
 
     /**
@@ -97,10 +107,14 @@ class ProdutoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $categorias_para_produtos = $request->get('categorias_para_produtos');
+        unset($request->all()['categorias_para_produtos']);
         $produto = $this->produto::find($id);
         $this->instancia = $produto;
         $dados = $this->tratarDados($request,true);
         $produto->update($dados);
+        $produto->categorias()->sync($categorias_para_produtos);
+
         flash('Produto Atualizado com Sucesso!')->success()->important();
         return redirect(route('admin.index'));
     }
