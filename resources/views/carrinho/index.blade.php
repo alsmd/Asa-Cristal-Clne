@@ -42,8 +42,10 @@
         <div class="col-md-4">
             <p class="lead">Total:</p>
             <h3 class="display-4">R$ {{number_format($valorTotal,'2',',','.')}}</h3>
-            <a href="{{route('checkout.index')}}" class="btn btn-outline-danger btn-large p-3 mt-2">Finalizar Compra</a>
-            <a href="{{route('carrinho.cancelar')}}" class="btn btn-info btn-large p-3 mt-2">Cancelar Compra</a>
+            @if(count(session()->get('carrinho')))
+                <a href="{{route('checkout.index')}}" class="btn btn-outline-danger btn-large p-3 mt-2">Finalizar Compra</a>
+                <a href="{{route('carrinho.cancelar')}}" class="btn btn-info btn-large p-3 mt-2">Cancelar Compra</a>
+            @endif
         </div>
     </div>
 </main>

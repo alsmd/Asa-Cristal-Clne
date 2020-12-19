@@ -59,6 +59,9 @@
         let cardNumber = document.querySelector('input[name=card_number]');
         let spanBrand = document.querySelector('span.brand');
         let brandName;
+        $(cardNumber).bind('paste', function(e) {
+        e.preventDefault();
+        });
         cardNumber.addEventListener('keyup',function(e){
             if(cardNumber.value.length >= 6){
                 PagSeguroDirectPayment.getBrand({

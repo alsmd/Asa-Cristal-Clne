@@ -39,12 +39,16 @@ Route::prefix('carrinho')->name('carrinho.')->group(function(){
     Route::post('remove/{slug}',[CartController::class,'remove'])->name('remove');
     Route::get('cancelar',[CartController::class,'cancelar'])->name('cancelar');
 });
-//checkout
-Route::prefix('checkout')->name('checkout.')->group(function(){
-    Route::get('/',[CheckoutController::class,'index'])->name('index');
-    Route::post('/proccess',[CheckoutController::class,'proccess'])->name('proccess');
-    Route::get('/thanks',[CheckoutController::class,'thanks'])->name('thanks');
 
+//checkout
+
+Route::middleware(['checkout'])->group(function(){
+    Route::prefix('checkout')->name('checkout.')->group(function(){
+        Route::get('/',[CheckoutController::class,'index'])->name('index');
+        Route::post('/proccess',[CheckoutController::class,'proccess'])->name('proccess');
+        Route::get('/thanks',[CheckoutController::class,'thanks'])->name('thanks');
+    
+    });
 });
 //   /forum
 Route::middleware(['auth'])->group(function(){
