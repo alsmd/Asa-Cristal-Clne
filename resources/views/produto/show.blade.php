@@ -18,24 +18,30 @@
             </div>
             <div class="w-100">
                 <hr class="border-warning ">
-                <div class="form-group">
-                    <label for="">Quantidade</label>
-                    <input type="number" class="rounded" max="5" min="1" name="produto[quantidade]" value='1'>
-                </div>
-                <button class="btn btn-info d-block m-0 w-100 mt-1 py-2">Comprar Agora</button>
-                <form action="{{route('carrinho.add')}}" method="post">
-                    @csrf
-                    <input type="hidden" name="produto[nome]" value="{{$produto->nome}}">
-                    <input type="hidden" name="produto[foto]" value="{{$produto->foto}}">
-                    <input type="hidden" name="produto[valor]" value="{{$produto->valor}}">
-                    <input type="hidden" name="produto[slug]" value="{{$produto->slug}}">
+                @if(auth()->check())
                     <div class="form-group">
                         <label for="">Quantidade</label>
                         <input type="number" class="rounded" max="5" min="1" name="produto[quantidade]" value='1'>
                     </div>
-                    <button class="btn btn-outline-success d-block m-0 w-100 mt-1 py-2">Adicionar no Carrinho</button>
+                    <button class="btn btn-info d-block m-0 w-100 mt-1 py-2">Comprar Agora</button>
+                    <form action="{{route('carrinho.add')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="produto[nome]" value="{{$produto->nome}}">
+                        <input type="hidden" name="produto[foto]" value="{{$produto->foto}}">
+                        <input type="hidden" name="produto[valor]" value="{{$produto->valor}}">
+                        <input type="hidden" name="produto[slug]" value="{{$produto->slug}}">
+                        <div class="form-group">
+                            <label for="">Quantidade</label>
+                            <input type="number" class="rounded" max="5" min="1" name="produto[quantidade]" value='1'>
+                        </div>
+                        <button class="btn btn-outline-success d-block m-0 w-100 mt-1 py-2">Adicionar no Carrinho</button>
 
-                </form>
+                    </form>
+
+                    @else
+
+                    <h3 class="text-center">Realize o Login para Poder Efetuar A Compra!</h3>
+                @endif
             </div>
             
         </div>
