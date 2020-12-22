@@ -73,7 +73,7 @@ class ProdutoController extends Controller
     public function show($slug)
     {
         //
-        $produto = $this->produto::where('slug',$slug)->first();
+        $produto = $this->produto::whereSlug($slug)->first();
 
         return view('produto.show',compact('produto'));
     }

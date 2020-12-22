@@ -16,8 +16,8 @@ class CategoriaParaProduto extends Model
 
 
     //pertence a varias categorias
-    public function categorias(){
-        return $this->belongsToMany(Produtos::class,'categoria_produto','fk_id_categoria_para_produto','fk_id_produto');
+    public function produtos(){
+        return $this->belongsToMany(Produto::class,'categoria_produto','fk_id_categoria_para_produto','fk_id_produto');
     }
 
     public function getSlugOptions() : SlugOptions{
