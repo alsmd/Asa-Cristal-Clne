@@ -32,6 +32,7 @@ use App\Models\Mensagem;
 Route::get('/', [IndexController::class,'index'])->name('home');
 //visualizar produto
 Route::get('/produto/{slug}', [ProdutoController::class,'show'])->name('produto');
+Route::get('categorias/{slug}',[CategoriaParaProdutoController::class,'show'])->name('categoria.show');
 //   /forum
 Route::middleware(['auth'])->group(function(){
     Route::prefix('/forum')->name('forum.')->group(function(){

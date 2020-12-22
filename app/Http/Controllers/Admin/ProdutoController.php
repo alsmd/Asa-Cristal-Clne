@@ -90,7 +90,7 @@ class ProdutoController extends Controller
         $categorias_para_produtos = $this->categoria_para_produto->get();;
         $id = request()->all()['id'];
         $dados = $this->produto::find($id);
-        $categorias_selecionadas;
+        $categorias_selecionadas = [];
         foreach($dados->categorias()->select('fk_id_categoria_para_produto')->get() as $categoria){
             $categorias_selecionadas[] = $categoria->fk_id_categoria_para_produto;
         }

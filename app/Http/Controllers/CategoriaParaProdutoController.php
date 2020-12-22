@@ -57,9 +57,15 @@ class CategoriaParaProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        //recuperando produtos correspondentes a categoria
+        $produtos = $this->categoria_para_produto->select(['produtos.nome','produtos.descricao','produtos.valor','produtos.foto','produtos.slug'])->where('categoria_para_produto.slug',$slug)->leftJoin('categoria_produto',function($join){
+            $join->on('categoria_para_produto.id','=','categoria_produto.fk_id_categoria_para_produto');
+        })->leftJoin('produtos',function($join){
+            $join->on('categoria_produto.fk_id_produto','=','produtos.id');
+        })->get();
+        return view('categoria_para_produto.show',compact('produtos'));
     }
 
     /**
