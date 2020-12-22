@@ -46,12 +46,20 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Bem vindo, {{auth()->user()->name}}
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown" aria-labelledby="navbarDropdown">
                             @if(count(auth()->user()->administrador) > 0)
                                 <a class="dropdown-item" href="{{route('admin.index')}}">Admin</a>
                             @endif     
                             <a class="dropdown-item" href="{{route('user.show',[auth()->user()->id])}}">Perfil</a>
                             <a class="dropdown-item" href="{{route('configuracao')}}">Configuração</a>
+                            <a href="#" class="dropdown-item dropdown-toggle"id="navbarDropdownProdutos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Produtos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownProdutos">
+                                @foreach($categoriasParaProdutos as $categoria)
+                                    <a href="#" class="dropdown-item">{{$categoria->nome}}</a>
+                                @endforeach
+                            </div>
                             <a class="dropdown-item" href="{{route('carrinho.index')}}">
                                 Carrinho
                                 <i class="fa fa-shopping-cart"></i>

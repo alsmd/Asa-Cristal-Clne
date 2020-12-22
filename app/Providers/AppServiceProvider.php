@@ -30,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
         \PagSeguro\Library::moduleVersion()->setName("Gamesow")->setRelease("1.0.0");
         Paginator::useBootstrap();
 
+        //
     }
 }
