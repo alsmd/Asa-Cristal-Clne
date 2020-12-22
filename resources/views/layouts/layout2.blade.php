@@ -54,7 +54,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownProdutos">
                                 @foreach($categoriasParaProdutos as $categoria)
-                                    <a href="{{route('categoria.show',[$categoria->slug])}}" class="dropdown-item">{{$categoria->nome}}</a>
+                                    <a href="{{route('categoria.show',[$categoria->slug])}}" class="dropdown-item @if(request()->is('categorias/'.$categoria->slug)) active @endif">{{$categoria->nome}}</a>
                                 @endforeach
                             </div>
                             <a class="dropdown-item" href="{{route('carrinho.index')}}">

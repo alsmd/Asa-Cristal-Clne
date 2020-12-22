@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Produto;
 
 class CartController extends Controller
 {
@@ -17,7 +18,11 @@ class CartController extends Controller
     //
     public function add(Request $request){
         $produto = $request->get('produto');
-
+        $produto_database = Produto::whereSlug($produto['slug'])->first();
+        if($produto_database == null || $produto['valor'] != $produto_database->valor){
+            flash('Produto não encontrado!')->error()->important();
+            return redirect()->route('home');
+        }
         if(session()->has('carrinho')){
             //caso esse produto ja exista no carrinho eu aumento a quantidade
             $produtos = session()->get('carrinho');

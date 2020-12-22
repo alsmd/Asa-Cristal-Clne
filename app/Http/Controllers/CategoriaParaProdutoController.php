@@ -61,9 +61,8 @@ class CategoriaParaProdutoController extends Controller
     {/*  */
         //recuperando produtos correspondentes a categoria
         $categoria = $this->categoria_para_produto->whereSlug($slug)->first();
-        $categoria_produto = $categoria->produtos()->select(['nome','descricao','valor','foto','slug'])->get();
-        dd($categoria_produto);
-        return view('categoria_para_produto.show',compact('produtos'));
+        $produtos = $categoria->produtos()->select(['nome','descricao','valor','foto','slug'])->paginate(5);
+        return view('categoria_para_produto.show',compact('produtos','categoria'));
     }
 
     /**
