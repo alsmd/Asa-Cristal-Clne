@@ -18,11 +18,12 @@ class CartController extends Controller
     //
     public function add(Request $request){
         $produto = $request->get('produto');
-        $produto_database = Produto::whereSlug($produto['slug'])->first();
-        if($produto_database == null || $produto['valor'] != $produto_database->valor){
+        $produto_database = (Produto::whereSlug($produto['slug'])->first(['slug','nome','valor']));
+        if($produto_database == null || $produto['valor'] != $produto_database->valor || $produto['quantidade'] <=0 || $produto['quantidade'] > 5){
             flash('Produto não encontrado!')->error()->important();
             return redirect()->route('home');
         }
+        $produto = array_merge($produto,$produto_database->toArray());
         if(session()->has('carrinho')){
             //caso esse produto ja exista no carrinho eu aumento a quantidade
             $produtos = session()->get('carrinho');

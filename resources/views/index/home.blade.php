@@ -119,6 +119,8 @@
     </div>
     <!-- Conteudo principal -->
     <main class="container-lg my-4">
+    @include('flash::message')
+
         <div class="row  px-4">
             <!-- PRINCIPAL -->
             <div class="col-md-8 principal mb-4">
