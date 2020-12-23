@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\CategoriaParaProduto;
+use App\Models\CategoriaProduto;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Traits\TratarDados;
 
@@ -130,7 +131,11 @@ class ProdutoController extends Controller
         //Deleta o Jogo e seu respectivo Forum, assim como sua foto que esta armazenada
         $id = request()->all()['id'];
         $produto = $this->produto::find($id);
+        foreach($produto->categorias()->get(['categoria_produto.id']) as $id){
+            $categoria_produto  = CategoriaProduto::find($id->id);
 
+            $categoria_produto->delete();
+        }
         Storage::disk('public')->delete($produto->foto);
         $produto->delete();
         flash('Produto deletado com sucesso')->success()->important();

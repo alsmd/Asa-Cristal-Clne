@@ -108,10 +108,10 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/',[AdminController::class,'index'])->name('index');
             //referente ao jogo
             Route::resource('jogo','App\Http\Controllers\Admin\JogoController');
-            Route::resource('categoria','App\Http\Controllers\Admin\CategoriaController');
+            Route::resource('categoria','App\Http\Controllers\Forum\CategoriaController');
             //referente ao produto
-            Route::resource('produto','App\Http\Controllers\Admin\ProdutoController');
-            Route::resource('categoria_para_produto','App\Http\Controllers\CategoriaParaProdutoController');
+            Route::resource('produto','App\Http\Controllers\Ecomerce\ProdutoController');
+            Route::resource('categoria_para_produto','App\Http\Controllers\Ecomerce\CategoriaParaProdutoController');
 
         });
     });

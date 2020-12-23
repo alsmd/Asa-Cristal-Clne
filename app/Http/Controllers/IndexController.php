@@ -18,7 +18,7 @@ class IndexController extends Controller{
     //
     public function index(){
         $jogos = $this->jogo->paginate(5);
-        $produtos = $this->produto->paginate(4);
+        $produtos = $this->produto->paginate(3);
         return view('index.home',compact('jogos','produtos'));
     }
 }
