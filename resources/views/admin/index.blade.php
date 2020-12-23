@@ -3,10 +3,11 @@
 
 
 <main class="container bg-black text-light rounded mt-3">
-    <h3 class="text-center">Area Administrativa</h3>   
-
     <div class="row mt-3">
+
         <div class=" d-flex flex-column col-md-3">
+            <h3 class="text-center display-4">Gerenciamento</h3>
+
             <!-- CRUD JOGO -->
             <div class="jogo_crud">
                 <h3 class="text-center">Jogo</h3>
@@ -129,40 +130,43 @@
         </div>
         
         <div class="col-md-9">
-                <!-- INFORMAÇÕES DO ADMIN -->
-                <?php $user = auth()->user(); ?>
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="cabecalho border-bottom py-2 pl-2">
-                        <h5 class="display-4">{{$user->name}}</h5>
-                        <p class="text-warning">Gênero:	<span class="text-info">Masculino</span></p>
-                        <p class="text-warning">Aniversário:	<span class="text-info">18-10-1989</span></p>
-                        <p class="text-warning">Linkedin: <span class="text-info"><a href="{{$user->linkedin}}"class="text-info" target="_blank">{{$user->name}}</a></span></p>
-                    </div>
-                    <div class="body border-bottom py-2 pl-2">
-                        <h4 class="">Grupo de Usuário:<span class="text-info"> Novato Rank: 1</span></h4> 
-                        <div class="row">
-                            <div class="col-md-6  d-flex flex-column justify-content-center  p-4">
-                                <p class="text-warning">Postar classificação:<span class="text-info"> Iniciante Rank: 1</span></p>
-                                <p class="text-warning">Tópico: <span class="text-info">20 pedaço(de todos os posts 0.01%)</span> </p>
-                                <p class="text-warning">Tempo Online: <span class="text-info">Total online 19.83 Horas, e este mês 0  Horas Rank:  1 (Atualização após 1 horas) </span></p>
-                            </div>
-                            <div class="col-md-6 d-flex flex-column justify-content-center p-4">
-                                <p class="text-warning">Data de Registro: <span class="text-info">{{$user->created_at}}</span></p>
-                                <p class="text-warning">Ultima Visita: <span class="text-info">Ante Ontem 00:38</span></p>
-                                <p class="text-warning">Últma postagem: <span class="text-info">6 DiaAntes 05:48</span></p>
-                            </div>
+            <h3 class="text-center display-4">Pedidos Recebidos</h3>
+            <hr>
+            <div id="accordion">
+                @forelse($orders as $key => $order)
+                    <div class="card bg-dark">
+                        <div class="card-header" id="headingOne{{$key}}">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link text-info" data-toggle="collapse" data-target="#collapseOne{{$key}}" aria-expanded="true" aria-controls="collapseOne">
+                            Pedido nº: {{$order->referencia}}
+                            </button>
+                        </h5>
                         </div>
-                        <div class="form-group">
-                            <h6 class="display-4 mb-2">Biografia</h6>
-                            <div class="p-4 bg-dark text-light rounded">{{$user->biografia}}</div>
+                    
+                        <div id="collapseOne{{$key}}" class="collapse @if($key == 0) show @endif" aria-labelledby="headingOne{{$key}}" data-parent="#accordion">
+                        <div class="card-body">
+                            <ul>
+                                @php 
+                                 $items =unserialize($order->items);
+                                @endphp
+                                @foreach($items as $item)
+                                    <li class="d-flex">
+                                        <span>idº </span>
+                                        <span> {{$item['nome']}} | R${{$item['valor']}} | qnt: {{$item['quantidade']}}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                         </div>
                     </div>
-                    <div class="footer py-2 pl-2">
-                        <h4>Creditos: 0</h4>
-                    </div>
+                
+                    @empty
+                    <div class="alert alert-warning">Nenhum pedido recebido</div>
+                @endforelse
+                <div class="d-flex justify-content-center">
+                    {{$orders->links()}}
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
     

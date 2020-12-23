@@ -17,13 +17,14 @@ class CartController extends Controller
     }
     //
     public function add(Request $request){
+        //caso o usuario tenha alterado alguma informação do produto ele sera redirecionado
         $produto = $request->get('produto');
         $produto_database = (Produto::whereSlug($produto['slug'])->first(['slug','nome','valor']));
         if($produto_database == null || $produto['valor'] != $produto_database->valor || $produto['quantidade'] <=0 || $produto['quantidade'] > 5){
             flash('Produto não encontrado!')->error()->important();
             return redirect()->route('home');
         }
-        $produto = array_merge($produto,$produto_database->toArray());
+        $produto = array_merge($produto,$produto_database->toArray()); // o valor, nome e slug do produto enviado pelo formulario sera substituido pelas informações do backend, evitando a mudança em suas informações
         if(session()->has('carrinho')){
             //caso esse produto ja exista no carrinho eu aumento a quantidade
             $produtos = session()->get('carrinho');
