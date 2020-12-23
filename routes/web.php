@@ -1,19 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+//Controllers
 use App\Http\Controllers\Controller;
+//Forum
+use App\Http\Controllers\Forum\ForumController;
+use App\Http\Controllers\Forum\PostagemController;
+use App\Http\Controllers\Forum\ComentarioController;
+//home
+use App\Http\Controllers\IndexController;
+//ecomerce
+use App\Http\Controllers\Ecomerce\CheckoutController;
+use App\Http\Controllers\Ecomerce\CartController;
+use App\Http\Controllers\Ecomerce\CategoriaParaProdutoController;
+use App\Http\Controllers\Ecomerce\ProdutoController;
+//geral
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\ForumController;
-use App\Http\Controllers\Admin\PostagemController;
-use App\Http\Controllers\Admin\IndexController;
-use App\Http\Controllers\Admin\ComentarioController;
-use App\Http\Controllers\Admin\ProdutoController;
 use App\Http\Controllers\MensagemController;
 use App\Http\Controllers\PaginacaoDinamicaController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\CategoriaParaProdutoController;
+//Models
 use App\Models\User;
 use App\Models\Chat;
 use App\Models\Mensagem;
@@ -33,8 +39,9 @@ Route::get('/', [IndexController::class,'index'])->name('home');
 //visualizar produto
 Route::get('/produto/{slug}', [ProdutoController::class,'show'])->name('produto');
 Route::get('categorias/{slug}',[CategoriaParaProdutoController::class,'show'])->name('categoria.show');
-//   /forum
+//area autenticado
 Route::middleware(['auth'])->group(function(){
+    //forum
     Route::prefix('/forum')->name('forum.')->group(function(){
         Route::get('/',[ForumController::class, 'index'])->name('index');
         Route::get('/create',[ForumController::class, 'create'])->name('create')->middleware('admin');
@@ -46,7 +53,7 @@ Route::middleware(['auth'])->group(function(){
             //
             Route::prefix('/{slug_categoria}')->name('categoria.')->group(function(){
                 //todas operações relacionadas a postagem
-                Route::resource('postagem','App\Http\Controllers\Admin\PostagemController');
+                Route::resource('postagem','App\Http\Controllers\Forum\PostagemController');
                 //crud comentarios
                 Route::post('/{id_postagem}/comentario/store',[ComentarioController::class, 'store'])->name('postagem.comentario.store');
             });
@@ -122,14 +129,14 @@ Route::middleware(['auth'])->group(function(){
         Route::prefix('checkout')->name('checkout.')->group(function(){
             Route::get('/',[CheckoutController::class,'index'])->name('index');
             Route::post('/proccess',[CheckoutController::class,'proccess'])->name('proccess');
-            Route::get('/thanks',[CheckoutController::class,'thanks'])->name('thanks');
         
         });
     });
+    Route::get('checkout/thanks',[CheckoutController::class,'thanks'])->name('thanks');
+    
 });
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

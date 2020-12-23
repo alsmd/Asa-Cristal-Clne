@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ecomerce;
 
 use Illuminate\Http\Request;
 use  App\Payment\PagSeguro\CreditCard;
+use App\Http\Controllers\Controller;
+
 class CheckoutController extends Controller
 {
     //

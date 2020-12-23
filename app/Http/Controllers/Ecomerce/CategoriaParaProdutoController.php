@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ecomerce;
 
 use Illuminate\Http\Request;
 use App\Models\CategoriaParaProduto;
+use App\Http\Controllers\Controller;
 
 class CategoriaParaProdutoController extends Controller
 {
