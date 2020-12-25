@@ -13,7 +13,7 @@
                 <h3 class="text-center">Jogo</h3>
                 <div>
                 <!-- CRIAR JOGO -->
-                    <a href="{{route('admin.jogo.create')}}" class="btn btn-warning active d-block">Criar Jogo</a>
+                    <a href="{{route('admin.jogo.create')}}" class="btn btn-outline-success active d-block">Criar Jogo</a>
                 </div>
                 <!--  EDITAR JOGO -->
                 <form action="{{route('admin.jogo.edit',['0'])}}" class="form-group d-flex mb-0">
@@ -23,7 +23,7 @@
                             <option value="{{$jogo->id}}">{{$jogo->nome}}</option>
                         @endforeach
                     </select>
-                    <button class="btn btn-warning" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Editar</button>
+                    <button class="btn btn-outline-info" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Editar</button>
                 </form>
                 <!-- REMOVER JOGO -->
                 <form action="{{route('admin.jogo.destroy',['0'])}} mt-0" class="form-group d-flex" method="POST">
@@ -34,7 +34,7 @@
                             <option value="{{$jogo->id}}">{{$jogo->nome}}</option>
                         @endforeach
                     </select>
-                    <button class="btn btn-warning" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Remover</button>
+                    <button class="btn btn-outline-danger" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Remover</button>
                 </form>
             </div>
             
@@ -43,7 +43,7 @@
                 <h3 class="text-center">Categoria</h3>
                 <div>
                 <!-- CRIAR Categoria -->
-                    <a href="{{route('admin.categoria.create')}}" class="btn btn-warning active d-block">Criar Categoria</a>
+                    <a href="{{route('admin.categoria.create')}}" class="btn btn-outline-success active d-block">Criar Categoria</a>
                 </div>
                 <!--  EDITAR Categoria -->
                 <form action="{{route('admin.categoria.edit',['0'])}}" class="form-group d-flex mb-0">
@@ -53,7 +53,7 @@
                             <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
                         @endforeach
                     </select>
-                    <button class="btn btn-warning" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Editar</button>
+                    <button class="btn btn-outline-info" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Editar</button>
                 </form>
                 <!-- REMOVER Categoria -->
                 <form action="{{route('admin.categoria.destroy',['0'])}} mt-0" class="form-group d-flex" method="POST">
@@ -64,7 +64,7 @@
                             <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
                         @endforeach
                     </select>
-                    <button class="btn btn-warning" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Remover</button>
+                    <button class="btn btn-outline-danger" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Remover</button>
                 </form>
             </div>
 
@@ -73,7 +73,7 @@
                 <h3 class="text-center">Produtos</h3>
                 <div>
                 <!-- CRIAR produto -->
-                    <a href="{{route('admin.produto.create')}}" class="btn btn-warning active d-block">Criar Produto</a>
+                    <a href="{{route('admin.produto.create')}}" class="btn btn-outline-success active d-block">Criar Produto</a>
                 </div>
                 <!--  EDITAR produto -->
                 <form action="{{route('admin.produto.edit',['0'])}}" class="form-group d-flex mb-0">
@@ -83,7 +83,7 @@
                             <option value="{{$produto->id}}">{{$produto->nome}}</option>
                         @endforeach
                     </select>
-                    <button class="btn btn-warning" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Editar</button>
+                    <button class="btn btn-outline-info" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Editar</button>
                 </form>
                 <!-- REMOVER produto -->
                 <form action="{{route('admin.produto.destroy',['0'])}} mt-0" class="form-group d-flex" method="POST">
@@ -94,7 +94,7 @@
                             <option value="{{$produto->id}}">{{$produto->nome}}</option>
                         @endforeach
                     </select>
-                    <button class="btn btn-warning" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Remover</button>
+                    <button class="btn btn-outline-danger" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Remover</button>
                 </form>
             </div>
 
@@ -103,7 +103,7 @@
                 <h3 class="text-center">Categoria</h3>
                 <div>
                 <!-- CRIAR Categoria -->
-                    <a href="{{route('admin.categoria_para_produto.create')}}" class="btn btn-warning active d-block">Criar Categoria</a>
+                    <a href="{{route('admin.categoria_para_produto.create')}}" class="btn btn-outline-success active d-block">Criar Categoria</a>
                 </div>
                 <!--  EDITAR Categoria -->
                 <form action="{{route('admin.categoria_para_produto.edit',['0'])}}" class="form-group d-flex mb-0">
@@ -113,7 +113,7 @@
                             <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
                         @endforeach
                     </select>
-                    <button class="btn btn-warning" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Editar</button>
+                    <button class="btn btn-info" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Editar</button>
                 </form>
                 <!-- REMOVER Categoria -->
                 <form action="{{route('admin.categoria_para_produto.destroy',['0'])}} mt-0" class="form-group d-flex" method="POST">
@@ -124,7 +124,7 @@
                             <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
                         @endforeach
                     </select>
-                    <button class="btn btn-warning" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Remover</button>
+                    <button class="btn btn-outline-danger" style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Remover</button>
                 </form>
             </div>
         </div>

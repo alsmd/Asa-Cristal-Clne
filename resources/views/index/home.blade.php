@@ -7,12 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamesow-Clone</title>
     <!--Bootstrap -->
-    <link rel="stylesheet" href="http://localhost:8080/src/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="{{asset('css/app.css')}}" >
     <script
-    src="http://localhost:8080/src/js/jquery-3.5.1.js"
+    src="{{asset('js/app.js')}}"
     ></script>
-    <script src="http://localhost:8080/src/js/popper.min.js" ></script>
-    <script src="http://localhost:8080/src/js/bootstrap.min.js" ></script>
     <!-- FONTAWESOME -->
     <link rel="stylesheet" href="src/fontawesome/css/all.css">
     <!-- LINKS CUSTOMIZADOS -->

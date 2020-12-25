@@ -7,13 +7,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!--Bootstrap -->
-    <link rel="stylesheet" href="http://localhost:8080/src/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="{{asset('css/app.css')}}" >
     <script
-    src="http://localhost:8080/src/js/jquery-3.5.1.js"
+    src="{{asset('js/app.js')}}"
     ></script>
-    <script src="http://localhost:8080/src/js/popper.min.js" ></script>
-    <script src="http://localhost:8080/src/js/bootstrap.min.js" ></script>
-    
     <!--FontAwesome -->
     <link rel="stylesheet" href="http://localhost:8080/src/fontawesome/css/all.css">
     <link rel="preconnect" href="https://fonts.gstatic.com"> 

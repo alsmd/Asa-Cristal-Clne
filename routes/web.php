@@ -132,7 +132,7 @@ Route::middleware(['auth'])->group(function(){
         
         });
     });
-    Route::get('checkout/thanks',[CheckoutController::class,'thanks'])->name('thanks');
+    Route::get('checkout/thanks',[CheckoutController::class,'thanks'])->name('checkout.thanks');
     
 });
 
