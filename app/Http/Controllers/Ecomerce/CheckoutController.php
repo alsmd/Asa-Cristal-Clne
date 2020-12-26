@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Ecomerce;
 use Illuminate\Http\Request;
 use  App\Payment\PagSeguro\CreditCard;
 use App\Http\Controllers\Controller;
-
+use App\Models\Administrador;
 class CheckoutController extends Controller
 {
+    private $admin;
+    public function __construct(Administrador $admin){
+        $this->admin = $admin;
+    }
     //
     public function index(){
         $isNotAuthenticate = !(auth()->check());
@@ -40,6 +44,9 @@ class CheckoutController extends Controller
                 'items' => serialize($itens)
             ];
             $user->orders()->create($userOrder);
+            //Notificar Admin sobre o novo pedido
+            $admin = $this->admin->first();
+            $admin->notifyAboutStore();
             session()->forget('carrinho');
             session()->forget('pagseguro_session_code');
             return response()->json([

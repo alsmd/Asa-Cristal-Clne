@@ -138,5 +138,10 @@ Route::middleware(['auth'])->group(function(){
 
 Auth::routes();
 
+Route::get('not',function(){
+    $user = User::find(1);
+    $user->notify(new App\Notifications\StoreReceiveNewOrder);
+    return $user->notifications;   
+});
 
 

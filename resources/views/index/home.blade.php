@@ -20,8 +20,10 @@
     <link rel="shortcut icon" href="src/image/icon.jpg" >
 
 <style>
-   
-    
+    .notificacao-area .dropdown-toggle::before{
+        display: none !important;
+    }
+
 </style>
 </head>
 <body>
@@ -34,6 +36,22 @@
 
             <div class="collapse navbar-collapse" id="menu-principal">
                 <ul class="navbar-nav ml-auto">
+                    <div class="dropleft d-flex align-items-center notificacao-area">
+                        <span class="badge badge-danger">{{count($notifications)}}</span>
+                        <a class="@if(count($notifications))text-warning @else text-light @endif dropdown-toggle"href="#" id="notifications" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell"></i></a>
+                        <div class="dropdown-menu dropdown notification-body text-truncate"  aria-labelledby="notifications">
+                               <ul class="p-0 text-truncate">
+                                   @forelse($notifications as $notification)
+                                    @php $data = json_encode($notification->data);  @endphp
+                                    @auth
+                                        <li class="dropdown-item text-truncate bg-warning pb-0"><a href="{{route('admin.index')}}" class="text-dark nav-link">{{$notification->data['mensagem']}}<sub><small class="text-dark">{{$notification->created_at->locale('pt')->diffForHumans()}}</small></sub></a></li>
+                                    @endauth
+                                   @empty
+                                    <div class="alert alert-warning">Nenhuma Notificação.</div>
+                                   @endforelse
+                               </ul>
+                        </div>
+                   </div>
                     @guest
                     <li class="nav-item"><a href="#" class="nav-link" id="btn-login">Login</a></li>
                     <li class="nav-item divisao d-none d-sm-inline-block"><a href="" class="nav-link"></a></li>
@@ -74,6 +92,8 @@
                     <form action="{{route('logout')}}" method="post" class="sair-forum d-none">
                         @csrf
                     </form>
+                   
+
                     @endauth
                 </ul>
             </div>
