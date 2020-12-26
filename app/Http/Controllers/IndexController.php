@@ -25,7 +25,8 @@ class IndexController extends Controller{
     public function index(){
         $jogos = $this->jogo->paginate(5);
         $produtos = $this->produto->paginate(3);
-        $notifications = ($this->administrador->first())->unreadNotifications;
+        $user = ($this->administrador->first())->user;
+        $notifications = $user->unreadNotifications;
         return view('index.home',compact('jogos','produtos','notifications'));
     }
 }

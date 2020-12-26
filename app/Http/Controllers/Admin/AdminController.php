@@ -39,7 +39,8 @@ class AdminController extends Controller
         $produtos = $this->produto::get();
         $orders = $this->order->leftjoin('users','users.id','=','user_orders.fk_id_user')->select(['users.name as user_nome','user_orders.*'])->orderBy('created_at','desc')->paginate(8);
         $admin = $this->administrador->first();
-        $notifications = $admin->unreadNotifications;
+        $user = $admin->user;
+        $notifications = $user->unreadNotifications;
         $notifications->each->markAsRead();
         return view('admin.index',compact('jogos','categorias','produtos','categorias_para_produto','orders'));
     }

@@ -46,7 +46,8 @@ class CheckoutController extends Controller
             $user->orders()->create($userOrder);
             //Notificar Admin sobre o novo pedido
             $admin = $this->admin->first();
-            $admin->notifyAboutStore();
+            $user = $admin->user;
+            $user->notifyAboutStore();
             session()->forget('carrinho');
             session()->forget('pagseguro_session_code');
             return response()->json([
