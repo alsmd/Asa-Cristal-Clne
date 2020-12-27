@@ -64,7 +64,10 @@ class CheckoutController extends Controller
                 'data' => [
                     'status' => false,
                     'message' => $message,
-                    'order' => $reference
+                    'order' => $reference,
+                    'line' => $e->getLine(),
+                    'file' => $e->getFile(),
+                    'traces' => $e->getTraceAsString()
                 ]
                 ],401);
         }

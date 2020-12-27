@@ -35,7 +35,9 @@
             <button class="navbar-toggler" data-toggle="collapse" data-target="#menu-principal"><span class="navbar-toggler-icon"></span></button>
 
             <div class="collapse navbar-collapse" id="menu-principal">
+
                 <ul class="navbar-nav ml-auto">
+                    @auth 
                     <div class="dropleft d-flex align-items-center notificacao-area">
                         <span class="badge badge-danger">{{count($notifications)}}</span>
                         <a class="@if(count($notifications))text-warning @else text-light @endif dropdown-toggle"href="#" id="notifications" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell"></i></a>
@@ -43,15 +45,16 @@
                                <ul class="p-0 text-truncate">
                                    @forelse($notifications as $notification)
                                     @php $data = json_encode($notification->data);  @endphp
-                                    @auth
+                                    @if(count(auth()->user()->administrador) > 0)
                                         <li class="dropdown-item text-truncate bg-warning pb-0"><a href="{{route('admin.index')}}" class="text-dark nav-link">{{$notification->data['mensagem']}}<sub><small class="text-dark">{{$notification->created_at->locale('pt')->diffForHumans()}}</small></sub></a></li>
-                                    @endauth
+                                    @endif
                                    @empty
                                     <div class="alert alert-warning">Nenhuma Notificação.</div>
                                    @endforelse
                                </ul>
                         </div>
                    </div>
+                    @endauth
                     @guest
                     <li class="nav-item"><a href="#" class="nav-link" id="btn-login">Login</a></li>
                     <li class="nav-item divisao d-none d-sm-inline-block"><a href="" class="nav-link"></a></li>

@@ -29,7 +29,7 @@ class StoreReceiveNewOrder extends Notification
      */
     public function via($notifiable)
     {
-        return ['database','mail'];
+        return ['database','mail','nexmo'];
     }
 
     /**
@@ -60,6 +60,17 @@ class StoreReceiveNewOrder extends Notification
             //
             'mensagem' => 'Você tem um novo pedido solicitado'
         ];
+    }
+
+    public function toNexmo($notifiable){
+        $basic  = new \Nexmo\Client\Credentials\Basic('2cf0145a', '2kDKB2ZGGGxiDLNh');
+        $client = new \Nexmo\Client($basic);
+
+        return $client->message()->send([
+            'to' => env('ADMIN_NUMBER','5511960191103'),
+            'from' => 'Gamesow',
+            'text' => 'Loja gamesow novo pedido'
+        ]);
     }
 
 }
