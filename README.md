@@ -17,3 +17,7 @@
 <img src="gamesow_8.jpeg" alt="Girl in a jacket" height="600">
 <img src="gamesow_9jpeg" alt="Girl in a jacket" height="600">
 <img src="gamesow_10.jpeg" alt="Girl in a jacket" height="600">
+<img src="gamesow_13.jpeg" alt="Girl in a jacket" height="600">
+<img src="gamesow_14.jpeg" alt="Girl in a jacket" height="600">
+<img src="gamesow_15.jpeg" alt="Girl in a jacket" height="600">
+<img src="gamesow_16.jpeg" alt="Girl in a jacket" height="600">
